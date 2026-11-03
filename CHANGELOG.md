@@ -1,10 +1,12 @@
 # Changes
 
-## Unreleased - A4 harness
+## 0.4.0-preview.1 - A4/A5 portfolio source preview
 
 Separate fresh-process A2/A3 measurement worker, fixed synthetic recipe, finite
 driver, independent counter/byte guards and explicit timing/memory definitions.
-No performance result is available at this preparation commit.
+Finite one-host observations, inspectable raw receipts, design/failure case study
+and claim-to-evidence map. Measured ancestor code is distinguished from this
+results/documentation release. No new application contract or production claim.
 
 ## 0.3.0-preview.1 — A3
 

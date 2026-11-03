@@ -1,6 +1,6 @@
-# Market Data Integrity Lab — A3 preview
+# Market Data Integrity Lab - synthetic validation and recovery
 
-[Windows/Linux CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/workflows/verify.yml) · [Source preview v0.3.0-preview.1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.3.0-preview.1)
+[Windows/Linux CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/workflows/verify.yml) · [Source preview v0.4.0-preview.1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.4.0-preview.1)
 
 Offline C#/.NET validation for explicitly synthetic OHLC records. A1 provides
 bounded framing, strict schema/OHLC checks and provenance. A2 adds opt-in
@@ -89,8 +89,8 @@ No calendar-gap inference, stream repair, reordering, market adapter, authentica
 feed, broker connection, trade or private account exists. Recovery is for process
 crashes under the stated local conditions, not power loss, hostile filesystem or
 distributed exactly-once. R/K/W, checkpoint and evidence caps bound retained
-application structures, not measured whole-process memory. Finite reproducible
-performance measurements and the final measured case study are still pending.
+application structures; they do not impose a whole-process memory guarantee.
+Finite one-host observations and their limitations are linked below.
 Tests/CI are not venue latency, feed-completeness, production or profit evidence.
 
 ## Provenance
@@ -100,8 +100,22 @@ No private project source, fixtures, schemas, market/account data or business
 rules were copied. Source and executed checks support this sample's own behavior,
 not historical employer outcomes or an independently assessed individual code share.
 
-## A4 measurement preparation
+## Finite measurement evidence
 
-[Finite protocol and metric definitions](docs/MEASUREMENTS.md) describe a separate
-synthetic measurement harness. No A4 performance results are asserted yet.
-A3 remains the published source preview while the finite study is pending.
+[Case study](docs/CASE-STUDY.md) explains the design, real development failures,
+tradeoffs and finite observations. [Claim-to-evidence map](docs/EVIDENCE.md) links
+behavior to code/tests/CI. [Metric definitions and protocol](docs/MEASUREMENTS.md)
+keep operation timing, process timing, allocation and lifetime peak memory separate.
+
+The one-shot study completed 21 children in 33.969s below both resource caps.
+A3 was slower and allocated more managed bytes in the tested workload; all
+canonical decisions remained equal to A2. See exact observations and scope above. One local Windows host; Linux is correctness
+CI, not a second performance experiment. No isolated checkpoint overhead, tail
+latency, HFT, production or profit claim follows.
+
+[Source ZIP](https://github.com/pouriaquant91/market-data-integrity-lab/releases/download/v0.4.0-preview.1/market-data-integrity-lab-v0.4.0-preview.1.zip)
+and [SHA256SUMS](https://github.com/pouriaquant91/market-data-integrity-lab/releases/download/v0.4.0-preview.1/SHA256SUMS.txt)
+are source artifacts requiring the SDK, not application installers.
+
+[MIT license](LICENSE) applies to the independent sample. [Attribution](NOTICE.md)
+states AI assistance and the limits of individual/employer claims.

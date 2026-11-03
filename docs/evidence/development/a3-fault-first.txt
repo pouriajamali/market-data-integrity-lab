@@ -1,0 +1,20 @@
+xUnit.net v3 In-Process Runner v4.0.2+0c7aa4991f (64-bit .NET 10.0.14)
+  Discovering: Integrity.Tests
+  Discovered:  Integrity.Tests
+  Starting:    Integrity.Tests
+    Integrity.Tests.RecoveryTests.LiveWriterExcludedStaleLockReusableAndTwoStartRaceSafe [FAIL]
+      System.IO.IOException : The process cannot access the file '<private-workspace>\repo\artifacts\recovery-tests\live-writer-deb6878775c542c7a5c364d1d74d19b8\run\accepted.jsonl' because it is being used by another process.
+      Stack Trace:
+           at System.IO.File.ReadAllBytes(String path)
+        tests\Integrity.Tests\RecoveryFixture.cs(75,0): at Integrity.Tests.RecoveryFixture.<>c.<ActiveHashes>b__23_1(String p)
+           at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)
+        tests\Integrity.Tests\RecoveryFixture.cs(74,0): at Integrity.Tests.RecoveryFixture.ActiveHashes(String directory)
+        tests\Integrity.Tests\RecoveryTests.cs(173,0): at Integrity.Tests.RecoveryTests.<>c__DisplayClass6_0.<<LiveWriterExcludedStaleLockReusableAndTwoStartRaceSafe>b__0>d.MoveNext()
+        --- End of stack trace from previous location ---
+        tests\Integrity.Tests\RecoveryChild.cs(57,0): at Integrity.Tests.RecoveryChild.KillAt(RecoveryFixture fixture, Boolean resume, String point, Int64 records, String label, Func`1 whilePaused, Int32 interval)
+        tests\Integrity.Tests\RecoveryChild.cs(63,0): at Integrity.Tests.RecoveryChild.KillAt(RecoveryFixture fixture, Boolean resume, String point, Int64 records, String label, Func`1 whilePaused, Int32 interval)
+        tests\Integrity.Tests\RecoveryTests.cs(171,0): at Integrity.Tests.RecoveryTests.LiveWriterExcludedStaleLockReusableAndTwoStartRaceSafe()
+        --- End of stack trace from previous location ---
+  Finished:    Integrity.Tests (ID = 'b438cc0d3bcb61b8c06b7468f37a6333b973ca532a21e5bad478664e9249c508')
+=== TEST EXECUTION SUMMARY ===
+   Integrity.Tests  Total: 29, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 10.791s

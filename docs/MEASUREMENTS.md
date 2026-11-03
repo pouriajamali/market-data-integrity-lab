@@ -36,3 +36,20 @@ Primary API definitions: [allocation](https://learn.microsoft.com/en-us/dotnet/a
 First unexpected exit, timeout, resource limit, wrong metric/count/byte, or source/workload/binary mutation ends the schedule, retaining failed artifacts. No retry, tuning or smaller replacement. Source and built binaries are pinned before/after; input/manifest hashes are verified again after. The measured commit remains an explicit ancestor if later documentation/results are committed. Final release metadata must not pretend that later commit was the timed binary.
 
 Public host fields omit hostname/user/IP/serial. Public commands are portable templates with executable identity/version/hash. Literal executable/cwd/argv are private. Linux correctness CI is separate from this Windows measurement; no cross-OS performance ranking.
+
+## Published observation receipt
+
+The single approved run is in [raw results](evidence/measurements/results.json)
+and the [case study](CASE-STUDY.md). It completed21 children without retry.
+The retained manifest JSON used Windows default CRLF while physical JSONL was
+explicit UTF8/LF; raw manifest hashes identify those exact bytes. Generating a
+new manifest on another OS may change manifest identity and summary bytes;
+determinism applies to the same input/manifest bytes.
+
+The JSON protocol status reflects its preflight preparation point. Coordinator
+approval and actual execution are recorded in [execution receipt](evidence/measurements/execution.json).
+
+Recorded binary hashes identify the actual measured local build. They do not
+claim byte-identical rebuilding across directories/machines; PDB/build paths and
+runtime/toolchain details can affect rebuilt binary identity. Source and contract
+reproduction are separate from that binary-identity receipt.

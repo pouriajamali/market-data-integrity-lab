@@ -1,4 +1,4 @@
-name: A3 Windows and Linux
+name: Portfolio Windows and Linux
 on:
   push:
     branches: [main]
@@ -31,6 +31,7 @@ jobs:
         with:
           python-version: '3.13'
       - run: python tools/test_measurements.py
+      - run: python tools/analyze_measurements.py docs/evidence/measurements artifacts/recomputed-a4-summary.json
       - run: python tools/check_measurements.py --dotnet dotnet
       - run: dotnet run --project src/Integrity -c Release --no-build -- generate artifacts/demo 34
       - name: Exercise CLI degraded result
@@ -74,4 +75,4 @@ jobs:
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "$archive" HEAD
           sha256sum "$archive" > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A3 source preview $GITHUB_REF_NAME" --notes "Synthetic-only A3: preserved A1/A2 validation plus opt-in process-crash checkpoint/resume, verified fallback and bounded evidence preservation. Source package; requires .NET SDK 10.0.403 and enabled local .NET locking. No power-loss, hostile-FS, distributed exactly-once or performance guarantee."
+          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "Portfolio source preview $GITHUB_REF_NAME" --notes "Synthetic-only portfolio: bounded validation and opt-in process-crash recovery, finite one-host measurement receipts, case study and claim-to-evidence map. Source package, not an installer; requires .NET SDK 10.0.403 and enabled local .NET locking. Observed mode costs are not a production performance or profitability guarantee."

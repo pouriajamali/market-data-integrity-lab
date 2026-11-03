@@ -41,7 +41,8 @@ policySha256 hashes compact UTF-8 JSON with this exact property order:
 ~~~json
 {"checkpointFormatVersion":1,"runnerContract":"A3-process-crash-v1","sequenceContract":"A2-sequence-v1","manifestSha256":"<raw manifest SHA256>","checkpointEveryRecords":2,"maxCheckpointBytes":67108864,"generationSlots":2,"maxDecisionBytes":2048,"maxSummaryBytes":4194304,"checkpointMaxDepth":8,"maxEvidenceBytes":201326592,"maxEvidenceFiles":32}
 ~~~
-Apart from manifest identity, the only user-controlled policy parameter is\ncheckpointEveryRecords, explicitly within 1..10000. Contract/schema/
+Apart from manifest identity, the only user-controlled policy parameter is
+checkpointEveryRecords, explicitly within 1..10000. Contract/schema/
 cap changes need review/versioning; limits are never raised to fit a workload.
 
 ## Commit order, cursor and EOF

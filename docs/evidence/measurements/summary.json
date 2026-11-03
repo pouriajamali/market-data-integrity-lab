@@ -1,0 +1,448 @@
+{
+  "status": "INDEPENDENT_ARITHMETIC_PASS",
+  "phaseCounts": {
+    "warmup": 4,
+    "measured": 12,
+    "stress": 2,
+    "hash_reference": 3
+  },
+  "measuredCommit": "d9ece5023487155a85050ec6fb0dae5f344d8de7",
+  "groups": {
+    "measured-10000-A2": {
+      "samples": 3,
+      "raw": [
+        {
+          "index": 5,
+          "operationSeconds": 0.2806662,
+          "parentSeconds": 0.3364422,
+          "recordsPerSecond": 35629.512923180635,
+          "sourceMiBPerSecond": 5.994848627915182,
+          "cpuSeconds": 0.25,
+          "managedAllocatedBytes": 43893240,
+          "managedBytesPerPhysicalRecord": 4389.324,
+          "lifetimePeakMiB": 46.22265625
+        },
+        {
+          "index": 8,
+          "operationSeconds": 0.2643086,
+          "parentSeconds": 0.3205993,
+          "recordsPerSecond": 37834.56156931708,
+          "sourceMiBPerSecond": 6.365859393043465,
+          "cpuSeconds": 0.25,
+          "managedAllocatedBytes": 43894136,
+          "managedBytesPerPhysicalRecord": 4389.4136,
+          "lifetimePeakMiB": 46.05078125
+        },
+        {
+          "index": 9,
+          "operationSeconds": 0.2670095,
+          "parentSeconds": 0.3186251,
+          "recordsPerSecond": 37451.85096410427,
+          "sourceMiBPerSecond": 6.3014663671973015,
+          "cpuSeconds": 0.28125,
+          "managedAllocatedBytes": 43880192,
+          "managedBytesPerPhysicalRecord": 4388.0192,
+          "lifetimePeakMiB": 46.16796875
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 0.2643086,
+          "median": 0.2670095,
+          "max": 0.2806662
+        },
+        "parentSeconds": {
+          "min": 0.3186251,
+          "median": 0.3205993,
+          "max": 0.3364422
+        },
+        "recordsPerSecond": {
+          "min": 35629.512923180635,
+          "median": 37451.85096410427,
+          "max": 37834.56156931708
+        },
+        "sourceMiBPerSecond": {
+          "min": 5.994848627915182,
+          "median": 6.3014663671973015,
+          "max": 6.365859393043465
+        },
+        "cpuSeconds": {
+          "min": 0.25,
+          "median": 0.25,
+          "max": 0.28125
+        },
+        "managedAllocatedBytes": {
+          "min": 43880192,
+          "median": 43893240,
+          "max": 43894136
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 4388.0192,
+          "median": 4389.324,
+          "max": 4389.4136
+        },
+        "lifetimePeakMiB": {
+          "min": 46.05078125,
+          "median": 46.16796875,
+          "max": 46.22265625
+        }
+      }
+    },
+    "measured-10000-A3": {
+      "samples": 3,
+      "raw": [
+        {
+          "index": 6,
+          "operationSeconds": 0.500224,
+          "parentSeconds": 0.5545846,
+          "recordsPerSecond": 19991.0440122825,
+          "sourceMiBPerSecond": 3.3635958769914436,
+          "cpuSeconds": 0.46875,
+          "managedAllocatedBytes": 85013464,
+          "managedBytesPerPhysicalRecord": 8501.3464,
+          "lifetimePeakMiB": 50.17578125
+        },
+        {
+          "index": 7,
+          "operationSeconds": 0.5132514,
+          "parentSeconds": 0.5675675,
+          "recordsPerSecond": 19483.629270178317,
+          "sourceMiBPerSecond": 3.278220739333917,
+          "cpuSeconds": 0.5,
+          "managedAllocatedBytes": 85014296,
+          "managedBytesPerPhysicalRecord": 8501.4296,
+          "lifetimePeakMiB": 50.71484375
+        },
+        {
+          "index": 10,
+          "operationSeconds": 0.5012558,
+          "parentSeconds": 0.5578359,
+          "recordsPerSecond": 19949.89384661484,
+          "sourceMiBPerSecond": 3.356672150171964,
+          "cpuSeconds": 0.4375,
+          "managedAllocatedBytes": 85011480,
+          "managedBytesPerPhysicalRecord": 8501.148,
+          "lifetimePeakMiB": 50.17578125
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 0.500224,
+          "median": 0.5012558,
+          "max": 0.5132514
+        },
+        "parentSeconds": {
+          "min": 0.5545846,
+          "median": 0.5578359,
+          "max": 0.5675675
+        },
+        "recordsPerSecond": {
+          "min": 19483.629270178317,
+          "median": 19949.89384661484,
+          "max": 19991.0440122825
+        },
+        "sourceMiBPerSecond": {
+          "min": 3.278220739333917,
+          "median": 3.356672150171964,
+          "max": 3.3635958769914436
+        },
+        "cpuSeconds": {
+          "min": 0.4375,
+          "median": 0.46875,
+          "max": 0.5
+        },
+        "managedAllocatedBytes": {
+          "min": 85011480,
+          "median": 85013464,
+          "max": 85014296
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 8501.148,
+          "median": 8501.3464,
+          "max": 8501.4296
+        },
+        "lifetimePeakMiB": {
+          "min": 50.17578125,
+          "median": 50.17578125,
+          "max": 50.71484375
+        }
+      }
+    },
+    "measured-100000-A2": {
+      "samples": 3,
+      "raw": [
+        {
+          "index": 11,
+          "operationSeconds": 1.5591654,
+          "parentSeconds": 1.6094829,
+          "recordsPerSecond": 64136.87733193669,
+          "sourceMiBPerSecond": 10.852576243678113,
+          "cpuSeconds": 1.6875,
+          "managedAllocatedBytes": 431921704,
+          "managedBytesPerPhysicalRecord": 4319.21704,
+          "lifetimePeakMiB": 48.01953125
+        },
+        {
+          "index": 14,
+          "operationSeconds": 1.6250085,
+          "parentSeconds": 1.6864566,
+          "recordsPerSecond": 61538.139646654156,
+          "sourceMiBPerSecond": 10.412844843583823,
+          "cpuSeconds": 1.734375,
+          "managedAllocatedBytes": 431921320,
+          "managedBytesPerPhysicalRecord": 4319.2132,
+          "lifetimePeakMiB": 48.08984375
+        },
+        {
+          "index": 15,
+          "operationSeconds": 1.6328096,
+          "parentSeconds": 1.6899112,
+          "recordsPerSecond": 61244.1279130157,
+          "sourceMiBPerSecond": 10.363095231682177,
+          "cpuSeconds": 1.734375,
+          "managedAllocatedBytes": 431920680,
+          "managedBytesPerPhysicalRecord": 4319.2068,
+          "lifetimePeakMiB": 47.953125
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 1.5591654,
+          "median": 1.6250085,
+          "max": 1.6328096
+        },
+        "parentSeconds": {
+          "min": 1.6094829,
+          "median": 1.6864566,
+          "max": 1.6899112
+        },
+        "recordsPerSecond": {
+          "min": 61244.1279130157,
+          "median": 61538.139646654156,
+          "max": 64136.87733193669
+        },
+        "sourceMiBPerSecond": {
+          "min": 10.363095231682177,
+          "median": 10.412844843583823,
+          "max": 10.852576243678113
+        },
+        "cpuSeconds": {
+          "min": 1.6875,
+          "median": 1.734375,
+          "max": 1.734375
+        },
+        "managedAllocatedBytes": {
+          "min": 431920680,
+          "median": 431921320,
+          "max": 431921704
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 4319.2068,
+          "median": 4319.2132,
+          "max": 4319.21704
+        },
+        "lifetimePeakMiB": {
+          "min": 47.953125,
+          "median": 48.01953125,
+          "max": 48.08984375
+        }
+      }
+    },
+    "measured-100000-A3": {
+      "samples": 3,
+      "raw": [
+        {
+          "index": 12,
+          "operationSeconds": 2.6986285,
+          "parentSeconds": 2.7533782,
+          "recordsPerSecond": 37055.86004149886,
+          "sourceMiBPerSecond": 6.2702077666506835,
+          "cpuSeconds": 2.765625,
+          "managedAllocatedBytes": 837620368,
+          "managedBytesPerPhysicalRecord": 8376.20368,
+          "lifetimePeakMiB": 61.97265625
+        },
+        {
+          "index": 13,
+          "operationSeconds": 3.087811,
+          "parentSeconds": 3.152423,
+          "recordsPerSecond": 32385.401826730977,
+          "sourceMiBPerSecond": 5.479921335860545,
+          "cpuSeconds": 3.09375,
+          "managedAllocatedBytes": 836468056,
+          "managedBytesPerPhysicalRecord": 8364.68056,
+          "lifetimePeakMiB": 61.95703125
+        },
+        {
+          "index": 16,
+          "operationSeconds": 2.7202162,
+          "parentSeconds": 2.7754483,
+          "recordsPerSecond": 36761.78386115045,
+          "sourceMiBPerSecond": 6.220447249746136,
+          "cpuSeconds": 2.84375,
+          "managedAllocatedBytes": 836543632,
+          "managedBytesPerPhysicalRecord": 8365.43632,
+          "lifetimePeakMiB": 62.12890625
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 2.6986285,
+          "median": 2.7202162,
+          "max": 3.087811
+        },
+        "parentSeconds": {
+          "min": 2.7533782,
+          "median": 2.7754483,
+          "max": 3.152423
+        },
+        "recordsPerSecond": {
+          "min": 32385.401826730977,
+          "median": 36761.78386115045,
+          "max": 37055.86004149886
+        },
+        "sourceMiBPerSecond": {
+          "min": 5.479921335860545,
+          "median": 6.220447249746136,
+          "max": 6.2702077666506835
+        },
+        "cpuSeconds": {
+          "min": 2.765625,
+          "median": 2.84375,
+          "max": 3.09375
+        },
+        "managedAllocatedBytes": {
+          "min": 836468056,
+          "median": 836543632,
+          "max": 837620368
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 8364.68056,
+          "median": 8365.43632,
+          "max": 8376.20368
+        },
+        "lifetimePeakMiB": {
+          "min": 61.95703125,
+          "median": 61.97265625,
+          "max": 62.12890625
+        }
+      }
+    },
+    "stress-250000-A2": {
+      "samples": 1,
+      "raw": [
+        {
+          "index": 17,
+          "operationSeconds": 2.569025,
+          "parentSeconds": 2.62888,
+          "recordsPerSecond": 97313.1830169033,
+          "sourceMiBPerSecond": 16.508288119963854,
+          "cpuSeconds": 2.875,
+          "managedAllocatedBytes": 1067400800,
+          "managedBytesPerPhysicalRecord": 4269.6032,
+          "lifetimePeakMiB": 52.98828125
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 2.569025,
+          "median": 2.569025,
+          "max": 2.569025
+        },
+        "parentSeconds": {
+          "min": 2.62888,
+          "median": 2.62888,
+          "max": 2.62888
+        },
+        "recordsPerSecond": {
+          "min": 97313.1830169033,
+          "median": 97313.1830169033,
+          "max": 97313.1830169033
+        },
+        "sourceMiBPerSecond": {
+          "min": 16.508288119963854,
+          "median": 16.508288119963854,
+          "max": 16.508288119963854
+        },
+        "cpuSeconds": {
+          "min": 2.875,
+          "median": 2.875,
+          "max": 2.875
+        },
+        "managedAllocatedBytes": {
+          "min": 1067400800,
+          "median": 1067400800,
+          "max": 1067400800
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 4269.6032,
+          "median": 4269.6032,
+          "max": 4269.6032
+        },
+        "lifetimePeakMiB": {
+          "min": 52.98828125,
+          "median": 52.98828125,
+          "max": 52.98828125
+        }
+      }
+    },
+    "stress-250000-A3": {
+      "samples": 1,
+      "raw": [
+        {
+          "index": 18,
+          "operationSeconds": 5.2487484,
+          "parentSeconds": 5.3023454,
+          "recordsPerSecond": 47630.40270705298,
+          "sourceMiBPerSecond": 8.080060550700075,
+          "cpuSeconds": 5.171875,
+          "managedAllocatedBytes": 2072010456,
+          "managedBytesPerPhysicalRecord": 8288.041824,
+          "lifetimePeakMiB": 61.69140625
+        }
+      ],
+      "stats": {
+        "operationSeconds": {
+          "min": 5.2487484,
+          "median": 5.2487484,
+          "max": 5.2487484
+        },
+        "parentSeconds": {
+          "min": 5.3023454,
+          "median": 5.3023454,
+          "max": 5.3023454
+        },
+        "recordsPerSecond": {
+          "min": 47630.40270705298,
+          "median": 47630.40270705298,
+          "max": 47630.40270705298
+        },
+        "sourceMiBPerSecond": {
+          "min": 8.080060550700075,
+          "median": 8.080060550700075,
+          "max": 8.080060550700075
+        },
+        "cpuSeconds": {
+          "min": 5.171875,
+          "median": 5.171875,
+          "max": 5.171875
+        },
+        "managedAllocatedBytes": {
+          "min": 2072010456,
+          "median": 2072010456,
+          "max": 2072010456
+        },
+        "managedBytesPerPhysicalRecord": {
+          "min": 8288.041824,
+          "median": 8288.041824,
+          "max": 8288.041824
+        },
+        "lifetimePeakMiB": {
+          "min": 61.69140625,
+          "median": 61.69140625,
+          "max": 61.69140625
+        }
+      }
+    }
+  }
+}

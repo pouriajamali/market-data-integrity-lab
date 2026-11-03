@@ -1,0 +1,52 @@
+{
+  "evidenceLevel": "LOCAL_PRE_RELEASE_DEVELOPMENT_RECEIPTS",
+  "provenance": "Copied from retained local test output; not historical GitHub CI and not reproduction of unavailable pre-fix binaries.",
+  "transformations": [
+    "UTF8 without BOM",
+    "LF newline normalization",
+    "Private absolute workspace prefix replaced by <private-workspace>; assertions/results retained"
+  ],
+  "files": [
+    {
+      "file": "a3-eof-red.txt",
+      "originalPrivateSha256": "de3199cd7ed68cf4cf27e7934141483dcb812fd30dbf311aa7c56f8fef037f85",
+      "publishedNormalizedSha256": "b38cf7386471d9f139a086e786cb0574c408189cf5ec1e476a1dafc5ff96d90f"
+    },
+    {
+      "file": "a3-eof-green.txt",
+      "originalPrivateSha256": "8cf21dc7f88de86054bba36ae32d70d1bd0ad603a11ad9911d8bad4b38a58933",
+      "publishedNormalizedSha256": "a64722777657dc5e7c7ef6b44e53447b10816bced27966d561e2064056a07b81"
+    },
+    {
+      "file": "a3-identity-red-verified.txt",
+      "originalPrivateSha256": "b0c122a0b80716ca36207be76af591ac3d7bab99b0e958e7f8138bef117f2f5c",
+      "publishedNormalizedSha256": "2bc266eb2305710a26ff6149795f4520e76bd92d800b9503e082db962c132384"
+    },
+    {
+      "file": "a3-identity-green.txt",
+      "originalPrivateSha256": "28cce5e135ffea9f49a463c113964561720d2d99df484cebf90bbf9bdc5d55f7",
+      "publishedNormalizedSha256": "c8dccd78d1554010568e272a7ef746996cde1130b28e7fd5f21dd37aefc9c682"
+    },
+    {
+      "file": "a3-fault-first.txt",
+      "originalPrivateSha256": "4a2155b5480af027ebe0cc3994987dd1ffe825d9f9de00583b9d7ead3251f208",
+      "publishedNormalizedSha256": "9c82ca84f120cb49274bed6e5fc57cdbd3b4d21051170685dce97a9c3a28b60b"
+    },
+    {
+      "file": "a3-live-lock-green.txt",
+      "originalPrivateSha256": "ee3b5e89b7d379effc0a3d40053a04d5b19d6f129bd83299e01e87babfd70e3d",
+      "publishedNormalizedSha256": "b75c373ca73602ab3e822669089e94cf872229304fd8f8a670e6a9d792d57795"
+    },
+    {
+      "file": "a3-payload-proof-red.txt",
+      "originalPrivateSha256": "a63b7a5fca9a60b90cbb72bd114d6eed21c2650c3beee3ea001f1cadf2f2e589",
+      "publishedNormalizedSha256": "ea89db7eaf99de94a4dc4bf3b513db972165c4a3e283713b65b4c9b4191d1e56"
+    },
+    {
+      "file": "a3-freeze-tests.txt",
+      "originalPrivateSha256": "5723374eb876679bfbe510157d41268fabbe85ac5eca744530aaee92dcf93daa",
+      "publishedNormalizedSha256": "fd815a4a4ca064ecd150595f4315f94f0fa56d5aca4b7309a5f60a45277c1f31"
+    }
+  ],
+  "excludedInvalidFixture": "a3-identity-red.txt is not product-red proof: escaped replacement did not establish the intended mutation. Corrected fixture asserts duplication before verified red."
+}

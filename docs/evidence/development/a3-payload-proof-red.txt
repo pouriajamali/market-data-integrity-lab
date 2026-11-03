@@ -1,0 +1,14 @@
+xUnit.net v3 In-Process Runner v4.0.2+0c7aa4991f (64-bit .NET 10.0.14)
+  Discovering: Integrity.Tests
+  Discovered:  Integrity.Tests
+  Starting:    Integrity.Tests
+    Integrity.Tests.RecoveryTests.FiniteRealKillMatrixResumesToExactA2Bytes(point: "CheckpointPayloadMid", records: 20) [FAIL]
+      Assert.True() Failure
+      Expected: True
+      Actual:   False
+      Stack Trace:
+        tests\Integrity.Tests\RecoveryTests.cs(55,0): at Integrity.Tests.RecoveryTests.FiniteRealKillMatrixResumesToExactA2Bytes(String point, Int64 records)
+        --- End of stack trace from previous location ---
+  Finished:    Integrity.Tests (ID = 'b438cc0d3bcb61b8c06b7468f37a6333b973ca532a21e5bad478664e9249c508')
+=== TEST EXECUTION SUMMARY ===
+   Integrity.Tests  Total: 9, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 3.544s

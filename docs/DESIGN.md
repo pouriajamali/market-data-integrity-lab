@@ -70,8 +70,8 @@ Evidence includes a handwritten transition table with cursor/window/block snapsh
 two-stream and declared-epoch isolation, both sides of the retention boundary,
 bad-OHLC consumption/repetition, numeric end-of-domain handling, bounded admission,
 canonical output/provenance and a real opt-in CLI process with a bounded deadline.
-Original A1 behavior tests remain unchanged. There are no new measurements or
-durable recovery guarantees.
+Original A1 behavior tests remain unchanged. This A2 path itself provides no
+durable recovery; the separate A3 path below adds its explicitly bounded contract.
 
 ## A3 recovery path
 
@@ -82,3 +82,12 @@ Committed EOF is finalized without inventing another checkpoint generation.
 Ownership assumes enabled local .NET locking and cooperating writers; Unix locks
 are advisory/best-effort. No power-loss, hostile-FS, distributed exactly-once or
 performance guarantee follows.
+
+## A4 measurement and A5 evidence
+
+A separate worker calls the public A2/A3 APIs from one frozen build. No application
+refactor was introduced to improve timings. The finite driver pins source/binaries,
+checks independently expected counters and compares canonical bytes after every
+completed validation. [Measurement definitions](MEASUREMENTS.md) and the
+[case study](CASE-STUDY.md) distinguish timing/allocation/peak memory, local
+development receipts and exact-commit public correctness CI.

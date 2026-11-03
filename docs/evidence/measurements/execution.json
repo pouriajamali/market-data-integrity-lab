@@ -1,0 +1,24 @@
+{
+  "status": "ONE_APPROVED_STUDY_COMPLETED",
+  "date": "2026-11-03",
+  "timezoneForDate": "America/Chicago",
+  "wrapperLaunchUtc": "2026-11-03T14:04:38.3456725+00:00",
+  "wrapperEndUtc": "2026-11-03T14:05:12.4514094+00:00",
+  "driverElapsedSeconds": 33.96899999999732,
+  "actualRetainedBytesIncludingFinalReceipt": 575034319,
+  "limits": {
+    "seconds": 600,
+    "bytes": 2147483648
+  },
+  "validationChildren": 18,
+  "separateHashReferenceChildren": 3,
+  "retries": 0,
+  "failedChildren": 0,
+  "sourceCommit": "d9ece5023487155a85050ec6fb0dae5f344d8de7",
+  "sourceTree": "20bea427f7efd172cd08f40b03e91c52675c306b",
+  "protocolApproval": "Coordinator approved exact source/tree before execution; publication is a separate gate.",
+  "rawReceiptSha256": "74b01bd13507ffa168b8ee4fae2e0d033a0776f9a49844c2c9b23c3af91a1f58",
+  "analysisSourceSha256": "31047e2e91326023cc4d0bd9e221278ab3274bf315ddcd3fe576402ade2b31b4",
+  "literalLaunchPaths": "Retained privately; public portable command templates and executable identity hash are in raw receipt.",
+  "scope": "Independent synthetic sample only; no CV/profile/shared-asset edits."
+}
