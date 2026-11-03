@@ -1,5 +1,13 @@
 # Changes
 
+## 0.3.0-preview.1 — A3
+
+Opt-in local process-crash checkpoint/resume with strict identity/policy checks,
+bounded state/window restore, two committed slots, verified sink-prefix fallback
+and preserved bounded failure evidence. EOF finalization is idempotent; owned
+child cuts and A1/A2 golden bytes are checked. Existing commands remain available.
+No power-loss, hostile-FS, distributed exactly-once or performance guarantee.
+
 ## 0.2.0-preview.1 — A2
 
 Opt-in manifest version 2 with explicit stream/epoch baselines, bounded consumed-

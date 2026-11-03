@@ -43,8 +43,8 @@ source/configuration/tests/docs/workflow plus dependency lock files; private
 planning reports, local paths/logs/account data and raw chat history stay outside.
 
 The A1 path remains a bounded validation preview. The separate A2 sequence path
-is described below; later recovery work still needs its own accepted contract
-and executed evidence before a feature claim. No CV/profile edits are part of
+is described below. A3 now adds the separate checkpoint/resume contract linked
+below; feature claims remain bounded by executed evidence. No CV/profile edits are part of
 this repository task.
 
 ## A2 additive sequence path
@@ -72,3 +72,13 @@ bad-OHLC consumption/repetition, numeric end-of-domain handling, bounded admissi
 canonical output/provenance and a real opt-in CLI process with a bounded deadline.
 Original A1 behavior tests remain unchanged. There are no new measurements or
 durable recovery guarantees.
+
+## A3 recovery path
+
+[Recovery contract](RECOVERY.md) defines same-handle source checks, fixed policy
+identity, two-slot publication, complete window export/restore, prefix validation
+and evidence protection before mutation. A1/A2 canonical formats are unchanged.
+Committed EOF is finalized without inventing another checkpoint generation.
+Ownership assumes enabled local .NET locking and cooperating writers; Unix locks
+are advisory/best-effort. No power-loss, hostile-FS, distributed exactly-once or
+performance guarantee follows.

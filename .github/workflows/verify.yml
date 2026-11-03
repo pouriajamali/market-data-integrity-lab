@@ -1,9 +1,13 @@
-name: A2 Windows and Linux
+name: A3 Windows and Linux
 on:
   push:
     branches: [main]
     tags: ['v*']
   pull_request:
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_GENERATE_ASPNET_CERTIFICATE: "false"
+  DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "0"
 permissions:
   contents: read
 jobs:
@@ -12,6 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -38,6 +43,14 @@ jobs:
           result=$?
           set -e
           test "$result" -eq 2
+      - name: Retain finite synthetic recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-evidence-${{ matrix.os }}
+          path: artifacts/recovery-tests/
+          retention-days: 7
+          if-no-files-found: warn
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: verify
@@ -54,4 +67,4 @@ jobs:
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "$archive" HEAD
           sha256sum "$archive" > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A2 source preview $GITHUB_REF_NAME" --notes "Synthetic-only offline A2: preserved A1 validation plus opt-in bounded explicit-sequence windows, duplicate/conflict classification, per-stream gap gates and uncertainty reporting. Source package; requires .NET SDK 10.0.403. Crash-resume, reordering and performance measurements are not implemented."
+          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A3 source preview $GITHUB_REF_NAME" --notes "Synthetic-only A3: preserved A1/A2 validation plus opt-in process-crash checkpoint/resume, verified fallback and bounded evidence preservation. Source package; requires .NET SDK 10.0.403 and enabled local .NET locking. No power-loss, hostile-FS, distributed exactly-once or performance guarantee."
