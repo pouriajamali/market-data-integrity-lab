@@ -107,7 +107,7 @@ internal static class CsvContract
         string text;
         try{text=Decode(raw,false,terminatedByLf);}
         catch(DecoderFallbackException){throw new CsvFatalException("CSV_UTF8_INVALID");}
-        if(text.StartsWith('\uFEFF'))throw new CsvFatalException("CSV_UNEXPECTED_BOM");
+        if(text.Contains('\uFEFF'))throw new CsvFatalException("CSV_UNEXPECTED_BOM");
         if(text.Length==0)return("EMPTY_ROW",null,null);
         var fields=Fields(text,out var syntax);
         if(fields is null)return(syntax!,null,null);

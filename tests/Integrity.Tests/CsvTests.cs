@@ -227,6 +227,20 @@ public sealed class CsvTests
         Assert.False(File.Exists(t.At("out/summary.json")));
     }
 
+    [Theory]
+    [InlineData("2026-01-01T00:00:00Z,1,2,0,1,\uFEFF1\n")]
+    [InlineData("2026-01-01T00:00:00Z,1,2,0,1,\"\uFEFF1\"\n")]
+    [InlineData("2026-01-01T00:00:00\uFEFFZ,1,2,0,1,1\n")]
+    public void EmbeddedDataBomIsFatalWithoutPublishingOrResyncing(string bad)
+    {
+        using var t=new Temp();
+        File.WriteAllText(t.At("in"),Header+Good+bad+Good,new UTF8Encoding(false));
+        Assert.Equal("CSV_UNEXPECTED_BOM",
+            Assert.Throws<CsvFatalException>(()=>CsvValidator.Run(t.At("in"),t.At("out"),2,0)).Code);
+        Assert.Single(File.ReadAllLines(t.At("out/accepted.jsonl")));
+        Assert.False(File.Exists(t.At("out/summary.json")));
+    }
+
     private sealed class ChangingStream(byte[] original,int changePass,byte[]? replacement) : Stream
     {
         private long pos;private int pass;

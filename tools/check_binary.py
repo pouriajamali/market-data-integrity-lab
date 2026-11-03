@@ -93,6 +93,13 @@ def check(args):
     run(["validate-csv",str(quote),str(quote_out),"2","0"],1)
     assert "CSV_UNCLOSED_QUOTE" in observations[-1]["stderr"]
     assert not (quote_out/"summary.json").exists()
+    bom=root/"embedded bom.csv"
+    bom.write_bytes((header+row+"2026-01-01T00:01:00Z,1,2,0,1,\ufeff1\n").encode("utf-8"))
+    bom_out=root/"embedded bom output"
+    run(["validate-csv",str(bom),str(bom_out),"2","0"],1)
+    assert "CSV_UNEXPECTED_BOM" in observations[-1]["stderr"]
+    assert not (bom_out/"summary.json").exists()
+    assert len((bom_out/"accepted.jsonl").read_text(encoding="utf-8").splitlines())==1
     result=dict(status="EXTRACTED_APPHOST_DEMO_AND_CONTRACT_PASS",commit=args.commit,rid=manifest["rid"],
         sdkInstalledHostNotExcluded=True,proof="Inspected self-contained config/runtime and direct apphost launch with empty PATH and nonexistent DOTNET_ROOT; host itself may have SDK installed.",
         packagePathHasSpaces=" " in str(folder),cwdHasSpaces=" " in str(root),

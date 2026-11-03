@@ -20,7 +20,7 @@ is always USER_SUPPLIED_UNVERIFIED; declaration is not authenticated provenance.
 - UTF8; LF or CRLF separators. The last row may omit its LF. A final LF adds no
   phantom record. A blank physical data row is an EMPTY_ROW quarantine.
 - A UTF8 BOM is allowed only before the first header byte. Header BOM and CR
-  remain included in raw header length/hash. Unexpected BOM in data is fatal.
+  remain included in raw header length/hash. Unexpected U+FEFF anywhere in a data row, including quoted cells, is fatal.
 - The decoded header must be exactly these6 names, in this order and case:
   `timestamp,open,high,low,close,volume`. Header fields may be quoted.
   Duplicate/missing/extra/misordered/case-changed names fail before output writes.
@@ -150,3 +150,18 @@ evidence, not historical public CI or an independently rebuilt pre-fix commit.
 Only UTF8/BOM/newline normalization and private-workspace-prefix substitution
 were applied. Original private SHA256:97b97fc3ff71f5a8e4a5dac1471aee1e281ddc9afe2b58395ca7e952dec21e7b.
 Published normalized SHA256:bad7f620bcb56d55b5df1804bb4b63e55a58a63e189670d3db819a8cfda6195e.
+
+## Review finding: embedded BOM
+
+Coordinator review found the first candidate checking only a data row prefix
+for U+FEFF, while the contract forbids it anywhere in data. Three focused cases
+(unquoted/quoted volume and timestamp) reproduced ordinary quarantine instead
+of the required file-fatal refusal. The check now covers the entire decoded
+data row. Existing accepted prefix files remain, no final summary is published,
+and the continuation row is never processed. The complete141-case suite passed
+after correction; ready-package checks also cover embedded BOM.
+
+[Normalized local red receipt](evidence/csv-embedded-bom-red.txt), not historical
+public CI: only UTF8/BOM/newline normalization and private-prefix substitution.
+Original private SHA256:c8d2f2b1fe39b4108c3453d01329958bc22f4f4b7a746b45fe30e78c2449606b.
+Published normalized SHA256:cdfd2fea5128e95125881194e0e44202b3435441f2aa2b9f5e7a6b2d1e9b709d.
