@@ -129,8 +129,9 @@ Integrity.dll SHA256 is 87e0dcaa826839d8764532c5e74c25579e7b0918f3f5d95bd0e51d4c
 Raw receipts list every built file, source fingerprint, SDK host hash and input
 identity. At the v0.4 results/docs release, application and measurement-worker/driver
 source bytes remained identical to that measured ancestor. B1 v0.5 adds CLI
-demo/version code and new packaging, and has NOT been performance-measured.
-Historical A4 figures are not measurements of the B1 binaries. The framing,
+demo/version code and packaging; B2 v0.6 adds a separate local CSV profile.
+Neither has been performance-measured. Historical A4 figures are not measurements
+of current B2 binaries. The framing,
 validation, sequence and recovery core is preserved separately by source pins.
 
 Host: Windows build 10.0.26300, AMD64, Intel i9-11900K @ 3.50GHz,

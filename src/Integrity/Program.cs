@@ -2,6 +2,20 @@ using MarketDataIntegrity;
 
 try
 {
+    if (args.Length == 2 && args[0] == "csv-demo")
+    {
+        CsvDemo.Run(args[1], Console.Out);
+        return 0;
+    }
+    if (args.Length == 5 && args[0] == "validate-csv" &&
+        int.TryParse(args[3], System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var priceDecimals) &&
+        int.TryParse(args[4], System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var volumeDecimals) &&
+        priceDecimals is >= 0 and <= 8 && volumeDecimals is >= 0 and <= 8)
+    {
+        var result = CsvValidator.Run(args[1], args[2], priceDecimals, volumeDecimals);
+        Console.WriteLine($"completed rows={result.Records} accepted={result.Accepted} quarantined={result.Quarantined}; LOCAL_ROW_CHECKS_ONLY; market provenance UNVERIFIED");
+        return result.Quarantined == 0 ? 0 : 2;
+    }
     if (args.Length == 1 && args[0] == "--version")
     {
         var version = typeof(Validator).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
@@ -48,7 +62,13 @@ try
         Console.WriteLine($"completed records={result.Summary.Records} quarantined={result.Summary.Quarantined} resumed_generation={result.RestoredGeneration} rejected_checkpoints={result.RejectedCandidates} already_completed={result.AlreadyCompleted}");
         return result.Summary.Quarantined == 0 ? 0 : 2;
     }
-    Console.Error.WriteLine("usage: Integrity --version | demo <new-directory> | generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory> | generate-sequence <new-directory> | validate-sequence <v2-manifest.json> <input.jsonl> <new-output-directory> | start-resumable|resume <v2-manifest.json> <input.jsonl> <workdir> <interval:1..10000>");
+    Console.Error.WriteLine("usage: Integrity validate-csv <input.csv> <new-output> <price-decimals:0..8> <volume-decimals:0..8> | csv-demo <new-directory> | --version | demo <new-directory> | generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory> | generate-sequence <new-directory> | validate-sequence <v2-manifest.json> <input.jsonl> <new-output-directory> | start-resumable|resume <v2-manifest.json> <input.jsonl> <workdir> <interval:1..10000>");
+    return 1;
+}
+catch (CsvFatalException error)
+{
+    var line = error.Line is null ? "" : $" line={error.Line.Value}";
+    Console.Error.WriteLine($"fatal:{error.Code}{line}; no completed result may be inferred from partial files");
     return 1;
 }
 catch (Exception error) when (error is IOException or UnauthorizedAccessException or

@@ -23,3 +23,8 @@ check golden bytes, existing-root no-mutation, usage/exit meanings and retained
 partial evidence on presentation failure. Package manifests and extracted native
 apphost checks cover the delivered binaries. Historical A4 timings do not apply
 to B1; ready demos do not execute the crash probe.
+
+B2 [CsvTests](../tests/Integrity.Tests/CsvTests.cs) and [CSV contract](CSV.md)
+support only offline row-format/value/OHLC checks, with provenance UNVERIFIED
+and order/dedup/completeness NOT_CHECKED. Exact scaled values are integer strings;
+ambiguous framing fails without a completed prefix. B2 is unmeasured.

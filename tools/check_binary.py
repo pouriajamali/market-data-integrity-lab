@@ -13,7 +13,7 @@ def check(args):
     folder=Path(args.package).resolve()
     manifest=json.loads((folder/"BUILD-MANIFEST.json").read_text(encoding="utf-8"))
     assert manifest["sourceCommit"]==args.commit
-    assert manifest["version"]=="0.5.0-preview.1" and manifest["bundledRuntime"]=="10.0.14"
+    assert manifest["version"]=="0.6.0-preview.1" and manifest["bundledRuntime"]=="10.0.14"
     assert manifest["sdk"]=="10.0.403" and manifest["selfContained"] is True
     expected={row["path"] for row in manifest["files"]}|{"BUILD-MANIFEST.json"}
     assert {p.relative_to(folder).as_posix() for p in folder.rglob("*") if p.is_file()}==expected
@@ -39,7 +39,7 @@ def check(args):
         assert result.returncode==exit_code,(argv,result.returncode,result.stderr)
         observations.append(dict(arguments=argv,exit=result.returncode,stdout=result.stdout,stderr=result.stderr))
         return result.stdout
-    assert "Integrity 0.5.0-preview.1" in run(["--version"],0)
+    assert "Integrity 0.6.0-preview.1" in run(["--version"],0)
     assert ".NET 10.0.14" in observations[-1]["stdout"]
     out=root/"demo output with spaces"
     run(["demo",str(out),"unexpected"],1)
@@ -57,6 +57,42 @@ def check(args):
     # A healthy one-record synthetic validation still returns0.
     run(["generate",str(root/"clean input"),"1"],0)
     run(["validate",str(root/"clean input/manifest.json"),str(root/"clean input/input.jsonl"),str(root/"clean output")],0)
+    csv_root=root/"csv generated demo"
+    assert "6 rows; 2 accepted; 4 quarantined" in run(["csv-demo",str(csv_root)],0)
+    generated=json.loads((csv_root/"result/summary.json").read_text(encoding="utf-8"))
+    assert generated["policy"]["sourceKind"]=="GENERATED_EXAMPLE_DECLARED"
+    csv_result=root/"csv user result"
+    run(["validate-csv",str(csv_root/"example.csv"),str(csv_result),"2","0"],2)
+    csv_report=json.loads((csv_result/"summary.json").read_text(encoding="utf-8"))
+    assert (csv_report["records"],csv_report["accepted"],csv_report["quarantined"])==(6,2,4)
+    assert csv_report["marketProvenance"]=="UNVERIFIED" and csv_report["ordering"]=="NOT_CHECKED"
+    assert csv_report["policy"]["sourceKind"]=="USER_SUPPLIED_UNVERIFIED"
+    before={p.name:sha(p) for p in csv_result.iterdir() if p.is_file()}
+    run(["validate-csv",str(csv_root/"example.csv"),str(csv_result),"2","0"],1)
+    assert before=={p.name:sha(p) for p in csv_result.iterdir() if p.is_file()}
+    clean=root/"clean.csv"
+    header="timestamp,open,high,low,close,volume\n"
+    row="2026-01-01T00:00:00Z,-2.00,-1.00,-3.00,-2.50,0\n"
+    clean.write_bytes((header+row).encode("utf-8"))
+    run(["validate-csv",str(clean),str(root/"csv clean result"),"2","0"],0)
+    decision=json.loads((root/"csv clean result/accepted.jsonl").read_text())
+    assert decision["record"]["closeScaled"]=="-250"
+    bad_args=root/"bad csv args result"
+    run(["validate-csv",str(clean),str(bad_args),"9","0"],1)
+    assert not bad_args.exists()
+    bad_header=root/"bad header.csv";bad_header.write_bytes(b"time,open,high,low,close,volume\n")
+    bad_out=root/"bad header output"
+    run(["validate-csv",str(bad_header),str(bad_out),"2","0"],1)
+    assert "CSV_HEADER_INVALID" in observations[-1]["stderr"] and not bad_out.exists()
+    empty=root/"header only.csv";empty.write_bytes(header.encode("utf-8"))
+    empty_out=root/"no data output"
+    run(["validate-csv",str(empty),str(empty_out),"2","0"],1)
+    assert "CSV_NO_DATA" in observations[-1]["stderr"] and not empty_out.exists()
+    quote=root/"unclosed quote.csv";quote.write_bytes((header+row+'2026-01-01T00:01:00Z,"1\n'+row).encode("utf-8"))
+    quote_out=root/"partial csv output"
+    run(["validate-csv",str(quote),str(quote_out),"2","0"],1)
+    assert "CSV_UNCLOSED_QUOTE" in observations[-1]["stderr"]
+    assert not (quote_out/"summary.json").exists()
     result=dict(status="EXTRACTED_APPHOST_DEMO_AND_CONTRACT_PASS",commit=args.commit,rid=manifest["rid"],
         sdkInstalledHostNotExcluded=True,proof="Inspected self-contained config/runtime and direct apphost launch with empty PATH and nonexistent DOTNET_ROOT; host itself may have SDK installed.",
         packagePathHasSpaces=" " in str(folder),cwdHasSpaces=" " in str(root),

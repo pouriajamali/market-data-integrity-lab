@@ -11,7 +11,7 @@ import subprocess
 import tarfile
 import zipfile
 
-VERSION="0.5.0-preview.1"
+VERSION="0.6.0-preview.1"
 RUNTIME="10.0.14"
 
 def sha(path):
@@ -72,13 +72,17 @@ This is NOT a crash demonstration; no process is killed.
 Existing validation commands retain exit0 clean,2 quarantined,1 fatal/usage.
 Use a new output directory; existing directories/files are refused without overwrite.
 On failure retain partial files; do not infer completion from them.
-Only synthetic inputs are supported. No network or account service is used.
+Offline CSV profile: run {command} validate-csv <input.csv> <new-output> <price-decimals:0..8> <volume-decimals:0..8>.
+Required header:timestamp,open,high,low,close,volume; UTC timestamps, explicit scales.
+Try {command} csv-demo "csv demo output" for a generated CSV example.
+Only local row format/value/OHLC checks; provenance UNVERIFIED and order/dedup/completeness NOT_CHECKED.
+Separate synthetic JSONL/recovery paths remain available. No network/account/trading service.
 Self-contained still requires native OS prerequisites. Linux target:glibc x64,
 tested on Ubuntu24.04 CI; not Alpine/musl,ARM,macOS,or every Linux distribution.
 Windows target:x64,with actual tested host details in CI/delivery receipts.
 Unsigned developer preview. Recovery requires enabled .NET file locking,
 cooperating writers and supported local filesystem behavior; not power-loss safety.
-Performance study belongs to historical d9ece502/v0.4,not these B1 binaries.
+Performance study belongs to historical d9ece502/v0.4,not these B2 binaries.
 Docs:https://github.com/pouriajamali/market-data-integrity-lab
 """
     (stage/"QUICKSTART.txt").write_text(quick,encoding="utf-8",newline="\n")

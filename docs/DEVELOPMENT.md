@@ -36,7 +36,7 @@ It adds no new framing, sequence or recovery semantics.
 
 ## Binary delivery
 
-The workflow publishes version0.5.0-preview.1 separately for win-x64/Linux x64.
+The workflow publishes version0.6.0-preview.1 separately for win-x64/Linux x64.
 SelfContained=true, runtime10.0.14, single-file/trim/AOT/R2R=false. Runtime restore
 uses a separate artifact lock path, preserving the original source lockfile.
 Packages include original runtime LICENSE.TXT and THIRD-PARTY-NOTICES.TXT.
@@ -50,3 +50,14 @@ Binary archive/container identity is separate from source and historical timing.
 
 B1 binaries are not benchmarked. [A4](CASE-STUDY.md) belongs to its immutable
 measured ancestor. Do not rerun or relabel that study as B1 evidence.
+
+## B2 local CSV
+
+[CSV.md](CSV.md) defines the separate ohlc-csv-v1 profile. Both scales are explicit.
+Use `validate-csv <input.csv> <new-output> <price-decimals> <volume-decimals>`
+or `csv-demo <new-directory>`. CSV has no implicit A3 conversion/recovery.
+
+CsvTests independently cover integer/scaled boundaries, malformed/quoted rows,
+BOM/CRLF/EOF, no data/header failures, exact hashes, cultures, source mutation/read
+and actual byte/row caps. Runtime package smoke adds bounded CSV commands.
+No private or downloaded market data is used by development or delivery checks.

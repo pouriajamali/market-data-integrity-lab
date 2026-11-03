@@ -1,5 +1,13 @@
 # Changes
 
+## 0.6.0-preview.1 - B2 offline OHLC CSV
+
+Separate explicit-scale local CSV profile with lossless signed64-bit integer
+strings, per-row provenance/reasons and whole-file framing/resource/source guards.
+Generated CSV demo; matching-OS package checks cover clean/quarantined/fatal
+CSV outcomes. Ordering/dedup/completeness are NOT_CHECKED; source is UNVERIFIED.
+No live connection, trading, CSV recovery, silent conversion or A4 rerun.
+
 ## 0.5.0-preview.1 - B1 runnable synthetic demo
 
 Self-contained win-x64/Linux glibc x64 directory bundles, per-payload build
