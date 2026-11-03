@@ -1,5 +1,14 @@
 # Changes
 
+## 0.5.0-preview.1 - B1 runnable synthetic demo
+
+Self-contained win-x64/Linux glibc x64 directory bundles, per-payload build
+manifests/licenses and extracted-apphost verification. New bounded fresh-only
+demo and version commands; existing canonical validation/recovery contracts stay
+unchanged. README puts engineering decisions, observable outcomes and exact
+proof tests first. Completed-run resume is not a crash demonstration. A4 adverse
+measurements remain historical, not a B1 performance claim. No B2/real-data path.
+
 ## Unreleased - documentation maintenance
 
 Update current GitHub links after the owner account rename. Existing preview

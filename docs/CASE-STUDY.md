@@ -127,8 +127,11 @@ release commit, not a claim that a later binary was timed. Recorded worker DLL
 SHA256 is 5a780c780e190bb0ba94e92141588284c2ba906640e3d69a913b96f8cf9cfdc9;
 Integrity.dll SHA256 is 87e0dcaa826839d8764532c5e74c25579e7b0918f3f5d95bd0e51d4c38211e10.
 Raw receipts list every built file, source fingerprint, SDK host hash and input
-identity. The final application and measurement-worker/driver source bytes
-remain identical to this measured ancestor; documentation and analysis are added.
+identity. At the v0.4 results/docs release, application and measurement-worker/driver
+source bytes remained identical to that measured ancestor. B1 v0.5 adds CLI
+demo/version code and new packaging, and has NOT been performance-measured.
+Historical A4 figures are not measurements of the B1 binaries. The framing,
+validation, sequence and recovery core is preserved separately by source pins.
 
 Host: Windows build 10.0.26300, AMD64, Intel i9-11900K @ 3.50GHz,
 16 logical cores, 34,112,135,168 OS-visible RAM bytes; Python 3.12.10,

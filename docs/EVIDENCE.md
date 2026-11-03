@@ -17,3 +17,9 @@ linked CI are the public reproducible evidence. CV/profile files are not part of
 this repository or publication.
 
 [Published A3 main CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/41643617892) and [tag CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/41643951656) establish the existing80-case Windows/Linux baseline. Final release CI is a separate exact-commit gate, verified during publication.
+
+B1 adds a fresh-only synthetic demo; [DemoTests](../tests/Integrity.Tests/DemoTests.cs)
+check golden bytes, existing-root no-mutation, usage/exit meanings and retained
+partial evidence on presentation failure. Package manifests and extracted native
+apphost checks cover the delivered binaries. Historical A4 timings do not apply
+to B1; ready demos do not execute the crash probe.

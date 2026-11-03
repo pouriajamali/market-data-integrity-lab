@@ -4,6 +4,7 @@ on:
     branches: [main]
     tags: ['v*']
   pull_request:
+
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
   DOTNET_GENERATE_ASPNET_CERTIFICATE: "false"
@@ -14,9 +15,13 @@ jobs:
   verify:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-24.04
+            rid: linux-x64
+          - os: windows-latest
+            rid: win-x64
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -51,28 +56,85 @@ jobs:
           result=$?
           set -e
           test "$result" -eq 2
-      - name: Retain finite synthetic recovery evidence
+      - name: Publish and inventory self-contained runtime
+        shell: pwsh
+        env:
+          TARGET_RID: ${{ matrix.rid }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $publishDirectory = Join-Path $PWD "artifacts/publish/$env:TARGET_RID"
+          $lockPath = Join-Path $PWD "artifacts/runtime-locks/$env:TARGET_RID.lock.json"
+          New-Item -ItemType Directory -Force (Split-Path $lockPath) | Out-Null
+          dotnet publish src/Integrity/Integrity.csproj -c Release -r $env:TARGET_RID --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishAot=false -p:PublishReadyToRun=false -p:DebugType=None -p:DebugSymbols=false -p:RuntimeFrameworkVersion=10.0.14 "-p:NuGetLockFilePath=$lockPath" -o $publishDirectory
+          if ($LASTEXITCODE -ne 0) { throw 'publish failed' }
+          $packageLocation = (dotnet nuget locals global-packages --list)
+          $packageRoot = $packageLocation.Substring($packageLocation.IndexOf(':') + 1).Trim()
+          $runtimePack = Join-Path $packageRoot "microsoft.netcore.app.runtime.$env:TARGET_RID/10.0.14"
+          $sdkVersion = (dotnet --version).Trim()
+          python tools/package_binary.py --publish $publishDirectory --output artifacts/binary --rid $env:TARGET_RID --runtime-pack $runtimePack --commit "${{ github.sha }}" --sdk $sdkVersion
+          if ($LASTEXITCODE -ne 0) { throw 'packaging failed' }
+      - name: Extract actual archive and launch apphost directly
+        shell: pwsh
+        env:
+          TARGET_RID: ${{ matrix.rid }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $prefix = "market-data-integrity-lab-v0.5.0-preview.1-$env:TARGET_RID"
+          $extractRoot = Join-Path $PWD 'artifacts/extracted package with spaces'
+          New-Item -ItemType Directory $extractRoot | Out-Null
+          if ($env:TARGET_RID -eq 'win-x64') {
+            Expand-Archive -LiteralPath "artifacts/binary/$prefix.zip" -DestinationPath $extractRoot
+          } else {
+            tar -xzf "artifacts/binary/$prefix.tar.gz" -C $extractRoot
+            if ($LASTEXITCODE -ne 0) { throw 'tar extraction failed' }
+          }
+          python tools/check_binary.py --package (Join-Path $extractRoot $prefix) --work (Join-Path $PWD 'artifacts/apphost cwd with spaces') --commit "${{ github.sha }}" --receipt "artifacts/binary-smoke-$env:TARGET_RID.json"
+          if ($LASTEXITCODE -ne 0) { throw 'extracted apphost check failed' }
+      - name: Retain tested runtime archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.rid }}
+          path: |
+            artifacts/binary/*.zip
+            artifacts/binary/*.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+      - name: Retain finite verification evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: recovery-evidence-${{ matrix.os }}
-          path: artifacts/recovery-tests/
+          name: evidence-${{ matrix.rid }}
+          path: |
+            artifacts/recovery-tests/
+            artifacts/binary-smoke-*.json
+            artifacts/runtime-locks/
           retention-days: 7
           if-no-files-found: warn
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: verify
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Package tested source and publish preview
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: binary-*
+          path: release-assets
+          merge-multiple: true
+      - name: Verify tested archives, package source and publish preview
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          test "$GITHUB_REF_NAME" = "v0.5.0-preview.1"
+          python tools/check_release_archives.py release-assets "$GITHUB_SHA"
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
-          git archive --format=zip --prefix=market-data-integrity-lab/ -o "$archive" HEAD
-          sha256sum "$archive" > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "Portfolio source preview $GITHUB_REF_NAME" --notes "Synthetic-only portfolio: bounded validation and opt-in process-crash recovery, finite one-host measurement receipts, case study and claim-to-evidence map. Source package, not an installer; requires .NET SDK 10.0.403 and enabled local .NET locking. Observed mode costs are not a production performance or profitability guarantee."
+          git archive --format=zip --prefix=market-data-integrity-lab/ -o "release-assets/$archive" HEAD
+          cd release-assets
+          sha256sum *.zip *.tar.gz > SHA256SUMS.txt
+          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Runnable synthetic lab $GITHUB_REF_NAME" --notes "B1: self-contained Windows x64 and glibc Linux x64 directory bundles plus source, checksums and a bounded demo. Keep the extracted directory together; no installed .NET SDK/runtime or Python is needed by the app. Native OS prerequisites still apply. Archives were extracted and apphosts run on their matching CI OS, with self-contained runtime/config inspection; those hosts may have SDKs installed. Demo completion is not a crash test or proof all input is valid. Historical A4 timings describe d9ece502/v0.4, not B1 binaries. See README for engineering decisions, exact proof tests and supported boundaries."

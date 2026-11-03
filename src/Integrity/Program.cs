@@ -2,6 +2,18 @@ using MarketDataIntegrity;
 
 try
 {
+    if (args.Length == 1 && args[0] == "--version")
+    {
+        var version = typeof(Validator).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+            .Cast<System.Reflection.AssemblyInformationalVersionAttribute>().Single().InformationalVersion;
+        Console.WriteLine($"Integrity {version}; {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}; {System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier}");
+        return 0;
+    }
+    if (args.Length == 2 && args[0] == "demo")
+    {
+        SyntheticDemo.Run(args[1], Console.Out);
+        return 0;
+    }
     if (args.Length == 3 && args[0] == "generate" &&
         int.TryParse(args[2], System.Globalization.NumberStyles.None,
             System.Globalization.CultureInfo.InvariantCulture, out var count))
@@ -36,7 +48,7 @@ try
         Console.WriteLine($"completed records={result.Summary.Records} quarantined={result.Summary.Quarantined} resumed_generation={result.RestoredGeneration} rejected_checkpoints={result.RejectedCandidates} already_completed={result.AlreadyCompleted}");
         return result.Summary.Quarantined == 0 ? 0 : 2;
     }
-    Console.Error.WriteLine("usage: Integrity generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory> | generate-sequence <new-directory> | validate-sequence <v2-manifest.json> <input.jsonl> <new-output-directory> | start-resumable|resume <v2-manifest.json> <input.jsonl> <workdir> <interval:1..10000>");
+    Console.Error.WriteLine("usage: Integrity --version | demo <new-directory> | generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory> | generate-sequence <new-directory> | validate-sequence <v2-manifest.json> <input.jsonl> <new-output-directory> | start-resumable|resume <v2-manifest.json> <input.jsonl> <workdir> <interval:1..10000>");
     return 1;
 }
 catch (Exception error) when (error is IOException or UnauthorizedAccessException or
