@@ -15,7 +15,18 @@ try
         Console.WriteLine($"completed records={result.Records} quarantined={result.Quarantined}");
         return result.Quarantined == 0 ? 0 : 2;
     }
-    Console.Error.WriteLine("usage: Integrity generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory>");
+    if (args.Length == 2 && args[0] == "generate-sequence")
+    {
+        SequenceSynthetic.Generate(args[1]);
+        return 0;
+    }
+    if (args.Length == 4 && args[0] == "validate-sequence")
+    {
+        var result = SequenceValidator.Run(args[1], args[2], args[3]);
+        Console.WriteLine($"completed records={result.Records} quarantined={result.Quarantined} unattributed={result.UnattributedRecords}");
+        return result.Quarantined == 0 ? 0 : 2;
+    }
+    Console.Error.WriteLine("usage: Integrity generate <new-directory> <count:1..1000000> | validate <manifest.json> <input.jsonl> <new-output-directory> | generate-sequence <new-directory> | validate-sequence <v2-manifest.json> <input.jsonl> <new-output-directory>");
     return 1;
 }
 catch (Exception error) when (error is IOException or UnauthorizedAccessException or

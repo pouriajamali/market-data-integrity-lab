@@ -1,5 +1,7 @@
 # Bounded retention and publication boundary
 
+## A1 retained state and I/O
+
 One synchronous pull reader owns the stream. Its byte arrays are R and 8,192
 bytes; a SHA-256 state hashes each physical record incrementally. Its visitor
 borrows a buffer only for the duration of the callback. Parsing is bounded by R
@@ -40,6 +42,33 @@ Only generated synthetic input is in scope. The public package allowlist is
 source/configuration/tests/docs/workflow plus dependency lock files; private
 planning reports, local paths/logs/account data and raw chat history stay outside.
 
-The project is deliberately an A1 preview. Later sequence and recovery work must
-add its own accepted contracts and executed evidence before any README/CV claim.
-No CV/profile edits are part of this repository task.
+The A1 path remains a bounded validation preview. The separate A2 sequence path
+is described below; later recovery work still needs its own accepted contract
+and executed evidence before a feature claim. No CV/profile edits are part of
+this repository task.
+
+## A2 additive sequence path
+
+A2 reuses the unchanged A1 byte reader and Candle parser but has a separate manifest,
+state owner and versioned output runner. This keeps the A1 contract and golden
+canonical output hashes intact. It deliberately avoids an unrelated A1 I/O refactor.
+
+Every key is admitted from the bounded manifest only. A state's lazily allocated
+W-slot array stores bounded normalized Candle values. Each successful expected
+consumption advances one slot; duplicate, stale, before-baseline and blocked input
+cannot evict entries. A linear scan on historical input costs at most W comparisons;
+no performance advantage is claimed. Total retained slots cannot exceed K*W<=65,536.
+Int64.MaxValue is an explicit end state, not an overflowing next cursor.
+
+Primary sequence decisions preserve a separate parser/OHLC dataReason. Parse
+failures cannot be attributed to a stream; undeclared keys do not enter the state
+dictionary. Unknown/partial assessment and per-stream snapshots make these limits
+inspectable without asserting feed completeness. [The A2 contract](SEQUENCE.md)
+defines decision order and the exact limits.
+
+Evidence includes a handwritten transition table with cursor/window/block snapshots,
+two-stream and declared-epoch isolation, both sides of the retention boundary,
+bad-OHLC consumption/repetition, numeric end-of-domain handling, bounded admission,
+canonical output/provenance and a real opt-in CLI process with a bounded deadline.
+Original A1 behavior tests remain unchanged. There are no new measurements or
+durable recovery guarantees.

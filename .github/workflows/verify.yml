@@ -1,4 +1,4 @@
-name: A1 Windows and Linux
+name: A2 Windows and Linux
 on:
   push:
     branches: [main]
@@ -29,6 +29,15 @@ jobs:
           result=$?
           set -e
           test "$result" -eq 2
+      - run: dotnet run --project src/Integrity -c Release --no-build -- generate-sequence artifacts/sequence-demo
+      - name: Exercise opt-in sequence CLI
+        shell: bash
+        run: |
+          set +e
+          dotnet run --project src/Integrity -c Release --no-build -- validate-sequence artifacts/sequence-demo/manifest.json artifacts/sequence-demo/input.jsonl artifacts/sequence-result
+          result=$?
+          set -e
+          test "$result" -eq 2
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: verify
@@ -45,4 +54,4 @@ jobs:
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "$archive" HEAD
           sha256sum "$archive" > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A1 source preview $GITHUB_REF_NAME" --notes "Synthetic-only offline A1: bounded framing, schema/OHLC validation, record provenance and deterministic output. Source package; requires .NET SDK 10.0.403. Sequence validation, crash-resume and performance measurements are not implemented."
+          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A2 source preview $GITHUB_REF_NAME" --notes "Synthetic-only offline A2: preserved A1 validation plus opt-in bounded explicit-sequence windows, duplicate/conflict classification, per-stream gap gates and uncertainty reporting. Source package; requires .NET SDK 10.0.403. Crash-resume, reordering and performance measurements are not implemented."
