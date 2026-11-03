@@ -19,10 +19,11 @@ COUNTS = (10000, 100000, 250000)
 def dump(path, value):
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
-def digest(path):
+def digest(path, guard=None):
     value = hashlib.sha256()
     with path.open("rb") as source:
         for data in iter(lambda: source.read(65536), b""):
+            if guard: guard.remaining()
             value.update(data)
     return value.hexdigest()
 
@@ -65,9 +66,9 @@ class Guard:
         if self.size()+reserve > self.budget: raise RuntimeError("ARTIFACT_BUDGET")
     def child(self, argv, cwd, stdout, stderr):
         self.check()
-        start = time.perf_counter_ns()
         # Direct dotnet worker: no child shell, grandchild process or background server.
         with stdout.open("xb") as out, stderr.open("xb") as err:
+            start = time.perf_counter_ns()
             child = subprocess.Popen(argv, cwd=cwd, stdout=out, stderr=err, env=os.environ.copy())
             try:
                 while True:
@@ -96,13 +97,13 @@ def generate(root, n, guard):
             output.write((json.dumps(row, separators=(",", ":"))+"\n").encode("utf-8"))
             if i % 1024 == 0: guard.check()
     manifest = dict(formatVersion=2, datasetId=f"a4-mixture-{n}", synthetic=True,
-                    maxRecordBytes=4096, maxStreams=16, inputSha256=digest(source),
+                    maxRecordBytes=4096, maxStreams=16, inputSha256=digest(source,guard),
                     sequenceWindow=64, baselines=[dict(source="synthetic",
                     instrument=f"S{i:02d}", epoch="bench", firstSequence=1) for i in range(16)])
     dump(folder/"manifest.json", manifest)
     guard.check()
-    return dict(records=n, bytes=source.stat().st_size, inputSha256=digest(source),
-                manifestSha256=digest(folder/"manifest.json"), expected=expected(n))
+    return dict(records=n, bytes=source.stat().st_size, inputSha256=digest(source,guard),
+                manifestSha256=digest(folder/"manifest.json",guard), expected=expected(n))
 
 def schedule():
     values = [(n, mode, "warmup", 0) for n in COUNTS[:2] for mode in ("A2", "A3")]
@@ -141,15 +142,15 @@ def equal_files(left, right, guard):
             if x != y: raise RuntimeError("CANONICAL_BYTE_MISMATCH")
             if not x: return
 
-def git(repo, *args):
+def git(repo, *args, guard=None):
     return subprocess.check_output(["git", "-C", str(repo), *args], text=True,
-                                   timeout=10).strip()
+                                   timeout=min(10,guard.remaining()) if guard else 10).strip()
 
-def fingerprint(repo):
-    if git(repo, "status", "--porcelain"): raise RuntimeError("DIRTY_SOURCE")
-    paths = git(repo, "ls-files").splitlines()
-    return dict(commit=git(repo, "rev-parse", "HEAD"), tree=git(repo, "rev-parse", "HEAD^{tree}"),
-                files={name:digest(repo/name) for name in paths})
+def fingerprint(repo, guard=None):
+    if git(repo, "status", "--porcelain", guard=guard): raise RuntimeError("DIRTY_SOURCE")
+    paths = git(repo, "ls-files", guard=guard).splitlines()
+    return dict(commit=git(repo, "rev-parse", "HEAD", guard=guard), tree=git(repo, "rev-parse", "HEAD^{tree}", guard=guard),
+                files={name:digest(repo/name,guard) for name in paths})
 
 def host():
     result = dict(os=platform.system(), osVersion=platform.version(),
@@ -181,12 +182,12 @@ def execute(args):
     try:
         if os.environ.get("DOTNET_SYSTEM_IO_DISABLEFILELOCKING") != "0":
             raise RuntimeError("LOCKING_ENV_REQUIRED")
-        before = fingerprint(repo)
+        before = fingerprint(repo,guard)
         worker = repo/"tools/Measurements/bin/Release/net10.0/Measurements.dll"
         executable = Path(shutil.which(args.dotnet) or args.dotnet).resolve(strict=True)
-        binaries = {p.name:digest(p) for p in worker.parent.iterdir() if p.is_file()}
+        binaries = {p.name:digest(p,guard) for p in worker.parent.iterdir() if p.is_file()}
         receipt.update(source=before, host=host(), workerFiles=binaries,
-                       executableSha256=digest(executable),
+                       executableSha256=digest(executable,guard),
                        sdk=subprocess.check_output([str(executable), "--version"], text=True,
                                                    timeout=guard.remaining()).strip())
         datasets = root/"datasets"; datasets.mkdir()
@@ -215,7 +216,7 @@ def execute(args):
                 if reasons != {"DUPLICATE_IN_WINDOW":n//37, "OHLC_INCONSISTENT":consumed//17,
                                "VALID_RECORD":consumed-consumed//17}:
                     raise RuntimeError("REASON_COUNT_MISMATCH")
-                hashes = {name:digest(output/name) for name in CANONICAL}
+                hashes = {name:digest(output/name,guard) for name in CANONICAL}
                 if n not in reference:
                     if mode != "A2": raise RuntimeError("MISSING_A2_REFERENCE")
                     reference[n] = output
@@ -227,15 +228,15 @@ def execute(args):
             dump(root/"results.json", receipt)
             guard.check()
             print(f"{index}/21 {phase} {n} {mode} PASS", flush=True)
-        after = fingerprint(repo)
+        after = fingerprint(repo,guard)
         if after != before: raise RuntimeError("SOURCE_MUTATION")
-        if {p.name:digest(p) for p in worker.parent.iterdir() if p.is_file()} != binaries:
+        if {p.name:digest(p,guard) for p in worker.parent.iterdir() if p.is_file()} != binaries:
             raise RuntimeError("BINARY_MUTATION")
-        if digest(executable) != receipt["executableSha256"]: raise RuntimeError("EXECUTABLE_MUTATION")
+        if digest(executable,guard) != receipt["executableSha256"]: raise RuntimeError("EXECUTABLE_MUTATION")
         for n in COUNTS:
-            if digest(datasets/str(n)/"input.jsonl") != receipt["workloads"][str(n)]["inputSha256"]:
+            if digest(datasets/str(n)/"input.jsonl",guard) != receipt["workloads"][str(n)]["inputSha256"]:
                 raise RuntimeError("INPUT_MUTATION")
-            if digest(datasets/str(n)/"manifest.json") != receipt["workloads"][str(n)]["manifestSha256"]:
+            if digest(datasets/str(n)/"manifest.json",guard) != receipt["workloads"][str(n)]["manifestSha256"]:
                 raise RuntimeError("MANIFEST_MUTATION")
         receipt["status"] = "COMPLETED"
         receipt["sourceAfter"] = after

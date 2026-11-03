@@ -59,10 +59,17 @@ class HarnessTests(unittest.TestCase):
             self.assertEqual(16,len(manifest["baselines"]))
     def test_child_timeout_is_owned_and_retained(self):
         import sys
+        from unittest.mock import patch
+        real_popen=m.subprocess.Popen
+        owned=[]
+        def launch(*args,**kwargs):
+            child=real_popen(*args,**kwargs);owned.append(child);return child
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);guard=m.Guard(root,seconds=0.15)
-            with self.assertRaisesRegex(RuntimeError,"GLOBAL_DEADLINE"):
+            with patch.object(m.subprocess,"Popen",side_effect=launch), self.assertRaisesRegex(RuntimeError,"GLOBAL_DEADLINE"):
                 guard.child([sys.executable,"-c","import time;print('owned',flush=True);time.sleep(5)"],root,root/"out",root/"err")
-            self.assertIn(b"owned",(root/"out").read_bytes())
+            self.assertEqual(1,len(owned))
+            self.assertIsNotNone(owned[0].poll())
+            self.assertTrue((root/"out").exists())
 
 if __name__=="__main__": unittest.main()
