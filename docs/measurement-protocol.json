@@ -1,0 +1,86 @@
+{
+  "id": "A4-FINITE-V1",
+  "status": "COORDINATOR_APPROVED_PROTOCOL_SOURCE_PREFLIGHT_PENDING",
+  "measured_code": "A2 and A3 paths in the same frozen clean build; measurement harness gets its own clean local commit before execution. Record commit/tree and application-source fingerprint. No source changes mid-study.",
+  "workloads": {
+    "regular_counts": [
+      10000,
+      100000
+    ],
+    "stress_count": 250000,
+    "max_record_bytes": 4096,
+    "streams": 16,
+    "window": 64,
+    "checkpoint_interval": 1000,
+    "recipe_version": "integer-mixture-v1",
+    "seed_label": 20261103,
+    "recipe": "For physical row i=1..N: every i divisible by37 repeats the exact preceding normalized Candle, without sequence advance. Otherwise increment consumed index j, choose stream (j-1)%16 and increment that stream's sequence. Baselines1; source synthetic, epoch bench, instruments S00..S15, timestamp2026-01-01T00:00:00Z. Price=100000+j%100, high=price+2, low=price-2, close=price+1, volume=j%300. Consumed j divisible by17 has open=price+3 (bad OHLC). UTF8/LF.",
+    "expected_counts": "duplicate=floor(N/37), consumed=N-duplicate, badOHLC=floor(consumed/17), accepted=consumed-badOHLC, quarantine=duplicate+badOHLC. Only VALID_RECORD/OHLC_INCONSISTENT/DUPLICATE_IN_WINDOW primary reasons.",
+    "interpretation": "No permanent gap/conflict blocks in these throughput inputs. Stress uses the same recipe at250k once per variant. This is an end-to-end mode comparison including writer/flush/checkpoint differences, not an isolated causal checkpoint speedup."
+  },
+  "finite_schedule": {
+    "warmups": [
+      "10k A2",
+      "10k A3",
+      "100k A2",
+      "100k A3"
+    ],
+    "measured": "For each regular size, three rounds in fixed order A2\u00e2\u2020\u2019A3, A3\u00e2\u2020\u2019A2, A2\u00e2\u2020\u2019A3 (12 measured children).",
+    "stress": [
+      "250k A2",
+      "250k A3"
+    ],
+    "validation_children": 18,
+    "hash_reference_children": 3,
+    "hash_reference": "One separately labelled file-SHA256-only reference per size. Never subtract or call it actual in-run phase duration.",
+    "warmup_scope": "Every worker is a fresh process. Warmup can affect filesystem cache; it does not carry JIT state. Startup/JIT are still included.",
+    "cache_scope": "No cache eviction, affinity or host isolation. Generation and untimed output verification may warm caches."
+  },
+  "methods": {
+    "parent_wall": "Python perf_counter_ns immediately before child launch through exit, including startup and metric collection; excludes build/generation.",
+    "operation_wall": "Stopwatch.GetTimestamp directly around complete SequenceValidator.Run or RecoveryRunner.Start, including manifest parse, pre/post hashes, reads, writes, flushes and checkpoints.",
+    "collection_order": "Create Process stats handle/initial CPU; allocation0=GC.GetTotalAllocatedBytes(true); t0; validate; t1; allocation1; Refresh/CPU1/PeakWorkingSet64; serialize metrics.",
+    "allocation": "Whole-process cumulative managed allocation delta around operation, including runtime threads and stated counter overhead. Not retained heap or peak memory.",
+    "cpu": "CPU delta collection window is slightly wider than operation wall, including stats reads; wall and CPU separate.",
+    "peak_memory": "OS/runtime Process.PeakWorkingSet64 for the entire fresh worker lifetime including startup/JIT; not sampled current working set or managed heap peak. Zero/unsupported is UNKNOWN.",
+    "throughput": "All physical records N / operation seconds; source bytes / operation seconds. Never accepted records as denominator.",
+    "summary": "Three regular measured samples: min/median/max only. Stress one observation per variant. No p95/p99/SLA/HFT/production/profit claims."
+  },
+  "guards": [
+    "Check independent recipe count formulas on every completed worker.",
+    "Record all three canonical hashes and streaming-byte-compare each completed output against that size's A2 reference.",
+    "Verify clean Git state and app/harness/protocol source hashes before/after study; mutations invalidate study.",
+    "Hash source/manifest before execution and after study; no timing-driven edits or retuning."
+  ],
+  "resources": {
+    "wall_seconds": 600,
+    "artifact_bytes": 2147483648,
+    "scope": "One identified local Windows host first. Linux correctness CI is separate from performance; no cross-OS ranking.",
+    "reservation": "Before each child reserve N*2048+4MiB summary+1MiB metrics/log; A3 additionally3*(64MiB+52) for two slots plus pending. Include current actual artifacts. Stop before launch if reservation would exceed2GiB. Fresh starts only, no evidence-vault growth or fault hooks during measurement.",
+    "enforcement": "One owned child at a time, remaining global deadline as hard timeout, scoped cleanup. Check actual bytes after each step. Failed/incomplete artifacts retained.",
+    "stop": "First timeout, resource limit, unexpected exit, output/counter mismatch, source mutation or invalid metric stops the remaining schedule with an incomplete/invalid receipt. No retry or smaller substitute workload."
+  },
+  "environment": {
+    "sdk": "10.0.403",
+    "runtime": "Capture actual expected10.0.14",
+    "build": "Release",
+    "public": [
+      "OS/version/architecture",
+      "CPU model/logical cores",
+      "OS-visible physical RAM",
+      "SDK/runtime",
+      "clock frequency",
+      "locking condition",
+      "commit/tree/source/workload hashes"
+    ],
+    "private": [
+      "Resolved executable/cwd and literal machine-specific argv remain in private launch receipt",
+      "No hostname/username/IP/serial/account/shared-project names in public data"
+    ],
+    "commands": "Public receipt labels a portable source-relative command plus executable version/hash. Literal resolved paths are private, not falsely called unredacted public argv."
+  },
+  "delivery": {
+    "flow": "After A3 acceptance/release, freeze local measurement-code commit; execute only on protocol approval. Prepare A5 from immutable samples, then one exact-tree final release for A4+A5. Measured ancestor commit stays accessible; final docs/results commit is distinguished from measured code.",
+    "public_allowlist": "Fresh recipe/harness/protocol, compact raw samples, analysis/case study and claim-to-evidence mapping only. No private logs/machine paths/shared assets/CV/profile changes."
+  }
+}

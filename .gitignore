@@ -2,3 +2,4 @@
 **/obj/
 artifacts/
 .vs/
+**/__pycache__/

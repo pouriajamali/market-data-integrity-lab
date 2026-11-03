@@ -25,6 +25,13 @@ jobs:
       - run: dotnet restore tests/Integrity.Tests/Integrity.Tests.csproj --locked-mode
       - run: dotnet build tests/Integrity.Tests/Integrity.Tests.csproj -c Release --no-restore
       - run: dotnet run --project tests/Integrity.Tests -c Release --no-build
+      - run: dotnet restore tools/Measurements/Measurements.csproj --locked-mode
+      - run: dotnet build tools/Measurements/Measurements.csproj -c Release --no-restore
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python tools/test_measurements.py
+      - run: python tools/check_measurements.py --dotnet dotnet
       - run: dotnet run --project src/Integrity -c Release --no-build -- generate artifacts/demo 34
       - name: Exercise CLI degraded result
         shell: bash
