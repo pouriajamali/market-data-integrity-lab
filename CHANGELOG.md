@@ -1,5 +1,11 @@
 # Changes
 
+## Unreleased - documentation maintenance
+
+Update current GitHub links after the owner account rename. Existing preview
+artifacts, tags, measured code and historical receipts are unchanged; no new
+software release or measurement run is introduced.
+
 ## 0.4.0-preview.1 - A4/A5 portfolio source preview
 
 Separate fresh-process A2/A3 measurement worker, fixed synthetic recipe, finite

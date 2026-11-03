@@ -1,6 +1,6 @@
 # Market Data Integrity Lab - synthetic validation and recovery
 
-[Windows/Linux CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/workflows/verify.yml) · [Source preview v0.4.0-preview.1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.4.0-preview.1)
+[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) · [Source preview v0.4.0-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.4.0-preview.1)
 
 Offline C#/.NET validation for explicitly synthetic OHLC records. A1 provides
 bounded framing, strict schema/OHLC checks and provenance. A2 adds opt-in
@@ -47,8 +47,8 @@ Old evicted records are STALE_OUTSIDE_WINDOW, not proven duplicates. Baselines/
 epochs come only from manifest. Expected bad-OHLC records consume sequence.
 MAX ends the range without increment. UNKNOWN/partial/prefix assessments never
 assert feed completeness. A1/A2 sample bytes remain pinned by regressions.
-[Original A1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.1.0-preview.1) ·
-[Original A2](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.2.0-preview.1).
+[Original A1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.1.0-preview.1) ·
+[Original A2](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.2.0-preview.1).
 
 ## Opt-in A3 recovery
 
@@ -95,6 +95,9 @@ Tests/CI are not venue latency, feed-completeness, production or profit evidence
 
 ## Provenance
 
+Current links use the renamed GitHub account. Published source archives, tags
+and historical measurement receipts retain their original bytes.
+
 Independent synthetic portfolio code created with AI assistance for Pouria Jamali.
 No private project source, fixtures, schemas, market/account data or business
 rules were copied. Source and executed checks support this sample's own behavior,
@@ -113,8 +116,8 @@ canonical decisions remained equal to A2. See exact observations and scope above
 CI, not a second performance experiment. No isolated checkpoint overhead, tail
 latency, HFT, production or profit claim follows.
 
-[Source ZIP](https://github.com/pouriaquant91/market-data-integrity-lab/releases/download/v0.4.0-preview.1/market-data-integrity-lab-v0.4.0-preview.1.zip)
-and [SHA256SUMS](https://github.com/pouriaquant91/market-data-integrity-lab/releases/download/v0.4.0-preview.1/SHA256SUMS.txt)
+[Source ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.4.0-preview.1/market-data-integrity-lab-v0.4.0-preview.1.zip)
+and [SHA256SUMS](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.4.0-preview.1/SHA256SUMS.txt)
 are source artifacts requiring the SDK, not application installers.
 
 [MIT license](LICENSE) applies to the independent sample. [Attribution](NOTICE.md)

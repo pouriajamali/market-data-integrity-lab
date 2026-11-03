@@ -121,7 +121,7 @@ occurred. Every validation matched expected counters/reasons and the three
 canonical files of its size's A2 reference. Source, built files, executable and
 workload hashes matched before/after.
 
-Measured code: [d9ece502](https://github.com/pouriaquant91/market-data-integrity-lab/commit/d9ece5023487155a85050ec6fb0dae5f344d8de7),
+Measured code: [d9ece502](https://github.com/pouriajamali/market-data-integrity-lab/commit/d9ece5023487155a85050ec6fb0dae5f344d8de7),
 tree 20bea427f7efd172cd08f40b03e91c52675c306b. Later results/docs are a separate
 release commit, not a claim that a later binary was timed. Recorded worker DLL
 SHA256 is 5a780c780e190bb0ba94e92141588284c2ba906640e3d69a913b96f8cf9cfdc9;

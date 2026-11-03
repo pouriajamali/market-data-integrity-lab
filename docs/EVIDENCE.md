@@ -16,4 +16,4 @@ Development receipts are pre-release local evidence; exact source tests and
 linked CI are the public reproducible evidence. CV/profile files are not part of
 this repository or publication.
 
-[Published A3 main CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/runs/41643617892) and [tag CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/runs/41643951656) establish the existing80-case Windows/Linux baseline. Final release CI is a separate exact-commit gate, verified during publication.
+[Published A3 main CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/41643617892) and [tag CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/41643951656) establish the existing80-case Windows/Linux baseline. Final release CI is a separate exact-commit gate, verified during publication.
