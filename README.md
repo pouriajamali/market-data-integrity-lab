@@ -1,14 +1,14 @@
-# Market Data Integrity Lab â€” A3 preview
+# Market Data Integrity Lab — A3 preview
 
-[Windows/Linux CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/workflows/verify.yml) Â· [Source preview v0.3.0-preview.1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.3.0-preview.1)
+[Windows/Linux CI](https://github.com/pouriaquant91/market-data-integrity-lab/actions/workflows/verify.yml) · [Source preview v0.3.0-preview.1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.3.0-preview.1)
 
 Offline C#/.NET validation for explicitly synthetic OHLC records. A1 provides
 bounded framing, strict schema/OHLC checks and provenance. A2 adds opt-in
 explicit-sequence windows. A3 adds a separate process-crash checkpoint/resume
 path with validated fallback and preserved failure evidence.
 
-[Input contract](docs/CONTRACT.md) Â· [Sequence contract](docs/SEQUENCE.md) Â·
-[Recovery contract](docs/RECOVERY.md) Â· [Design](docs/DESIGN.md) Â· [History](CHANGELOG.md)
+[Input contract](docs/CONTRACT.md) · [Sequence contract](docs/SEQUENCE.md) ·
+[Recovery contract](docs/RECOVERY.md) · [Design](docs/DESIGN.md) · [History](CHANGELOG.md)
 
 ## Build and inspect
 
@@ -47,7 +47,7 @@ Old evicted records are STALE_OUTSIDE_WINDOW, not proven duplicates. Baselines/
 epochs come only from manifest. Expected bad-OHLC records consume sequence.
 MAX ends the range without increment. UNKNOWN/partial/prefix assessments never
 assert feed completeness. A1/A2 sample bytes remain pinned by regressions.
-[Original A1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.1.0-preview.1) Â·
+[Original A1](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.1.0-preview.1) ·
 [Original A2](https://github.com/pouriaquant91/market-data-integrity-lab/releases/tag/v0.2.0-preview.1).
 
 ## Opt-in A3 recovery

@@ -25,7 +25,7 @@
       "100k A2",
       "100k A3"
     ],
-    "measured": "For each regular size, three rounds in fixed order A2\u00e2\u2020\u2019A3, A3\u00e2\u2020\u2019A2, A2\u00e2\u2020\u2019A3 (12 measured children).",
+    "measured": "For each regular size, three rounds in fixed order A2\u2192A3, A3\u2192A2, A2\u2192A3 (12 measured children).",
     "stress": [
       "250k A2",
       "250k A3"
@@ -33,7 +33,7 @@
     "validation_children": 18,
     "hash_reference_children": 3,
     "hash_reference": "One separately labelled file-SHA256-only reference per size. Never subtract or call it actual in-run phase duration.",
-    "warmup_scope": "Every worker is a fresh process. Warmup can affect filesystem cache; it does not carry JIT state. Startup/JIT are still included.",
+    "warmup_scope": "Every worker is a fresh process. Warmup may warm file cache but does not carry JIT state. Parent wall includes startup/JIT; operation wall includes only JIT triggered inside validation.",
     "cache_scope": "No cache eviction, affinity or host isolation. Generation and untimed output verification may warm caches."
   },
   "methods": {
