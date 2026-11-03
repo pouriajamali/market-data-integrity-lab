@@ -1,0 +1,48 @@
+name: A1 Windows and Linux
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.403'
+      - run: dotnet restore tests/Integrity.Tests/Integrity.Tests.csproj --locked-mode
+      - run: dotnet build tests/Integrity.Tests/Integrity.Tests.csproj -c Release --no-restore
+      - run: dotnet run --project tests/Integrity.Tests -c Release --no-build
+      - run: dotnet run --project src/Integrity -c Release --no-build -- generate artifacts/demo 34
+      - name: Exercise CLI degraded result
+        shell: bash
+        run: |
+          set +e
+          dotnet run --project src/Integrity -c Release --no-build -- validate artifacts/demo/manifest.json artifacts/demo/input.jsonl artifacts/result
+          result=$?
+          set -e
+          test "$result" -eq 2
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package tested source and publish preview
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
+          git archive --format=zip --prefix=market-data-integrity-lab/ -o "$archive" HEAD
+          sha256sum "$archive" > SHA256SUMS.txt
+          gh release create "$GITHUB_REF_NAME" "$archive" SHA256SUMS.txt --verify-tag --prerelease --title "A1 source preview $GITHUB_REF_NAME" --notes "Synthetic-only offline A1: bounded framing, schema/OHLC validation, record provenance and deterministic output. Source package; requires .NET SDK 10.0.403. Sequence validation, crash-resume and performance measurements are not implemented."
