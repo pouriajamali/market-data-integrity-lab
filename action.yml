@@ -1,0 +1,32 @@
+name: Offline OHLC CSV check
+description: Validate a local OHLC CSV using a pinned, signature-verified preview and explicit decimal scales.
+inputs:
+  csv:
+    description: CSV path inside the checked-out workspace
+    required: true
+  price-decimals:
+    description: Explicit price decimal places, 0 through 8
+    required: true
+  volume-decimals:
+    description: Explicit volume decimal places, 0 through 8
+    required: true
+  report-directory:
+    description: New workspace directory for row decisions and summary
+    default: artifacts/ohlc-check
+outputs:
+  exit-code:
+    description: "0 clean; 2 completed with quarantines; 1 fatal or incomplete"
+    value: ${{ steps.check.outputs.exit-code }}
+runs:
+  using: composite
+  steps:
+    - name: Check offline CSV
+      id: check
+      shell: bash
+      env:
+        LAB_ACTION_PATH: ${{ github.action_path }}
+        LAB_CSV: ${{ inputs.csv }}
+        LAB_PRICE_DECIMALS: ${{ inputs.price-decimals }}
+        LAB_VOLUME_DECIMALS: ${{ inputs.volume-decimals }}
+        LAB_REPORT_DIRECTORY: ${{ inputs.report-directory }}
+      run: python "$LAB_ACTION_PATH/tools/check_csv_ci.py"

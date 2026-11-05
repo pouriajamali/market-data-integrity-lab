@@ -1,5 +1,15 @@
 # Changes
 
+## CSV action 0.1.0-preview.1
+
+Add a composite GitHub Action for caller-owned offline OHLC CSV files. The
+adapter verifies the existing signed v0.6.0-preview.1 manifest and pinned archive
+hash before extracting and running the apphost. Explicit scales, workspace path
+bounds, a 64 MiB input cap, bounded downloads/extraction and a process timeout
+keep the invocation finite. Clean/quarantined/fatal fixtures exercise exits
+0/2/1 on Windows and Ubuntu. Reports stay in the runner workspace. CLI source,
+historical binary packages, signatures and 141-test release evidence are unchanged.
+
 ## 0.6.0-preview.1 - B2 offline OHLC CSV
 
 Separate explicit-scale local CSV profile with lossless signed64-bit integer

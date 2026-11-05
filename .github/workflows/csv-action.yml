@@ -1,0 +1,64 @@
+name: CSV action Windows and Linux
+on:
+  push:
+    branches: [main]
+    tags: ['csv-action-v*']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  csv-action:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Adapter contracts
+        run: python tools/test_csv_ci.py
+      - name: Valid rows pass
+        id: clean
+        uses: ./
+        with:
+          csv: examples/ci/clean.csv
+          price-decimals: '2'
+          volume-decimals: '0'
+          report-directory: artifacts/ci-clean
+      - name: Quarantined rows fail the job step
+        id: quarantine
+        continue-on-error: true
+        uses: ./
+        with:
+          csv: examples/ci/quarantine.csv
+          price-decimals: '2'
+          volume-decimals: '0'
+          report-directory: artifacts/ci-quarantine
+      - name: Malformed framing fails the job step
+        id: fatal
+        continue-on-error: true
+        uses: ./
+        with:
+          csv: examples/ci/fatal.csv
+          price-decimals: '2'
+          volume-decimals: '0'
+          report-directory: artifacts/ci-fatal
+      - name: Check actual outcomes and reports
+        shell: python
+        env:
+          CLEAN: ${{ steps.clean.outputs.exit-code }}
+          QUARANTINE: ${{ steps.quarantine.outputs.exit-code }}
+          FATAL: ${{ steps.fatal.outputs.exit-code }}
+          QUARANTINE_OUTCOME: ${{ steps.quarantine.outcome }}
+          FATAL_OUTCOME: ${{ steps.fatal.outcome }}
+        run: |
+          import json,os
+          from pathlib import Path
+          assert (os.environ['CLEAN'],os.environ['QUARANTINE'],os.environ['FATAL'])==('0','2','1')
+          assert os.environ['QUARANTINE_OUTCOME']==os.environ['FATAL_OUTCOME']=='failure'
+          assert (Path('artifacts/ci-clean')/'summary.json').is_file()
+          assert (Path('artifacts/ci-quarantine')/'summary.json').is_file()
+          assert not (Path('artifacts/ci-fatal')/'summary.json').exists()

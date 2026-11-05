@@ -16,6 +16,11 @@ The CSV demo generates six rows: two accepted and four quarantined. Then use
 `validate-csv` with your own local file and explicit price/volume scales.
 [CSV format and command](#check-your-own-csv) · [Download and run](#download-and-run)
 
+For a repeatable check on your own runner, use the
+[CSV CI action](docs/CSV-CI.md). It verifies the signed preview before running
+your local file with explicit scales. Quarantined rows fail the step by default;
+row reports stay in your workspace.
+
 ## Decisions, observable behavior, proof
 
 | Engineering decision | What you can observe | Exact proof |
