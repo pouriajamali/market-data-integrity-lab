@@ -21,6 +21,12 @@ For a repeatable check on your own runner, use the
 your local file with explicit scales. Quarantined rows fail the step by default;
 row reports stay in your workspace.
 
+**Expected result:** the six-row CSV demo reports two accepted and four
+quarantined rows, with reasons you can inspect. Quarantined input is an expected
+demo outcome, not evidence that the real file is safe or complete. To report a
+parser problem, provide a small invented fixture using the format in
+[Contributing](CONTRIBUTING.md); do not upload a real trading file.
+
 ## Decisions, observable behavior, proof
 
 | Engineering decision | What you can observe | Exact proof |

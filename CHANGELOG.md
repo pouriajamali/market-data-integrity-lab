@@ -1,5 +1,10 @@
 # Changes
 
+## Unreleased - documentation
+
+- Clarify the source quick start and expected result, and link focused contribution guidance. Runtime behavior, release assets and recorded measurements are unchanged.
+
+
 ## CSV action 0.1.0-preview.1
 
 Add a composite GitHub Action for caller-owned offline OHLC CSV files. The
