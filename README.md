@@ -9,6 +9,13 @@ account and does not trade. User-file provenance is UNVERIFIED.
 [Download v0.6.0-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.0-preview.1) ·
 [Source and developer commands](docs/DEVELOPMENT.md)
 
+## Try the CSV preview
+
+[Watch the 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
+The CSV demo generates six rows: two accepted and four quarantined. Then use
+`validate-csv` with your own local file and explicit price/volume scales.
+[CSV format and command](#check-your-own-csv) · [Download and run](#download-and-run)
+
 ## Decisions, observable behavior, proof
 
 | Engineering decision | What you can observe | Exact proof |
