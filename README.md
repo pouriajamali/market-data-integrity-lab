@@ -160,6 +160,13 @@ partial decisions/checkpoints, fallback and repeated interruptions.
 [Claim-to-evidence map](docs/EVIDENCE.md) · [Measurement definitions](docs/MEASUREMENTS.md) ·
 [Design](docs/DESIGN.md) · [Changes](CHANGELOG.md)
 
+## Verify release provenance
+
+See the [public key, expected fingerprint and POSIX/PowerShell verification guide](https://github.com/pouriajamali/market-data-integrity-lab/blob/main/PROVENANCE.md)
+before trusting release downloads. SSH checksum provenance is separate from OS
+binary signing and does not change the MIT license or prevent copying. This
+documentation update preserves existing release archives, tags and signatures.
+
 ## Attribution
 
 Independent synthetic portfolio sample created with AI assistance for Pouria

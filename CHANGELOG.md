@@ -2,6 +2,10 @@
 
 ## Unreleased - documentation
 
+- Publish the known public signing key and independent expected fingerprint, with
+  POSIX/PowerShell checksum-signature verification and the legacy lightweight-tag
+  boundary. No runtime, license, historical tag or release asset changes.
+
 - Clarify the source quick start and expected result, and link focused contribution guidance. Runtime behavior, release assets and recorded measurements are unchanged.
 
 
