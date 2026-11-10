@@ -1,5 +1,10 @@
 # Market Data Integrity Lab
 
+Source M1 candidate: **0.6.1-preview.1**, SDK10.0.404 / bundled runtime10.0.15.
+This candidate is local and unpublished; the download links below intentionally
+retain the existing verified **v0.6.0-preview.1** release. The separately versioned
+CSV action also retains that exact binary and checksum pin.
+
 Check **local OHLC CSV without silent rounding**, inspect quarantined rows, and
 study separate synthetic validation/process-crash recovery examples. This offline
 C#/.NET lab uses an explicit CSV profile; it does not connect to a market or
@@ -111,6 +116,28 @@ and ambiguous CSV framing fail; no completed prefix summary is published.
 [Exact CSV profile, limits and reason codes](docs/CSV.md) defines the supported
 subset, source-consistency bounds and no-rounding rules. No delimiter/timezone/unit
 guessing, live feed, trading or CSV checkpoint/resume is provided.
+
+## Source candidate: clearer CSV argument errors
+
+Only the exact command `validate-csv` gets the new argument diagnostics.
+Wrong argument count is checked first, then price scale, then volume scale.
+A usage refusal returns1, writes no stdout, and writes two fixed stderr lines:
+the reason below, followed by the single-command syntax.
+
+- `usage:CSV_ARGUMENT_COUNT; expected 4 arguments after validate-csv`
+- `usage:CSV_PRICE_SCALE_INVALID; price-decimals must be an unsigned integer in 0..8`
+- `usage:CSV_VOLUME_SCALE_INVALID; volume-decimals must be an unsigned integer in 0..8`
+
+For an invalid price scale, choose an explicit supported scale; the command does
+not infer units or round input. Leading-zero integer scales such as `02 00`
+remain accepted. No target input is opened and no target output is created or
+changed on these argument refusals. This does not claim zero process/runtime I/O.
+Paths, supplied argument values and CSV rows are never echoed by these messages.
+
+The parser, `ohlc-csv-v1`, report bytes, and file-fatal versus row-quarantine
+rules remain unchanged. Other command usage stays the same.
+[Candidate notes](docs/RELEASE-v0.6.1-preview.1.md) ·
+[Exact diagnostics and examples](docs/CSV.md#command-argument-refusal-source-m1)
 
 ## Separate synthetic demo
 

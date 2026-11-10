@@ -13,8 +13,8 @@ def check(args):
     folder=Path(args.package).resolve()
     manifest=json.loads((folder/"BUILD-MANIFEST.json").read_text(encoding="utf-8"))
     assert manifest["sourceCommit"]==args.commit
-    assert manifest["version"]=="0.6.0-preview.1" and manifest["bundledRuntime"]=="10.0.14"
-    assert manifest["sdk"]=="10.0.403" and manifest["selfContained"] is True
+    assert manifest["version"]=="0.6.1-preview.1" and manifest["bundledRuntime"]=="10.0.15"
+    assert manifest["sdk"]=="10.0.404" and manifest["selfContained"] is True
     expected={row["path"] for row in manifest["files"]}|{"BUILD-MANIFEST.json"}
     assert {p.relative_to(folder).as_posix() for p in folder.rglob("*") if p.is_file()}==expected
     for row in manifest["files"]:
@@ -35,12 +35,14 @@ def check(args):
     env["PATH"]=""  # Direct apphost, no interpreter/runtime executable lookup.
     observations=[]
     def run(argv,exit_code):
-        result=subprocess.run([str(exe),*argv],cwd=root,env=env,capture_output=True,text=True,timeout=30)
+        result=subprocess.run([str(exe),*argv],cwd=root,env=env,capture_output=True,timeout=30)
+        result.stdout=result.stdout.decode("utf-8")
+        result.stderr=result.stderr.decode("utf-8")
         assert result.returncode==exit_code,(argv,result.returncode,result.stderr)
         observations.append(dict(arguments=argv,exit=result.returncode,stdout=result.stdout,stderr=result.stderr))
         return result.stdout
-    assert "Integrity 0.6.0-preview.1" in run(["--version"],0)
-    assert ".NET 10.0.14" in observations[-1]["stdout"]
+    assert "Integrity 0.6.1-preview.1" in run(["--version"],0)
+    assert ".NET 10.0.15" in observations[-1]["stdout"]
     out=root/"demo output with spaces"
     run(["demo",str(out),"unexpected"],1)
     assert not out.exists()
@@ -80,6 +82,47 @@ def check(args):
     bad_args=root/"bad csv args result"
     run(["validate-csv",str(clean),str(bad_args),"9","0"],1)
     assert not bad_args.exists()
+    # Preserve actual OS newline bytes when decoding subprocess output above.
+    syntax="usage: Integrity validate-csv <input.csv> <new-output> <price-decimals:0..8> <volume-decimals:0..8>"
+    def usage(argv, first):
+        assert run(argv,1)==""
+        assert observations[-1]["stderr"]==first+os.linesep+syntax+os.linesep
+        assert not bad_args.exists()
+    count="usage:CSV_ARGUMENT_COUNT; expected 4 arguments after validate-csv"
+    price="usage:CSV_PRICE_SCALE_INVALID; price-decimals must be an unsigned integer in 0..8"
+    volume="usage:CSV_VOLUME_SCALE_INVALID; volume-decimals must be an unsigned integer in 0..8"
+    missing=root/"private marker missing input.csv"
+    for argv in (["validate-csv"], ["validate-csv",str(missing)], ["validate-csv",str(missing),str(bad_args),"bad"], ["validate-csv",str(missing),str(bad_args),"bad","bad","extra"]):
+        usage(argv,count)
+    for token in ("9","-1","1.0","x","","+2"," 2","2 ","99999999999999999999999999999","\u06f2"):
+        usage(["validate-csv",str(missing),str(bad_args),token,"0"],price)
+        usage(["validate-csv",str(missing),str(bad_args),"2",token],volume)
+        usage(["validate-csv",str(missing),str(bad_args),token,token],price)
+    sentinel=root/"existing usage output";sentinel.mkdir()
+    (sentinel/"keep.bin").write_bytes(bytes([0,255,10,13]))
+    usage(["validate-csv",str(missing),str(sentinel),"x","0"],price)
+    assert {p.name:p.read_bytes() for p in sentinel.iterdir()}=={"keep.bin":bytes([0,255,10,13])}
+    run(["validate-csv",str(clean),str(root/"leading zero result"),"02","00"],0)
+    for scales,expected in ((("0","8"),"-2"),(("8","0"),"-200000000")):
+        boundary=root/("boundary "+scales[0]+".csv")
+        boundary.write_bytes((header+"2026-01-01T00:00:00Z,-2,-1,-3,-2,0\n").encode("utf-8"))
+        target=root/("boundary result "+scales[0])
+        run(["validate-csv",str(boundary),str(target),*scales],0)
+        assert json.loads((target/"accepted.jsonl").read_text())["record"]["closeScaled"]==expected
+    precision=root/"precision.csv"
+    precision.write_bytes((header+"2026-01-01T00:01:00Z,1.230,2,0,1,1\n").encode("utf-8"))
+    precision_out=root/"precision result"
+    run(["validate-csv",str(precision),str(precision_out),"2","0"],2)
+    rejection=json.loads((precision_out/"quarantine.jsonl").read_text())
+    assert (rejection["reason"],rejection["field"],rejection["record"])==("NUMBER_PRECISION_EXCEEDED","open",None)
+    assert json.loads((precision_out/"summary.json").read_text())["quarantined"]==1
+    global_usage=None
+    for argv in ([],["Validate-csv"],["validate-csv-extra"],["validate-csv "],["--help"]):
+        assert run(argv,1)==""
+        current=observations[-1]["stderr"]
+        assert current.startswith(syntax+" | csv-demo") and current.endswith(os.linesep)
+        if global_usage is None: global_usage=current
+        else: assert current==global_usage
     bad_header=root/"bad header.csv";bad_header.write_bytes(b"time,open,high,low,close,volume\n")
     bad_out=root/"bad header output"
     run(["validate-csv",str(bad_header),str(bad_out),"2","0"],1)
@@ -93,6 +136,9 @@ def check(args):
     run(["validate-csv",str(quote),str(quote_out),"2","0"],1)
     assert "CSV_UNCLOSED_QUOTE" in observations[-1]["stderr"]
     assert not (quote_out/"summary.json").exists()
+    assert observations[-1]["stdout"]==""
+    assert observations[-1]["stderr"]=="fatal:CSV_UNCLOSED_QUOTE line=3; no completed result may be inferred from partial files"+os.linesep
+    assert len((quote_out/"accepted.jsonl").read_text(encoding="utf-8").splitlines())==1
     bom=root/"embedded bom.csv"
     bom.write_bytes((header+row+"2026-01-01T00:01:00Z,1,2,0,1,\ufeff1\n").encode("utf-8"))
     bom_out=root/"embedded bom output"

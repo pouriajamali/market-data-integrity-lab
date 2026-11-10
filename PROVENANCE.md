@@ -123,3 +123,18 @@ Do not normalize/edit the downloaded checksum file before verification. A valid
 signature over different bytes or a matching hash for another filename does not
 verify the chosen archive. Preserve failures and obtain a trusted copy rather
 than skipping a failed signature or fingerprint check.
+
+## Unpublished M1 candidate
+
+Source0.6.1-preview.1 uses the same established public identity and fingerprint.
+A locally signed candidate commit is distinct from a signed release tag or
+checksum signature. A failing required check prevents candidate acceptance.
+No new tag, release asset or checksum signature is created by the local-start
+approval. The examples above intentionally continue to verify the immutable
+published0.6.0-preview.1 release and the separately pinned CSV action.
+
+Future M1 publication requires the separately approved annotated signed tag,
+same-commit native Windows/Linux packages, source archive and signed checksums.
+Match the new BUILD-MANIFEST source commit/SDK10.0.404/runtime10.0.15 and actual
+archive hashes; do not substitute an old signature or infer Linux execution
+from Windows/local evidence. Existing signatures, tags and keys stay unchanged.

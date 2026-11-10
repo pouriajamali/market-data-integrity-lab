@@ -1,5 +1,19 @@
 # Changes
 
+## 0.6.1-preview.1 - M1 local candidate (unpublished)
+
+- Explain exact validate-csv argument refusal with fixed count, price-scale and
+  volume-scale diagnostics; retain exit1/empty stdout and native OS newlines.
+- Refuse before target input/output I/O; preserve leading-zero/invariant scale
+  grammar, canonical CSV bytes, precision, fatal/quarantine separation and all
+  other command usage.
+- Add independent CLI/culture/sentinel and extracted apphost acceptance oracles.
+- Service SDK10.0.404 and bundled runtime10.0.15 without changing source package
+  locks, parser/vendor pins, CSV action workflow or its historical binary hashes.
+- Wire the new preview version and release notes; no tag, upload or public
+  release follows from this local candidate. Existing141-test B2 release
+  evidence and historical measurements are unchanged.
+
 ## Unreleased - documentation
 
 - Publish the known public signing key and independent expected fingerprint, with

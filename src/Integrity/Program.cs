@@ -7,11 +7,18 @@ try
         CsvDemo.Run(args[1], Console.Out);
         return 0;
     }
-    if (args.Length == 5 && args[0] == "validate-csv" &&
-        int.TryParse(args[3], System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var priceDecimals) &&
-        int.TryParse(args[4], System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var volumeDecimals) &&
-        priceDecimals is >= 0 and <= 8 && volumeDecimals is >= 0 and <= 8)
+    if (args.Length > 0 && args[0] == "validate-csv")
     {
+        if (args.Length != 5)
+            return CsvUsage("usage:CSV_ARGUMENT_COUNT; expected 4 arguments after validate-csv");
+        if (!int.TryParse(args[3], System.Globalization.NumberStyles.None,
+            System.Globalization.CultureInfo.InvariantCulture, out var priceDecimals) ||
+            priceDecimals is < 0 or > 8)
+            return CsvUsage("usage:CSV_PRICE_SCALE_INVALID; price-decimals must be an unsigned integer in 0..8");
+        if (!int.TryParse(args[4], System.Globalization.NumberStyles.None,
+            System.Globalization.CultureInfo.InvariantCulture, out var volumeDecimals) ||
+            volumeDecimals is < 0 or > 8)
+            return CsvUsage("usage:CSV_VOLUME_SCALE_INVALID; volume-decimals must be an unsigned integer in 0..8");
         var result = CsvValidator.Run(args[1], args[2], priceDecimals, volumeDecimals);
         Console.WriteLine($"completed rows={result.Records} accepted={result.Accepted} quarantined={result.Quarantined}; LOCAL_ROW_CHECKS_ONLY; market provenance UNVERIFIED");
         return result.Quarantined == 0 ? 0 : 2;
@@ -76,5 +83,12 @@ catch (Exception error) when (error is IOException or UnauthorizedAccessExceptio
 {
     // Do not emit source data, paths, exception messages or stack traces.
     Console.Error.WriteLine($"fatal:{error.GetType().Name}; no completed result may be inferred from partial files");
+    return 1;
+}
+
+static int CsvUsage(string message)
+{
+    Console.Error.WriteLine(message);
+    Console.Error.WriteLine("usage: Integrity validate-csv <input.csv> <new-output> <price-decimals:0..8> <volume-decimals:0..8>");
     return 1;
 }

@@ -1,6 +1,6 @@
 # Source build and existing CLI commands
 
-Developers need .NET SDK10.0.403, pinned in global.json. Runtime code uses the BCL;
+Developers need .NET SDK10.0.404, pinned in global.json. Runtime code uses the BCL;
 tests restore pinned xUnit v3. Ready binary users need none of these build steps.
 
 ~~~sh
@@ -36,8 +36,9 @@ It adds no new framing, sequence or recovery semantics.
 
 ## Binary delivery
 
-The workflow publishes version0.6.0-preview.1 separately for win-x64/Linux x64.
-SelfContained=true, runtime10.0.14, single-file/trim/AOT/R2R=false. Runtime restore
+The workflow is wired for candidate0.6.1-preview.1 on win-x64/Linux x64.
+Publication requires a separate approval; current public CLI/action binaries remain0.6.0-preview.1.
+SelfContained=true, runtime10.0.15, single-file/trim/AOT/R2R=false. Runtime restore
 uses a separate artifact lock path, preserving the original source lockfile.
 Packages include original runtime LICENSE.TXT and THIRD-PARTY-NOTICES.TXT.
 
@@ -61,3 +62,18 @@ CsvTests independently cover integer/scaled boundaries, malformed/quoted rows,
 BOM/CRLF/EOF, no data/header failures, exact hashes, cultures, source mutation/read
 and actual byte/row caps. Runtime package smoke adds bounded CSV commands.
 No private or downloaded market data is used by development or delivery checks.
+
+## M1 CSV usage candidate
+
+The finite M1 change adds fixed arity/price/volume diagnostics in Program.cs;
+no parser or source dependency changes. Source package locks and the four public
+Admission vendor source pins remain frozen. SDK10.0.404/runtime10.0.15 is approved
+servicing; the net10.0 target and Directory.Build.props remain unchanged.
+CsvCliTests is a disabled-parallel collection because it invokes the actual
+synchronous CLI entry point while owning Console/culture, rather than duplicating
+argument parsing. Actual archive checks invoke self-contained apphosts separately.
+
+Local Windows results and exact candidate/signature/archive identities belong in
+the worker's M1-CANDIDATE receipt. A failed required check blocks readiness.
+Linux restore or a Windows source run is not Linux execution; exact-source
+Windows/Linux hosted CI and publication are later approval gates.

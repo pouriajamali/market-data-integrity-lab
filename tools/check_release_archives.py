@@ -10,7 +10,7 @@ root=Path(sys.argv[1]);commit=sys.argv[2]
 expected={"win-x64":".zip","linux-x64":".tar.gz"}
 assert len(list(root.iterdir()))==2,"Only two tested runtime archives expected"
 for rid,suffix in expected.items():
-    prefix=f"market-data-integrity-lab-v0.6.0-preview.1-{rid}"
+    prefix=f"market-data-integrity-lab-v0.6.1-preview.1-{rid}"
     path=root/(prefix+suffix)
     if suffix==".zip":
         with zipfile.ZipFile(path) as archive:
@@ -21,7 +21,7 @@ for rid,suffix in expected.items():
             files={i.name:archive.extractfile(i).read() for i in archive.getmembers() if i.isfile()}
     manifest=json.loads(files[prefix+"/BUILD-MANIFEST.json"])
     assert manifest["sourceCommit"]==commit and manifest["rid"]==rid and manifest["selfContained"] is True
-    assert manifest["version"]=="0.6.0-preview.1" and manifest["bundledRuntime"]=="10.0.14" and manifest["sdk"]=="10.0.403"
+    assert manifest["version"]=="0.6.1-preview.1" and manifest["bundledRuntime"]=="10.0.15" and manifest["sdk"]=="10.0.404"
     expected_files={prefix+"/"+i["path"] for i in manifest["files"]}|{prefix+"/BUILD-MANIFEST.json"}
     assert set(files)==expected_files
     for row in manifest["files"]:

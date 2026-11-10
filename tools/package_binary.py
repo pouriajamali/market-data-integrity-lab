@@ -11,8 +11,8 @@ import subprocess
 import tarfile
 import zipfile
 
-VERSION="0.6.0-preview.1"
-RUNTIME="10.0.14"
+VERSION="0.6.1-preview.1"
+RUNTIME="10.0.15"
 
 def sha(path):
     h=hashlib.sha256()

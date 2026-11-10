@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.403'
+          dotnet-version: '10.0.404'
       - run: dotnet restore tests/Integrity.Tests/Integrity.Tests.csproj --locked-mode
       - run: dotnet build tests/Integrity.Tests/Integrity.Tests.csproj -c Release --no-restore
       - run: dotnet run --project tests/Integrity.Tests -c Release --no-build
@@ -94,11 +94,11 @@ jobs:
           $publishDirectory = Join-Path $PWD "artifacts/publish/$env:TARGET_RID"
           $lockPath = Join-Path $PWD "artifacts/runtime-locks/$env:TARGET_RID.lock.json"
           New-Item -ItemType Directory -Force (Split-Path $lockPath) | Out-Null
-          dotnet publish src/Integrity/Integrity.csproj -c Release -r $env:TARGET_RID --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishAot=false -p:PublishReadyToRun=false -p:DebugType=None -p:DebugSymbols=false -p:RuntimeFrameworkVersion=10.0.14 "-p:NuGetLockFilePath=$lockPath" -o $publishDirectory
+          dotnet publish src/Integrity/Integrity.csproj -c Release -r $env:TARGET_RID --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishAot=false -p:PublishReadyToRun=false -p:DebugType=None -p:DebugSymbols=false -p:RuntimeFrameworkVersion=10.0.15 "-p:NuGetLockFilePath=$lockPath" -o $publishDirectory
           if ($LASTEXITCODE -ne 0) { throw 'publish failed' }
           $packageLocation = (dotnet nuget locals global-packages --list)
           $packageRoot = $packageLocation.Substring($packageLocation.IndexOf(':') + 1).Trim()
-          $runtimePack = Join-Path $packageRoot "microsoft.netcore.app.runtime.$env:TARGET_RID/10.0.14"
+          $runtimePack = Join-Path $packageRoot "microsoft.netcore.app.runtime.$env:TARGET_RID/10.0.15"
           $sdkVersion = (dotnet --version).Trim()
           python tools/package_binary.py --publish $publishDirectory --output artifacts/binary --rid $env:TARGET_RID --runtime-pack $runtimePack --commit "${{ github.sha }}" --sdk $sdkVersion
           if ($LASTEXITCODE -ne 0) { throw 'packaging failed' }
@@ -108,7 +108,7 @@ jobs:
           TARGET_RID: ${{ matrix.rid }}
         run: |
           $ErrorActionPreference = 'Stop'
-          $prefix = "market-data-integrity-lab-v0.6.0-preview.1-$env:TARGET_RID"
+          $prefix = "market-data-integrity-lab-v0.6.1-preview.1-$env:TARGET_RID"
           $extractRoot = Join-Path $PWD 'artifacts/extracted package with spaces'
           New-Item -ItemType Directory $extractRoot | Out-Null
           if ($env:TARGET_RID -eq 'win-x64') {
@@ -162,10 +162,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          test "$GITHUB_REF_NAME" = "v0.6.0-preview.1"
+          test "$GITHUB_REF_NAME" = "v0.6.1-preview.1"
           python tools/check_release_archives.py release-assets "$GITHUB_SHA"
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "release-assets/$archive" HEAD
           cd release-assets
           sha256sum *.zip *.tar.gz > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Runnable synthetic lab $GITHUB_REF_NAME" --notes "B2: offline explicit-scale OHLC CSV validation plus separate synthetic demos, delivered as self-contained Windows x64 and glibc Linux x64 directory bundles with source and checksums. Keep the extracted directory together; no installed .NET SDK/runtime or Python is needed by the app. Native OS prerequisites still apply. Archives were extracted and apphosts run on their matching CI OS, with self-contained runtime/config inspection; those hosts may have SDKs installed. CSV is local row checks only: provenance UNVERIFIED; order/dedup/completeness NOT_CHECKED; no CSV recovery, live connection or trading. Synthetic demo completion is not a crash test or proof all input is valid. Historical A4 timings describe d9ece502/v0.4, not B2 binaries. See README for engineering decisions, exact proof tests and supported boundaries."
+          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Offline CSV usage diagnostics $GITHUB_REF_NAME" --notes-file "$GITHUB_WORKSPACE/docs/RELEASE-v0.6.1-preview.1.md"

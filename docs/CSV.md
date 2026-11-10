@@ -165,3 +165,54 @@ after correction; ready-package checks also cover embedded BOM.
 public CI: only UTF8/BOM/newline normalization and private-prefix substitution.
 Original private SHA256:c8d2f2b1fe39b4108c3453d01329958bc22f4f4b7a746b45fe30e78c2449606b.
 Published normalized SHA256:cdfd2fea5128e95125881194e0e44202b3435441f2aa2b9f5e7a6b2d1e9b709d.
+
+## Command argument refusal (source M1)
+
+The unpublished 0.6.1-preview.1 candidate adds command-specific usage diagnostics
+for the exact first token `validate-csv`. Existing published0.6.0 downloads and
+the separate pinned CSV action retain their original usage behavior.
+
+Arity is checked before price scale, then volume scale. Arguments must be exactly
+`<input.csv> <new-output> <price-decimals> <volume-decimals>`. Scales retain the
+invariant unsigned integer grammar/range0..8, including leading zeroes; signs,
+whitespace, decimals, non-ASCII digits and overflow are invalid.
+
+| Condition | First stderr line |
+| --- | --- |
+| Missing/extra arguments | `usage:CSV_ARGUMENT_COUNT; expected 4 arguments after validate-csv` |
+| Invalid price scale | `usage:CSV_PRICE_SCALE_INVALID; price-decimals must be an unsigned integer in 0..8` |
+| Invalid volume scale | `usage:CSV_VOLUME_SCALE_INVALID; volume-decimals must be an unsigned integer in 0..8` |
+
+Second line, followed by the native OS newline:
+`usage: Integrity validate-csv <input.csv> <new-output> <price-decimals:0..8> <volume-decimals:0..8>`.
+Both lines use OS newlines (CRLF on Windows, LF on Linux), stdout is empty and exit
+is1. Fixed diagnostics contain no supplied token, path, raw row or exception text.
+Usage refusal precedes target-file/directory I/O; process/runtime initialization
+may perform unrelated I/O. Existing output and nonexistent input do not override
+the argument reason. Lookalike commands and zero arguments keep global usage.
+
+Independent invented acceptance examples, each after the exact header and with
+price scale2/volume scale0:
+
+~~~text
+2026-01-01T00:00:00Z,-2.00,-1.00,-3.00,-2.50,0
+~~~
+
+This row returns0 with closeScaled string `"-250"`.
+
+~~~text
+2026-01-01T00:01:00Z,1.230,2,0,1,1
+~~~
+
+This row returns2 with completed summary and NUMBER_PRECISION_EXCEEDED, field
+open, record null. The extra zero is not discarded. In a separate fixture, an
+unclosed quoted physical row after a good prefix returns1/CSV_UNCLOSED_QUOTE;
+no final summary or accepted continuation is published. A usage error is neither
+a new row-reason code nor a new CsvFatalException code.
+
+[CsvCliTests](../tests/Integrity.Tests/CsvCliTests.cs) exercises the real synchronous
+entry point under exclusive Console/culture ownership, including en-US/fa-IR,
+sentinels, exact global usage, leading-zero and boundary scales.
+[Extracted package checks](../tools/check_binary.py) separately invoke actual
+apphosts and preserve raw OS newline bytes. Native Linux validation remains a
+later CI gate for this local Windows candidate.

@@ -62,7 +62,7 @@ public sealed class DemoTests
             Assert.Equal("",existing.Output);
             var version=await Cli("--version");
             Assert.Equal(0,version.Exit);
-            Assert.StartsWith("Integrity 0.6.0-preview.1",version.Output);
+            Assert.StartsWith("Integrity 0.6.1-preview.1",version.Output);
         }
         finally { Directory.Delete(parent,true); }
     }
