@@ -175,3 +175,5 @@ are included. This does not establish employer results or an independently
 assessed individual code share. [MIT license](LICENSE) covers original sample
 material; bundled .NET runtime and third-party notices retain their own terms.
 See [NOTICE](NOTICE.md). CV/profile/shared projects are outside this repository.
+
+[CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
