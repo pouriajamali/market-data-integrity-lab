@@ -1,9 +1,10 @@
 # Market Data Integrity Lab
 
-Source M1 candidate: **0.6.1-preview.1**, SDK10.0.404 / bundled runtime10.0.15.
-This candidate is local and unpublished; the download links below intentionally
-retain the existing verified **v0.6.0-preview.1** release. The separately versioned
-CSV action also retains that exact binary and checksum pin.
+Current CLI preview: **[v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1)**, built with SDK **10.0.404**
+and bundled runtime **10.0.15**. [Tagged source](https://github.com/pouriajamali/market-data-integrity-lab/tree/v0.6.1-preview.1) ·
+[Exact release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681).
+The separate CSV action retains its immutable **v0.6.0-preview.1** binaries and
+exact checksum pins.
 
 Check **local OHLC CSV without silent rounding**, inspect quarantined rows, and
 study separate synthetic validation/process-crash recovery examples. This offline
@@ -11,19 +12,19 @@ C#/.NET lab uses an explicit CSV profile; it does not connect to a market or
 account and does not trade. User-file provenance is UNVERIFIED.
 
 [Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) ·
-[Download v0.6.0-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.0-preview.1) ·
+[Download v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) ·
 [Source and developer commands](docs/DEVELOPMENT.md)
 
 ## Try the CSV preview
 
-[Watch the 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
+[Watch the original 0.6.0 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
 The CSV demo generates six rows: two accepted and four quarantined. Then use
 `validate-csv` with your own local file and explicit price/volume scales.
 [CSV format and command](#check-your-own-csv) · [Download and run](#download-and-run)
 
 For a repeatable check on your own runner, use the
-[CSV CI action](docs/CSV-CI.md). It verifies the signed preview before running
-your local file with explicit scales. Quarantined rows fail the step by default;
+[CSV CI action](docs/CSV-CI.md). It verifies its pinned signed v0.6.0-preview.1
+before running your local file with explicit scales. Quarantined rows fail the step by default;
 row reports stay in your workspace.
 
 **Expected result:** the six-row CSV demo reports two accepted and four
@@ -46,21 +47,23 @@ parser problem, provide a small invented fixture using the format in
 allocated more managed bytes than A2. The 100k operation median was 2.720s versus
 1.625s (3 samples per mode). The modes use different writer/flush/checkpoint paths;
 the study did **not** isolate their causal shares. Allocation is not peak memory.
-These measurements describe [d9ece502/v0.4](docs/CASE-STUDY.md), **not these B2
+These measurements describe [d9ece502/v0.4](docs/CASE-STUDY.md), **not the current 0.6.1
 binaries**. [Raw samples](docs/evidence/measurements/results.json) and
 [local red/green development evidence](docs/evidence/development/index.json)
 remain inspectable. No speed or production-performance claim follows.
 
 ## Download and run
 
-Choose your x64 platform, verify the archive against
-[SHA256SUMS.txt](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/SHA256SUMS.txt),
+Choose your x64 platform. Follow the [provenance guide](PROVENANCE.md) to verify
+[the checksum signature](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SHA256SUMS.txt.sig) with the trusted fingerprint
+and [public key](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SIGNING-PUBLIC-KEY.pub), then check the selected archive against
+[SHA256SUMS.txt](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SHA256SUMS.txt),
 then extract **the whole directory**. Keep the app beside its bundled runtime.
 
-- [Windows x64 ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-v0.6.0-preview.1-win-x64.zip)
-- [Linux glibc x64 tar.gz](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-v0.6.0-preview.1-linux-x64.tar.gz)
+- [Windows x64 ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1-win-x64.zip)
+- [Linux glibc x64 tar.gz](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1-linux-x64.tar.gz)
 
-Developers can also download the [source ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-v0.6.0-preview.1.zip).
+Developers can also download the [source ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1.zip).
 
 Windows PowerShell, from the extracted directory:
 
@@ -80,7 +83,8 @@ The app requires no installed .NET SDK/runtime or Python. These are self-contain
 directory bundles, not installers. Native OS dependencies still apply. The Linux
 target is glibc x64, tested on Ubuntu 24.04; Alpine/musl, ARM and macOS are not
 included. Windows is x64; actual tested OS versions are recorded in build/CI
-receipts. These are unsigned developer previews. See
+receipts. Application binaries are not OS code-signed; SSH release provenance
+is separate. See
 [.NET native prerequisites](https://github.com/dotnet/core/blob/main/release-notes/10.0/dotnet-dependencies.md).
 
 Each package includes `BUILD-MANIFEST.json` (version, exact source commit, RID,
@@ -88,6 +92,11 @@ SDK, bundled runtime and payload hashes), licenses and a short offline quickstar
 CI extracts the archives and directly runs the apphosts from paths/cwd containing
 spaces, with empty PATH and nonexistent DOTNET_ROOT. The hosts may themselves
 have SDKs installed; that is **not** a claim of an empirically SDK-free host test.
+
+The [exact release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) at commit
+06f3b6104446fa7b781c70cc759d0a8eed4e3fa8 passed **165 tests and 60 extracted-apphost
+invocations on each OS**, using .NET 10.0.15. This is functional/native-package
+evidence; the historical A4 performance study was not rerun.
 
 ## Check your own CSV
 
@@ -117,7 +126,7 @@ and ambiguous CSV framing fail; no completed prefix summary is published.
 subset, source-consistency bounds and no-rounding rules. No delimiter/timezone/unit
 guessing, live feed, trading or CSV checkpoint/resume is provided.
 
-## Source candidate: clearer CSV argument errors
+## Clearer CSV argument errors
 
 Only the exact command `validate-csv` gets the new argument diagnostics.
 Wrong argument count is checked first, then price scale, then volume scale.
@@ -136,8 +145,8 @@ Paths, supplied argument values and CSV rows are never echoed by these messages.
 
 The parser, `ohlc-csv-v1`, report bytes, and file-fatal versus row-quarantine
 rules remain unchanged. Other command usage stays the same.
-[Candidate notes](docs/RELEASE-v0.6.1-preview.1.md) ·
-[Exact diagnostics and examples](docs/CSV.md#command-argument-refusal-source-m1)
+[Release notes](docs/RELEASE-v0.6.1-preview.1.md) ·
+[Exact diagnostics and examples](docs/CSV.md#command-argument-refusal)
 
 ## Separate synthetic demo
 
@@ -192,7 +201,8 @@ partial decisions/checkpoints, fallback and repeated interruptions.
 See the [public key, expected fingerprint and POSIX/PowerShell verification guide](https://github.com/pouriajamali/market-data-integrity-lab/blob/main/PROVENANCE.md)
 before trusting release downloads. SSH checksum provenance is separate from OS
 binary signing and does not change the MIT license or prevent copying. This
-documentation update preserves existing release archives, tags and signatures.
+documentation follow-up does not rebuild or replace existing release archives,
+tags or signatures.
 
 ## Attribution
 

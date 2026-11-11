@@ -166,11 +166,13 @@ public CI: only UTF8/BOM/newline normalization and private-prefix substitution.
 Original private SHA256:c8d2f2b1fe39b4108c3453d01329958bc22f4f4b7a746b45fe30e78c2449606b.
 Published normalized SHA256:cdfd2fea5128e95125881194e0e44202b3435441f2aa2b9f5e7a6b2d1e9b709d.
 
-## Command argument refusal (source M1)
+<a id="command-argument-refusal-source-m1"></a>
 
-The unpublished 0.6.1-preview.1 candidate adds command-specific usage diagnostics
-for the exact first token `validate-csv`. Existing published0.6.0 downloads and
-the separate pinned CSV action retain their original usage behavior.
+## Command argument refusal
+
+[v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) adds command-specific usage diagnostics for the
+exact first token `validate-csv`. The immutable 0.6.0 downloads and separately
+pinned CSV action retain their original usage behavior.
 
 Arity is checked before price scale, then volume scale. Arguments must be exactly
 `<input.csv> <new-output> <price-decimals> <volume-decimals>`. Scales retain the
@@ -214,5 +216,7 @@ a new row-reason code nor a new CsvFatalException code.
 entry point under exclusive Console/culture ownership, including en-US/fa-IR,
 sentinels, exact global usage, leading-zero and boundary scales.
 [Extracted package checks](../tools/check_binary.py) separately invoke actual
-apphosts and preserve raw OS newline bytes. Native Linux validation remains a
-later CI gate for this local Windows candidate.
+apphosts and preserve raw OS newline bytes. The
+[exact-tag Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) passed 165 tests and 60 extracted-apphost
+invocations per OS at 06f3b6104446fa7b781c70cc759d0a8eed4e3fa8, with runtime 10.0.15.
+These functional checks add no source-authenticity or performance claim.

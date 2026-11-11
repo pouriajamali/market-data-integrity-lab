@@ -14,14 +14,14 @@ identity proof. The key is public; never share or request the private signing ke
 
 ## What is signed
 
-The example below verifies the existing release **v0.6.0-preview.1**. Its
+The commands below verify [**v0.6.1-preview.1**](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1). Its
 `SHA256SUMS.txt.sig` is an SSH signature over the exact `SHA256SUMS.txt` bytes in
 the `file` namespace. Verify that signature first, then the chosen archive's hash.
 A matching unsigned hash alone is not authenticated provenance.
 
 The legacy v0.6.0-preview.1 tag is **lightweight, not a signed annotated tag**.
-Its existing checksum signature is verified below; this is not a claim that the
-old tag is signed. Current signed commits are separate evidence. The legacy tag,
+Its existing checksum signature remains separate legacy evidence; this is not a
+claim that the old tag is signed. Current signed commits are separate evidence. The legacy tag,
 archives and signatures remain unchanged; new release tags must be annotated
 and signed. No replacement release or retroactive tag rewrite is implied.
 
@@ -47,12 +47,11 @@ from the signed checksum file to verify a different OS archive.
 
 ```sh
 repo='pouriajamali/market-data-integrity-lab'
-tag='v0.6.0-preview.1'
-archive='market-data-integrity-lab-v0.6.0-preview.1.zip'
-for name in "$archive" SHA256SUMS.txt SHA256SUMS.txt.sig; do
+tag='v0.6.1-preview.1'
+archive='market-data-integrity-lab-v0.6.1-preview.1.zip'
+for name in "$archive" SHA256SUMS.txt SHA256SUMS.txt.sig SIGNING-PUBLIC-KEY.pub; do
   curl --fail --location --output "$name" "https://github.com/$repo/releases/download/$tag/$name" || exit 1
 done
-curl --fail --location --output SIGNING-PUBLIC-KEY.pub "https://raw.githubusercontent.com/$repo/main/SIGNING-PUBLIC-KEY.pub" || exit 1
 ```
 
 ```sh
@@ -79,12 +78,11 @@ These commands do not install tools or change security settings.
 ```powershell
 $ErrorActionPreference = 'Stop'
 $repo = 'pouriajamali/market-data-integrity-lab'
-$tag = 'v0.6.0-preview.1'
-$archive = 'market-data-integrity-lab-v0.6.0-preview.1.zip'
-foreach ($name in @($archive, 'SHA256SUMS.txt', 'SHA256SUMS.txt.sig')) {
+$tag = 'v0.6.1-preview.1'
+$archive = 'market-data-integrity-lab-v0.6.1-preview.1.zip'
+foreach ($name in @($archive, 'SHA256SUMS.txt', 'SHA256SUMS.txt.sig', 'SIGNING-PUBLIC-KEY.pub')) {
     Invoke-WebRequest -Uri "https://github.com/$repo/releases/download/$tag/$name" -OutFile $name
 }
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/$repo/main/SIGNING-PUBLIC-KEY.pub" -OutFile SIGNING-PUBLIC-KEY.pub
 ```
 
 ```powershell
@@ -124,17 +122,28 @@ signature over different bytes or a matching hash for another filename does not
 verify the chosen archive. Preserve failures and obtain a trusted copy rather
 than skipping a failed signature or fingerprint check.
 
-## Unpublished M1 candidate
+## Current tagged release and unchanged legacy pins
 
-Source0.6.1-preview.1 uses the same established public identity and fingerprint.
-A locally signed candidate commit is distinct from a signed release tag or
-checksum signature. A failing required check prevents candidate acceptance.
-No new tag, release asset or checksum signature is created by the local-start
-approval. The examples above intentionally continue to verify the immutable
-published0.6.0-preview.1 release and the separately pinned CSV action.
+The annotated signed `v0.6.1-preview.1` tag object is
+`a39b0e9843d73ec4328a39afc5bb96bc5b1d0cd0` and peels to
+[commit 06f3b6104446fa7b781c70cc759d0a8eed4e3fa8](https://github.com/pouriajamali/market-data-integrity-lab/commit/06f3b6104446fa7b781c70cc759d0a8eed4e3fa8).
+[Matching-OS release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) passed 165 tests and 60 extracted-apphost
+invocations on each OS with runtime10.0.15. Build manifests identify SDK10.0.404,
+bundled runtime10.0.15, exact source commit and RID.
 
-Future M1 publication requires the separately approved annotated signed tag,
-same-commit native Windows/Linux packages, source archive and signed checksums.
-Match the new BUILD-MANIFEST source commit/SDK10.0.404/runtime10.0.15 and actual
-archive hashes; do not substitute an old signature or infer Linux execution
-from Windows/local evidence. Existing signatures, tags and keys stay unchanged.
+Verify the exact downloaded checksum bytes with the commands above; a tag
+signature alone does not authenticate an arbitrary downloaded archive. The
+signature namespace is `file` and the known principal is `pouriajamali`.
+No raw private key is required for verification. These SSH signatures do not
+constitute Windows Authenticode or market-data authenticity.
+
+Release archives preserve the documentation and quickstarts packaged at tag
+`v0.6.1-preview.1` / commit `06f3b6104446fa7b781c70cc759d0a8eed4e3fa8`.
+The source archive therefore includes the prepublication candidate wording
+captured in that snapshot. The [current main guide](https://github.com/pouriajamali/market-data-integrity-lab/blob/main/PROVENANCE.md)
+provides publication updates. Refreshing documentation on main must not rebuild
+or replace frozen archives, tags, checksums or signatures.
+
+The old v0.6.0-preview.1 release/tag, archives and checksum signature remain
+unchanged. The separately versioned CSV action still pins those original
+binaries/hashes; current CLI verification does not silently repin the action.

@@ -1,6 +1,6 @@
 # Changes
 
-## 0.6.1-preview.1 - M1 local candidate (unpublished)
+## 0.6.1-preview.1 - M1 CSV usage diagnostics
 
 - Explain exact validate-csv argument refusal with fixed count, price-scale and
   volume-scale diagnostics; retain exit1/empty stdout and native OS newlines.
@@ -10,9 +10,11 @@
 - Add independent CLI/culture/sentinel and extracted apphost acceptance oracles.
 - Service SDK10.0.404 and bundled runtime10.0.15 without changing source package
   locks, parser/vendor pins, CSV action workflow or its historical binary hashes.
-- Wire the new preview version and release notes; no tag, upload or public
-  release follows from this local candidate. Existing141-test B2 release
-  evidence and historical measurements are unchanged.
+- [Preview release](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) and
+  [exact-tag CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) bind the
+  Windows/Linux packages to 06f3b6104446fa7b781c70cc759d0a8eed4e3fa8. Each OS passed
+  165 tests and 60 extracted-apphost invocations under .NET 10.0.15. The
+  historical 141-test B2 release evidence and A4 measurements remain unchanged.
 
 ## Unreleased - documentation
 

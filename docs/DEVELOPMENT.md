@@ -36,8 +36,9 @@ It adds no new framing, sequence or recovery semantics.
 
 ## Binary delivery
 
-The workflow is wired for candidate0.6.1-preview.1 on win-x64/Linux x64.
-Publication requires a separate approval; current public CLI/action binaries remain0.6.0-preview.1.
+The current [CLI preview is 0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) for Windows x64 and Linux
+glibc x64. The separate CSV action retains its immutable 0.6.0-preview.1 binaries
+and exact download/signature pins.
 SelfContained=true, runtime10.0.15, single-file/trim/AOT/R2R=false. Runtime restore
 uses a separate artifact lock path, preserving the original source lockfile.
 Packages include original runtime LICENSE.TXT and THIRD-PARTY-NOTICES.TXT.
@@ -63,17 +64,19 @@ BOM/CRLF/EOF, no data/header failures, exact hashes, cultures, source mutation/r
 and actual byte/row caps. Runtime package smoke adds bounded CSV commands.
 No private or downloaded market data is used by development or delivery checks.
 
-## M1 CSV usage candidate
+## M1 CSV usage diagnostics
 
 The finite M1 change adds fixed arity/price/volume diagnostics in Program.cs;
 no parser or source dependency changes. Source package locks and the four public
-Admission vendor source pins remain frozen. SDK10.0.404/runtime10.0.15 is approved
-servicing; the net10.0 target and Directory.Build.props remain unchanged.
+Admission vendor source pins remain frozen. The CLI uses SDK10.0.404 and bundled
+runtime10.0.15; the net10.0 target and Directory.Build.props remain unchanged.
 CsvCliTests is a disabled-parallel collection because it invokes the actual
 synchronous CLI entry point while owning Console/culture, rather than duplicating
 argument parsing. Actual archive checks invoke self-contained apphosts separately.
 
-Local Windows results and exact candidate/signature/archive identities belong in
-the worker's M1-CANDIDATE receipt. A failed required check blocks readiness.
-Linux restore or a Windows source run is not Linux execution; exact-source
-Windows/Linux hosted CI and publication are later approval gates.
+[Exact-tag CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) at 06f3b6104446fa7b781c70cc759d0a8eed4e3fa8
+passed 165 tests and 60 extracted-apphost invocations on each native OS, using
+.NET10.0.15. Runtime BUILD-MANIFEST.json files bind that source commit, RID, SDK,
+runtime and payload hashes; `PROVENANCE.md` describes independent checksum/signature
+verification. Linux restore or a Windows-only run is not Linux execution. These
+matching-OS CI results are functional/package checks, not a new performance study.
