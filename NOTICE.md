@@ -21,3 +21,11 @@ are included under licenses/dotnet/. The MIT license for this sample does not
 replace those terms.
 
 MIT template reference: https://opensource.org/license/mit
+
+## .NET 11 source-preparation candidate
+
+The unreleased 0.6.2-preview.1 source targets .NET 11.0.0. No runtime11 payload has
+been acquired, packaged or verified for this candidate. Actual runtime-pack
+LICENSE.TXT, THIRD-PARTY-NOTICES.TXT and package/license identities must accompany
+any later qualified bundle. The B1 runtime10.0.14 attribution above describes
+that historical distribution and is not substituted for runtime11 evidence.

@@ -39,86 +39,40 @@ jobs:
       - name: Check actual workflow syntax and expressions
         run: python3 .github/ci/policy.py lint
   verify:
+    name: Integrity03 native (${{ matrix.os }} ${{ matrix.rid }})
     needs: ci_policy
     if: needs.ci_policy.outputs.native == 'true'
+    permissions:
+      contents: read
+      actions: read
     strategy:
       max-parallel: 1
       matrix:
         include:
           - os: ubuntu-24.04
             rid: linux-x64
-          - os: windows-latest
+          - os: windows-2025
             rid: win-x64
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.404'
-      - run: dotnet restore tests/Integrity.Tests/Integrity.Tests.csproj --locked-mode
-      - run: dotnet build tests/Integrity.Tests/Integrity.Tests.csproj -c Release --no-restore
-      - run: dotnet run --project tests/Integrity.Tests -c Release --no-build
-      - run: dotnet restore tools/Measurements/Measurements.csproj --locked-mode
-      - run: dotnet build tools/Measurements/Measurements.csproj -c Release --no-restore
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-      - run: python tools/test_measurements.py
-      - run: python tools/analyze_measurements.py docs/evidence/measurements artifacts/recomputed-a4-summary.json
-      - run: python tools/check_measurements.py --dotnet dotnet
-      - run: dotnet run --project src/Integrity -c Release --no-build -- generate artifacts/demo 34
-      - name: Exercise CLI degraded result
-        shell: bash
-        run: |
-          set +e
-          dotnet run --project src/Integrity -c Release --no-build -- validate artifacts/demo/manifest.json artifacts/demo/input.jsonl artifacts/result
-          result=$?
-          set -e
-          test "$result" -eq 2
-      - run: dotnet run --project src/Integrity -c Release --no-build -- generate-sequence artifacts/sequence-demo
-      - name: Exercise opt-in sequence CLI
-        shell: bash
-        run: |
-          set +e
-          dotnet run --project src/Integrity -c Release --no-build -- validate-sequence artifacts/sequence-demo/manifest.json artifacts/sequence-demo/input.jsonl artifacts/sequence-result
-          result=$?
-          set -e
-          test "$result" -eq 2
-      - name: Publish and inventory self-contained runtime
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Exact inert source binding; no ambient SDK/tool installation
         shell: pwsh
-        env:
-          TARGET_RID: ${{ matrix.rid }}
         run: |
           $ErrorActionPreference = 'Stop'
-          $publishDirectory = Join-Path $PWD "artifacts/publish/$env:TARGET_RID"
-          $lockPath = Join-Path $PWD "artifacts/runtime-locks/$env:TARGET_RID.lock.json"
-          New-Item -ItemType Directory -Force (Split-Path $lockPath) | Out-Null
-          dotnet publish src/Integrity/Integrity.csproj -c Release -r $env:TARGET_RID --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false -p:PublishAot=false -p:PublishReadyToRun=false -p:DebugType=None -p:DebugSymbols=false -p:RuntimeFrameworkVersion=10.0.15 "-p:NuGetLockFilePath=$lockPath" -o $publishDirectory
-          if ($LASTEXITCODE -ne 0) { throw 'publish failed' }
-          $packageLocation = (dotnet nuget locals global-packages --list)
-          $packageRoot = $packageLocation.Substring($packageLocation.IndexOf(':') + 1).Trim()
-          $runtimePack = Join-Path $packageRoot "microsoft.netcore.app.runtime.$env:TARGET_RID/10.0.15"
-          $sdkVersion = (dotnet --version).Trim()
-          python tools/package_binary.py --publish $publishDirectory --output artifacts/binary --rid $env:TARGET_RID --runtime-pack $runtimePack --commit "${{ github.sha }}" --sdk $sdkVersion
-          if ($LASTEXITCODE -ne 0) { throw 'packaging failed' }
-      - name: Extract actual archive and launch apphost directly
-        shell: pwsh
-        env:
-          TARGET_RID: ${{ matrix.rid }}
-        run: |
-          $ErrorActionPreference = 'Stop'
-          $prefix = "market-data-integrity-lab-v0.6.1-preview.1-$env:TARGET_RID"
-          $extractRoot = Join-Path $PWD 'artifacts/extracted package with spaces'
-          New-Item -ItemType Directory $extractRoot | Out-Null
-          if ($env:TARGET_RID -eq 'win-x64') {
-            Expand-Archive -LiteralPath "artifacts/binary/$prefix.zip" -DestinationPath $extractRoot
-          } else {
-            tar -xzf "artifacts/binary/$prefix.tar.gz" -C $extractRoot
-            if ($LASTEXITCODE -ne 0) { throw 'tar extraction failed' }
-          }
-          python tools/check_binary.py --package (Join-Path $extractRoot $prefix) --work (Join-Path $PWD 'artifacts/apphost cwd with spaces') --commit "${{ github.sha }}" --receipt "artifacts/binary-smoke-$env:TARGET_RID.json"
-          if ($LASTEXITCODE -ne 0) { throw 'extracted apphost check failed' }
+          $bindingPath = Join-Path $PWD '.github/ci/integrity03-supported-binding.json'
+          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'cd34c3e4948077abc03f362cd6a640ec0c2c77bc74821f6ae5bb79abf710876f') { throw 'BINDING_IDENTITY' }
+          $binding = [IO.File]::ReadAllText($bindingPath) | ConvertFrom-Json
+          if ($binding.status -ne 'ADMITTED_EXACT_SOURCE_AND_HOST_FACT') { throw 'INERT_SOURCE_DESIGN_NO_EXECUTION' }
+          $python = [string]$binding.controllerPython.path
+          if (-not [IO.Path]::IsPathFullyQualified($python)) { throw 'ABSOLUTE_EXISTING_CONTROLLER_REQUIRED' }
+          if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $binding.controllerPython.sha256) { throw 'CONTROLLER_IDENTITY' }
+          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 cd34c3e4948077abc03f362cd6a640ec0c2c77bc74821f6ae5bb79abf710876f
+          if ($LASTEXITCODE -ne 0) { throw 'OWN_CI_ROUTE_INCOMPLETE' }
       - name: Retain tested runtime archive
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
@@ -162,10 +116,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          test "$GITHUB_REF_NAME" = "v0.6.1-preview.1"
+          test "$GITHUB_REF_NAME" = "v0.6.2-preview.1"
           python tools/check_release_archives.py release-assets "$GITHUB_SHA"
           archive="market-data-integrity-lab-${GITHUB_REF_NAME}.zip"
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "release-assets/$archive" HEAD
           cd release-assets
           sha256sum *.zip *.tar.gz > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Offline CSV usage diagnostics $GITHUB_REF_NAME" --notes-file "$GITHUB_WORKSPACE/docs/RELEASE-v0.6.1-preview.1.md"
+          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Offline CSV .NET 11 technology refresh $GITHUB_REF_NAME" --notes-file "$GITHUB_WORKSPACE/docs/RELEASE-v0.6.2-preview.1.md"

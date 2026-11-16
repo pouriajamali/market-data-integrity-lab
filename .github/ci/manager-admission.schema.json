@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pouria:integrity03-consumer-reference:v1",
+  "title": "Reference to frozen producer04 consumerAdmission only; not an alternative definition",
+  "$ref": "urn:pouria:dotnet11-host-qualification:v1#/$defs/consumerAdmission",
+  "allOf": [
+    {
+      "properties": {
+        "projectId": {
+          "const": "03"
+        }
+      }
+    }
+  ]
+}

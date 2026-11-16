@@ -183,7 +183,7 @@ def execute(args):
         if os.environ.get("DOTNET_SYSTEM_IO_DISABLEFILELOCKING") != "0":
             raise RuntimeError("LOCKING_ENV_REQUIRED")
         before = fingerprint(repo,guard)
-        worker = repo/"tools/Measurements/bin/Release/net10.0/Measurements.dll"
+        worker = repo/"tools/Measurements/bin/Release/net11.0/Measurements.dll"
         executable = Path(shutil.which(args.dotnet) or args.dotnet).resolve(strict=True)
         binaries = {p.name:digest(p,guard) for p in worker.parent.iterdir() if p.is_file()}
         receipt.update(source=before, host=host(), workerFiles=binaries,
@@ -223,7 +223,7 @@ def execute(args):
                 for name in CANONICAL: equal_files(output/name,reference[n]/name,guard)
             sample = dict(index=index,phase=phase,round=round_no,records=n,mode=mode,
                           parentWallNanoseconds=parent_ns,metrics=value,canonicalSha256=hashes,
-                          portableCommand=f"dotnet tools/Measurements/bin/Release/net10.0/Measurements.dll {mode} <manifest> <input> <new-output>")
+                          portableCommand=f"dotnet tools/Measurements/bin/Release/net11.0/Measurements.dll {mode} <manifest> <input> <new-output>")
             receipt["samples"].append(sample)
             dump(root/"results.json", receipt)
             guard.check()

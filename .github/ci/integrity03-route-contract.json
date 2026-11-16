@@ -1,0 +1,34 @@
+{
+  "schema": "integrity03-route-contract/v1",
+  "state": "INERT_SOURCE_PROPOSAL",
+  "authority": "Complete-local142dac plus supported-CI9b3e and shared-normal e092; exact apply/runtime/public gate absent",
+  "projectId": "03",
+  "repository": "pouriajamali/market-data-integrity-lab",
+  "versions": "11.0.100/net11.0/15.0/11.0.0/0.6.2-preview.1",
+  "profile": {
+    "schema": "sdk11-own-normal-input-profile/v1",
+    "state": "ADMITTED_SOURCE_PROFILE",
+    "projectId": "03",
+    "repository": "pouriajamali/market-data-integrity-lab",
+    "rowSeconds": 1200,
+    "memoryMaxBytes": 4294967296,
+    "swapMaxBytes": 0,
+    "tasksMax": 128,
+    "cpuQuotaMicros": 200000,
+    "cpuPeriodMicros": 100000,
+    "ownedUnitPrefix": "integrity03-"
+  },
+  "required": {
+    "unitTestsPerRid": 165,
+    "apphostInvocationsPerRid": 60,
+    "allRids": [
+      "linux-x64",
+      "win-x64"
+    ],
+    "locks": "four net11 and separate RID lock; currently net10 HOLD",
+    "noticesAuditSignatures": "unchanged",
+    "release": "signed draft before public remains blocked"
+  },
+  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
+  "noNewJobOrBudget": true
+}

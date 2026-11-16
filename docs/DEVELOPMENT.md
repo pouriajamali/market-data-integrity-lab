@@ -1,7 +1,14 @@
 # Source build and existing CLI commands
 
-Developers need .NET SDK10.0.404, pinned in global.json. Runtime code uses the BCL;
-tests restore pinned xUnit v3. Ready binary users need none of these build steps.
+This source-preparation branch pins SDK11.0.100, net11.0, stable C#15 and
+runtime11.0.0. Runtime source uses the BCL; test package versions remain pinned.
+No new-SDK restore, build or test has run. Source locks remain net10.0 pending
+admitted SDK regeneration and dependency review, so this checkout is not yet a
+verified source build. Ready users should use the existing0.6.1-preview.1 release.
+
+The commands below are the intended later build route after shared SDK admission,
+new lock generation/audit, exact project kernel-cap admission and the bounded
+execution contract. They are not evidence of execution on this candidate.
 
 ~~~sh
 dotnet restore tests/Integrity.Tests/Integrity.Tests.csproj --locked-mode
@@ -66,10 +73,10 @@ No private or downloaded market data is used by development or delivery checks.
 
 ## M1 CSV usage diagnostics
 
-The finite M1 change adds fixed arity/price/volume diagnostics in Program.cs;
+The delivered0.6.1 M1 change added fixed arity/price/volume diagnostics in Program.cs;
 no parser or source dependency changes. Source package locks and the four public
-Admission vendor source pins remain frozen. The CLI uses SDK10.0.404 and bundled
-runtime10.0.15; the net10.0 target and Directory.Build.props remain unchanged.
+Admission vendor source pins remain frozen. That released CLI uses SDK10.0.404 and bundled
+runtime10.0.15; its net10.0 target and Directory.Build.props were unchanged.
 CsvCliTests is a disabled-parallel collection because it invokes the actual
 synchronous CLI entry point while owning Console/culture, rather than duplicating
 argument parsing. Actual archive checks invoke self-contained apphosts separately.
@@ -80,3 +87,15 @@ passed 165 tests and 60 extracted-apphost invocations on each native OS, using
 runtime and payload hashes; `PROVENANCE.md` describes independent checksum/signature
 verification. Linux restore or a Windows-only run is not Linux execution. These
 matching-OS CI results are functional/package checks, not a new performance study.
+
+## Technology-refresh execution boundary
+
+The new candidate keeps all CSV, synthetic, sequence and recovery semantics,
+independent literal oracles and the separate0.6.0 CSV action pins. Only declared
+framework/version literals change in existing tests/tools. Do not rerun the A4
+study. .NET11 x64 requires x86-64-v2 hardware as well as native OS prerequisites.
+Actual new locks, runtime notices, dependency audit, real Windows Job/Linux cgroup
+containment and native results are still pending. SDK producer04 is shared once;
+do not bootstrap a second copy or reuse06-specific wrappers. Before any hosted
+event, reconcile protection/actual workflow route and the old adapter's repeated
+main-trigger CI with the explicit zero-additional-cost budget.

@@ -8,10 +8,10 @@ internal static class RecoveryChild
     private static string Dotnet => Environment.GetEnvironmentVariable("DOTNET_HOST_PATH") ?? "dotnet";
     private static string MainDll => Path.Combine(RecoveryFixture.RepoRoot, "src", "Integrity", "bin",
         new DirectoryInfo(Path.GetDirectoryName(typeof(RecoveryChild).Assembly.Location)!).Parent!.Name,
-        "net10.0", "Integrity.dll");
+        "net11.0", "Integrity.dll");
     private static string ProbeDll => Path.Combine(RecoveryFixture.RepoRoot, "tests", "RecoveryProbe", "bin",
         new DirectoryInfo(Path.GetDirectoryName(typeof(RecoveryChild).Assembly.Location)!).Parent!.Name,
-        "net10.0", "RecoveryProbe.dll");
+        "net11.0", "RecoveryProbe.dll");
 
     public static Process Spawn(string dll, IEnumerable<string> arguments)
     {

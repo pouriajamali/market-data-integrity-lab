@@ -1,0 +1,42 @@
+{
+  "schema": "integrity03-supported-ci-binding/v1",
+  "status": "INERT_DESIGN_NOT_ADMITTED",
+  "projectId": "03",
+  "purpose": "NO_TARGET_EXECUTION",
+  "contractSha256": "580764a79b07f9a64a4f15acd01d41f276917d95d16f8a10c6caacd0b8d79e06",
+  "profile": {
+    "projectId": "03",
+    "memoryBytes": 4294967296,
+    "cpuEquivalents": 2,
+    "processOrTasks": 128,
+    "linuxSwapBytes": 0,
+    "outerJobSeconds": 1200
+  },
+  "controllerSha256": "1d88063392cfc2565fb19d5177a0697e40fa10e7f5439691ba3896e9bbab79b5",
+  "actualProducerFactsProvided": [
+    "Linux only757ab; acceptance0452; no own runtime admission"
+  ],
+  "requiredBeforeActivation": [
+    "Windows normal DENIED; Linux transport requires exact own runtime policy and current held evidence",
+    "Actual immutable qualifiedOn run/job/source/host evidence and separate admittedFor class/image policy",
+    "Current own numeric API job identity/source/tree/host/UID/caps/held-child/terminal receipts",
+    "Real input catalog, Core/Host pack, actionlint/trusted tool identities and exact portable04 transport source/API admission",
+    "Admitted source/RID net11 locks with pinned package graph and actual notices/audit",
+    "Exact workflow source/CI event/artifact/storage/zero-cost/protection gate; no local fallback"
+  ],
+  "consumerAdmissionInterface": {
+    "schemaId": "urn:pouria:dotnet11-host-qualification:v1",
+    "definition": "#/$defs/consumerAdmission",
+    "schemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+    "sourceState": "FROZEN_SOURCE_INTERFACE_ONLY_NOT_APPLIED_NO_ACTUAL_FACTS"
+  },
+  "controllerEnvelopeBoundary": "Private inert source policy only. Actual consumerAdmission is instantiated against the canonical definition AFTER own current job/kernel observations; no currentExecution placeholder or fake native fact is provided.",
+  "requiredInputs": [
+    "Accepted canonical producer04 host fact and its immutable qualifiedOn",
+    "Canonical admittedFor producerFact/member/contract/source/profile pins",
+    "Actual currentExecution and ownCapsEvidenceSha256",
+    "Exact manager source/host/CI gate before any import or execution"
+  ],
+  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
+  "profileSha256": "4a7625795b617ae2a11c57964356a3c896ba08ea1aa96ca3ce60a8b0843ab306"
+}

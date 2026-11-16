@@ -147,3 +147,16 @@ or replace frozen archives, tags, checksums or signatures.
 The old v0.6.0-preview.1 release/tag, archives and checksum signature remain
 unchanged. The separately versioned CSV action still pins those original
 binaries/hashes; current CLI verification does not silently repin the action.
+
+## Unreleased technology candidate
+
+0.6.2-preview.1 is source preparation only. No tag, checksum, signature, binary
+or public download for it is claimed here. Existing instructions and immutable
+0.6.1-preview.1 downloads above still describe the accepted release.
+
+Before publication, bind the new signed source commit and annotated tag to both
+matching-native exact-tag CI results and same-commit tested archives. Verify the
+actual11.0.100 SDK,11.0.0 bundled runtime, RID, source and license inventory; sign
+the final checksum bytes with the established trusted key. Then verify all six
+actual public downloads and live repository/release/README/About links. No old
+cached-archive exception or old test receipt proves this new candidate.

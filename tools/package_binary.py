@@ -11,8 +11,8 @@ import subprocess
 import tarfile
 import zipfile
 
-VERSION="0.6.1-preview.1"
-RUNTIME="10.0.15"
+VERSION="0.6.2-preview.1"
+RUNTIME="11.0.0"
 
 def sha(path):
     h=hashlib.sha256()
@@ -77,8 +77,9 @@ Required header:timestamp,open,high,low,close,volume; UTC timestamps, explicit s
 Try {command} csv-demo "csv demo output" for a generated CSV example.
 Only local row format/value/OHLC checks; provenance UNVERIFIED and order/dedup/completeness NOT_CHECKED.
 Separate synthetic JSONL/recovery paths remain available. No network/account/trading service.
-Self-contained still requires native OS prerequisites. Linux target:glibc x64,
-tested on Ubuntu24.04 CI; not Alpine/musl,ARM,macOS,or every Linux distribution.
+Self-contained still requires native OS prerequisites and an x86-64-v2 CPU.
+Linux target:Ubuntu24.04/glibc x64; actual qualification is recorded separately.
+Not Alpine/musl,ARM,macOS,or every Linux distribution.
 Windows target:x64,with actual tested host details in CI/delivery receipts.
 Unsigned developer preview. Recovery requires enabled .NET file locking,
 cooperating writers and supported local filesystem behavior; not power-loss safety.

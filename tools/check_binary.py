@@ -13,8 +13,8 @@ def check(args):
     folder=Path(args.package).resolve()
     manifest=json.loads((folder/"BUILD-MANIFEST.json").read_text(encoding="utf-8"))
     assert manifest["sourceCommit"]==args.commit
-    assert manifest["version"]=="0.6.1-preview.1" and manifest["bundledRuntime"]=="10.0.15"
-    assert manifest["sdk"]=="10.0.404" and manifest["selfContained"] is True
+    assert manifest["version"]=="0.6.2-preview.1" and manifest["bundledRuntime"]=="11.0.0"
+    assert manifest["sdk"]=="11.0.100" and manifest["selfContained"] is True
     expected={row["path"] for row in manifest["files"]}|{"BUILD-MANIFEST.json"}
     assert {p.relative_to(folder).as_posix() for p in folder.rglob("*") if p.is_file()}==expected
     for row in manifest["files"]:
@@ -41,8 +41,8 @@ def check(args):
         assert result.returncode==exit_code,(argv,result.returncode,result.stderr)
         observations.append(dict(arguments=argv,exit=result.returncode,stdout=result.stdout,stderr=result.stderr))
         return result.stdout
-    assert "Integrity 0.6.1-preview.1" in run(["--version"],0)
-    assert ".NET 10.0.15" in observations[-1]["stdout"]
+    assert "Integrity 0.6.2-preview.1" in run(["--version"],0)
+    assert ".NET 11.0.0" in observations[-1]["stdout"]
     out=root/"demo output with spaces"
     run(["demo",str(out),"unexpected"],1)
     assert not out.exists()

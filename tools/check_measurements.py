@@ -7,7 +7,7 @@ import run_measurements as m
 
 def run(dotnet):
     repo = Path(__file__).resolve().parents[1]
-    worker = repo/"tools/Measurements/bin/Release/net10.0/Measurements.dll"
+    worker = repo/"tools/Measurements/bin/Release/net11.0/Measurements.dll"
     with tempfile.TemporaryDirectory() as tmp:
         root=Path(tmp);guard=m.Guard(root,seconds=60,budget=64*1024**2)
         for n in (74,1037):

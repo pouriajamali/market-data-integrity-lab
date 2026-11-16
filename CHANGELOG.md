@@ -1,5 +1,15 @@
 # Changes
 
+## Unreleased - 0.6.2-preview.1 technology source preparation
+
+- Target SDK11.0.100, net11.0, stable C#15 and runtime11.0.0; retain no AOT,
+  trimming, single-file or ReadyToRun, and keep application behavior unchanged.
+- Adjust only framework/version literals in test launchers and delivery checks.
+- Record x86-64-v2 native prerequisite and pending SDK/lock/audit/cap/native gates.
+- Source preparation only: no restore, build, tests, packages, CI or release yet.
+  Current source locks remain unchanged net10.0; old releases and CSV action pins
+  are immutable. See [candidate notes](docs/RELEASE-v0.6.2-preview.1.md).
+
 ## 0.6.1-preview.1 - M1 CSV usage diagnostics
 
 - Explain exact validate-csv argument refusal with fixed count, price-scale and
