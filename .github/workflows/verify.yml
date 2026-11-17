@@ -122,4 +122,4 @@ jobs:
           git archive --format=zip --prefix=market-data-integrity-lab/ -o "release-assets/$archive" HEAD
           cd release-assets
           sha256sum *.zip *.tar.gz > SHA256SUMS.txt
-          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --prerelease --title "Offline CSV .NET 11 technology refresh $GITHUB_REF_NAME" --notes-file "$GITHUB_WORKSPACE/docs/RELEASE-v0.6.2-preview.1.md"
+          gh release create "$GITHUB_REF_NAME" *.zip *.tar.gz SHA256SUMS.txt --verify-tag --draft --prerelease --title "Offline CSV .NET 11 technology refresh $GITHUB_REF_NAME" --notes-file "$GITHUB_WORKSPACE/docs/RELEASE-v0.6.2-preview.1.md"

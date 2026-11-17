@@ -102,7 +102,7 @@
     {
       "path": ".github/workflows/verify.yml",
       "mode": "100644",
-      "gitBlob": "c47b4623c112d4442aa2e1ead2eecc6f2ca9e140"
+      "gitBlob": "3323fe05c921d776ebaa6fce9dd767b74891c35b"
     },
     {
       "path": ".gitignore",
@@ -147,7 +147,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "1a49c4d3429f01ca0d77656726bf651515846f6e"
+      "gitBlob": "5ddfed84e9a6160136db3b65a0b55c4b2b8ef68d"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -217,7 +217,7 @@
     {
       "path": "docs/RELEASE-v0.6.2-preview.1.md",
       "mode": "100644",
-      "gitBlob": "69965e4a0c780ec09761a5834f590a59ab3d62f3"
+      "gitBlob": "b563f9366da0e5cc83eb2d8ea942e99899480e30"
     },
     {
       "path": "docs/SEQUENCE.md",

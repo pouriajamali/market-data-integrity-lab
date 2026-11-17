@@ -1,7 +1,7 @@
 # Market Data Integrity Lab
 
 Current CLI preview: **[v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1)**, built with SDK **10.0.404**
-and bundled runtime **10.0.15**. [Tagged source](https://github.com/pouriajamali/market-data-integrity-lab/tree/v0.6.1-preview.1) Ã‚Â·
+and bundled runtime **10.0.15**. [Tagged source](https://github.com/pouriajamali/market-data-integrity-lab/tree/v0.6.1-preview.1) Ãƒâ€šÃ‚Â·
 [Exact release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681).
 The separate CSV action retains its immutable **v0.6.0-preview.1** binaries and
 exact checksum pins.
@@ -20,8 +20,8 @@ study separate synthetic validation/process-crash recovery examples. This offlin
 C#/.NET lab uses an explicit CSV profile; it does not connect to a market or
 account and does not trade. User-file provenance is UNVERIFIED.
 
-[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) Ã‚Â·
-[Download v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) Ã‚Â·
+[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) Ãƒâ€šÃ‚Â·
+[Download v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) Ãƒâ€šÃ‚Â·
 [Source and developer commands](docs/DEVELOPMENT.md)
 
 ## Try the CSV preview
@@ -29,7 +29,7 @@ account and does not trade. User-file provenance is UNVERIFIED.
 [Watch the original 0.6.0 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
 The CSV demo generates six rows: two accepted and four quarantined. Then use
 `validate-csv` with your own local file and explicit price/volume scales.
-[CSV format and command](#check-your-own-csv) Ã‚Â· [Download and run](#download-and-run)
+[CSV format and command](#check-your-own-csv) Ãƒâ€šÃ‚Â· [Download and run](#download-and-run)
 
 For a repeatable check on your own runner, use the
 [CSV CI action](docs/CSV-CI.md). It verifies its pinned signed v0.6.0-preview.1
@@ -154,7 +154,7 @@ Paths, supplied argument values and CSV rows are never echoed by these messages.
 
 The parser, `ohlc-csv-v1`, report bytes, and file-fatal versus row-quarantine
 rules remain unchanged. Other command usage stays the same.
-[Release notes](docs/RELEASE-v0.6.1-preview.1.md) Ã‚Â·
+[Release notes](docs/RELEASE-v0.6.1-preview.1.md) Ãƒâ€šÃ‚Â·
 [Exact diagnostics and examples](docs/CSV.md#command-argument-refusal)
 
 ## Separate synthetic demo
@@ -200,10 +200,10 @@ partial decisions/checkpoints, fallback and repeated interruptions.
 - B2 adds offline CSV checks. Current binaries have not been performance-measured. Historical
   tags, archives and raw measurement bytes remain unchanged.
 
-[CSV contract](docs/CSV.md) Ã‚Â· [Synthetic input contract](docs/CONTRACT.md) Ã‚Â· [Sequence contract](docs/SEQUENCE.md) Ã‚Â·
-[Recovery contract](docs/RECOVERY.md) Ã‚Â· [Case study](docs/CASE-STUDY.md) Ã‚Â·
-[Claim-to-evidence map](docs/EVIDENCE.md) Ã‚Â· [Measurement definitions](docs/MEASUREMENTS.md) Ã‚Â·
-[Design](docs/DESIGN.md) Ã‚Â· [Changes](CHANGELOG.md)
+[CSV contract](docs/CSV.md) Ãƒâ€šÃ‚Â· [Synthetic input contract](docs/CONTRACT.md) Ãƒâ€šÃ‚Â· [Sequence contract](docs/SEQUENCE.md) Ãƒâ€šÃ‚Â·
+[Recovery contract](docs/RECOVERY.md) Ãƒâ€šÃ‚Â· [Case study](docs/CASE-STUDY.md) Ãƒâ€šÃ‚Â·
+[Claim-to-evidence map](docs/EVIDENCE.md) Ãƒâ€šÃ‚Â· [Measurement definitions](docs/MEASUREMENTS.md) Ãƒâ€šÃ‚Â·
+[Design](docs/DESIGN.md) Ãƒâ€šÃ‚Â· [Changes](CHANGELOG.md)
 
 ## Verify release provenance
 
@@ -230,3 +230,5 @@ See [NOTICE](NOTICE.md). CV/profile/shared projects are outside this repository.
 Source proposal only; no apply, CI or SDK execution is admitted. Shared check_dotnet11 d9c690d8 and catalog686c6c77 are copied byte-identically. Linux fact757ab/acceptance0452 are historical producer input proof only. Windows normal transport is DENIED. Current03 runtime admission must bind the canonical63e consumerAdmission to its own held MainPID,128 tasks/4GiB/swap0/2CPU and original deadline, tracked controller/profile/contract and complete source table. Producer qualifiedOn IDs remain immutable and may differ from currentExecution. All165unit/60packaged-apphost scenarios perRID, four/RID locks, notices/audit, signatures and signed-draft-before-public gate remain required.
 
 Source correction: the retained pidfd closes once in finally; entry captures the original clock before source/host checks. All waits/kernel runtime retain the same1110s work deadline inside1200s job. Only selected synthetic PIDFD/clock fixtures were run; earlier33 cases reused.
+
+The unreleased technology-refresh pipeline creates a draft first. Tested archive checksums require the existing provenance signature and verification before public publication; source preparation and cached dependency bytes are not runtime/test acceptance.

@@ -1,4 +1,4 @@
-# 0.6.2-preview.1 — technology refresh (unreleased source preparation)
+# 0.6.2-preview.1 â€” technology refresh (unreleased source preparation)
 
 This candidate targets SDK11.0.100, net11.0, stable C#15 and runtime11.0.0.
 No preview-language features, AOT, ReadyToRun, trimming or single-file publishing
@@ -10,13 +10,19 @@ The published0.6.1-preview.1 CLI, its historical165 tests/60 apphost invocations
 per native OS, and the independent0.6.0-preview.1 CSV action remain unchanged.
 Those receipts are not evidence of this candidate.
 
-## Source-preparation status
+## Current delivery status
 
-Framework/runtime/version and declared launcher/package-check literals are edited.
-Source locks still contain net10.0 and are intentionally not regenerated before
-SDK admission. No SDK/native/helper execution, restore, build, test, package,
-remote push, CI, tag, signature or publication has occurred in this stage.
-No acquisition, dependency hash, native result or release URL is fabricated.
+The framework/runtime/version preparation and supported-host route are committed
+privately with the existing SSH signing key. This is not a tested release.
+Source locks still contain net10.0; net11/RID regeneration and actual product
+tests remain blocked on qualified inputs. Shared input work is limited to this
+project's requirements. Local cached test-package bytes are candidates only.
+
+The preview pipeline now creates a draft release. Checksums must be signed with
+the existing provenance key and verified against the tested archives before the
+draft becomes public. No new signing key or CI secret is introduced. The
+published0.6.1-preview.1 binaries and independent0.6.0-preview.1 CSV action retain
+their existing identities until actual replacement delivery is verified.
 
 ## Required qualification before delivery
 
