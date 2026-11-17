@@ -46,7 +46,7 @@
     },
     {
       "path": ".github/ci/curate_inputs_03.py",
-      "sha256": "eb008403093d41113d3beb877d8b9d1dfcc4e1734ae7170cabc9c8dae6f70465"
+      "sha256": "4ed80e5047cd096d3656c54b3ae4748710d89aff16992ee11d01541d1f61ce4d"
     },
     {
       "path": ".github/ci/typed_host_03.py",

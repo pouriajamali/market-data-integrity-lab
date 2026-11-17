@@ -75,7 +75,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $bindingPath = Join-Path $PWD '.github/ci/integrity03-supported-binding.json'
-          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'd595926e063325960969de718ba84d895b355c907eb3219f19666d9be2c6d77c') { throw 'BINDING_IDENTITY' }
+          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'e4c7b6f01313e27b130fad124e2b84eda9c15412684dc9b6bec00f3f0c9e4aaf') { throw 'BINDING_IDENTITY' }
           $binding = [IO.File]::ReadAllText($bindingPath) | ConvertFrom-Json
           if ($IsWindows) {
             $python = Join-Path $env:RUNNER_TOOL_CACHE $binding.controllerPython.'win-x64'.pathRelativeToRunnerToolCache
@@ -89,7 +89,7 @@ jobs:
           } else { $python = $binding.controllerPython.'linux-x64'.path; $expected = $binding.controllerPython.'linux-x64'.sha256 }
           if (-not [IO.Path]::IsPathFullyQualified($python)) { throw 'ABSOLUTE_EXISTING_CONTROLLER_REQUIRED' }
           if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) { throw 'CONTROLLER_IDENTITY' }
-          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 d595926e063325960969de718ba84d895b355c907eb3219f19666d9be2c6d77c --stage $env:OWN_STAGE
+          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 e4c7b6f01313e27b130fad124e2b84eda9c15412684dc9b6bec00f3f0c9e4aaf --stage $env:OWN_STAGE
           if ($LASTEXITCODE -ne 0) { throw 'OWN_CI_ROUTE_INCOMPLETE' }
       - name: Retain tested runtime archive
         if: (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && github.event.inputs.stage != 'input-curation'

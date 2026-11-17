@@ -16,6 +16,7 @@ import subprocess
 import time
 import urllib.request
 import zipfile
+import xml.etree.ElementTree as ET
 from typed_host_03 import require
 
 PROJECTS=('src/Integrity/Integrity.csproj','tests/Integrity.Tests/Integrity.Tests.csproj','tests/RecoveryProbe/RecoveryProbe.csproj','tools/Measurements/Measurements.csproj')
@@ -93,7 +94,19 @@ def curate(repo,own,sdk,actual,catalog,stage):
                 if archive.getinfo(name).is_dir():continue
                 if name.endswith('.nuspec') or any(s in Path(name).name.lower() for s in ('license','notice','copying')):
                     require(archive.getinfo(name).file_size<=1048576,'OWN_NOTICES_BOUND');dest=notices/row['id']/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(archive.read(name))
-    config=own/'offline.nuget.config';config.write_text('<configuration><packageSources><clear/><add key="verified-own-inputs" value="'+str(feed)+'"/></packageSources><config><add key="signatureValidationMode" value="require"/></config></configuration>',encoding='utf-8')
+    # Exact official repository signing history captured in the qualified input
+    # set. Historical signatures retain their trusted timestamp validation.
+    repository_bytes=(repo/'tools/sdk11-normal/native-linux/metadata/repository.json').read_bytes()
+    require(hashlib.sha256(repository_bytes).hexdigest()=='5f45cbf2d7f8a4b57fea6e43bb603d29a0682058a71eb61d900db74860d210b0','OWN_REPOSITORY_SIGNING_METADATA')
+    repository=json.loads(repository_bytes)
+    certificates=[c['fingerprints']['2.16.840.1.101.3.4.2.1'] for c in repository['signingCertificates']]
+    require(repository['allRepositorySigned'] is True and len(certificates)==3 and all(re.fullmatch('[0-9a-f]{64}',v) for v in certificates),'OWN_REPOSITORY_CERTIFICATE_SET')
+    tree=ET.Element('configuration');sources=ET.SubElement(tree,'packageSources');ET.SubElement(sources,'clear');ET.SubElement(sources,'add',key='verified-own-inputs',value=str(feed))
+    fallback=ET.SubElement(tree,'fallbackPackageFolders');ET.SubElement(fallback,'clear')
+    settings=ET.SubElement(tree,'config');ET.SubElement(settings,'add',key='signatureValidationMode',value='require')
+    signers=ET.SubElement(tree,'trustedSigners');ET.SubElement(signers,'clear');signer=ET.SubElement(signers,'repository',name='nuget.org',serviceIndex='https://api.nuget.org/v3/index.json')
+    for certificate in certificates:ET.SubElement(signer,'certificate',fingerprint=certificate,hashAlgorithm='SHA256',allowUntrustedRoot='false')
+    config=own/'offline.nuget.config';config.write_bytes(ET.tostring(tree,encoding='utf-8',xml_declaration=True))
     env=private_environment(sdk,own);dotnet=sdk/('dotnet.exe' if os.name=='nt' else 'dotnet');commands=[]
     work=repo
     if stage=='input-curation':
@@ -121,6 +134,18 @@ def curate(repo,own,sdk,actual,catalog,stage):
     lock=evidence/(actual['rid']+'.lock.json') if stage=='input-curation' else repo/'build/locks'/('Integrity.'+actual['rid']+'.lock.json')
     args=['restore','src/Integrity/Integrity.csproj','-r',actual['rid'],'--configfile',config,'--packages',own/'packages','-p:NuGetAudit=false','-p:SelfContained=true','-p:RuntimeFrameworkVersion=11.0.0','-p:NuGetLockFilePath='+str(lock)]
     args+=['--force-evaluate','--use-lock-file'] if stage=='input-curation' else ['--locked-mode'];run('restore-rid',args,90)
+    graphs=[]
+    for project in PROJECTS:
+        asset=work/Path(project).parent/'obj/project.assets.json';value=json.loads(asset.read_bytes())
+        projection={'project':project,'assetSHA256':hashlib.sha256(asset.read_bytes()).hexdigest(),'frameworks':{}}
+        for framework,body in value['project']['frameworks'].items():
+            downloads=body.get('downloadDependencies',[])
+            for dep in downloads:
+                expected=next((r for r in rows if r['id'].casefold()==dep['name'].casefold()),None)
+                require(expected and dep['version'] in (expected['version'],'['+expected['version']+', '+expected['version']+']','['+expected['version']+']'),'OWN_UNEXPECTED_IMPLICIT_SDK_DOWNLOAD')
+            projection['frameworks'][framework]={'downloadDependencies':downloads,'frameworkReferences':body.get('frameworkReferences',{}),'runtimeIdentifierGraphPath':body.get('runtimeIdentifierGraphPath')}
+        graphs.append(projection)
+    (evidence/'actual-sdk-graphs.json').write_text(json.dumps(graphs,indent=2)+'\n',encoding='utf-8')
     locks=[]
     for project in PROJECTS:
         path=work/Path(project).parent/'packages.lock.json';value=json.loads(path.read_bytes());require(set(value['dependencies'])=={'net11.0'},'OWN_NET11_LOCK_FRAMEWORK')

@@ -17,7 +17,7 @@
     {
       "path": ".github/ci/curate_inputs_03.py",
       "mode": "100644",
-      "gitBlob": "0f82dbdd7221aa637d027ce9754a6d7caac6398d"
+      "gitBlob": "8e37b1cfa7c52e0c468e8ce1e23ed9ddb006c39e"
     },
     {
       "path": ".github/ci/dotnet11-host-qualification.schema.json",
@@ -47,7 +47,7 @@
     {
       "path": ".github/ci/integrity03-supported-binding.json",
       "mode": "100644",
-      "gitBlob": "e719d37e24f3cc07c1c909e01afd92321175f6ee"
+      "gitBlob": "237c854728579ae8fe476d2d5c27c52fe995cec7"
     },
     {
       "path": ".github/ci/manager-admission.schema.json",
@@ -117,7 +117,7 @@
     {
       "path": ".github/workflows/verify.yml",
       "mode": "100644",
-      "gitBlob": "2a15f76b61e1d0b853c8d3391810900d3ebc3b03"
+      "gitBlob": "cc39aca4d7815cfa1d13e09fb305c98454ed0ddc"
     },
     {
       "path": ".gitignore",
