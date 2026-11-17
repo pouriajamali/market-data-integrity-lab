@@ -47,7 +47,7 @@
     {
       "path": ".github/ci/integrity03-supported-binding.json",
       "mode": "100644",
-      "gitBlob": "5655eb7bf8114a3c3764a99e8da72b4e9eab9e4f"
+      "gitBlob": "e719d37e24f3cc07c1c909e01afd92321175f6ee"
     },
     {
       "path": ".github/ci/manager-admission.schema.json",
@@ -87,7 +87,7 @@
     {
       "path": ".github/ci/supported_ci_route_03.py",
       "mode": "100644",
-      "gitBlob": "5ca028ae368c5f7ecebb4ddd590f8a4b5f1a716e"
+      "gitBlob": "664c20b8ea03c2ac61d5b5aed93ef51933e9bba3"
     },
     {
       "path": ".github/ci/test_ci03_sdk0.py",
@@ -117,7 +117,7 @@
     {
       "path": ".github/workflows/verify.yml",
       "mode": "100644",
-      "gitBlob": "661b8f854b218fe52f2803afd0d36305584cb4ce"
+      "gitBlob": "2a15f76b61e1d0b853c8d3391810900d3ebc3b03"
     },
     {
       "path": ".gitignore",
