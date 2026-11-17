@@ -177,7 +177,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "bb5e9162d98f31eecc547884b1562ad1b466da3d"
+      "gitBlob": "3bd44499266a291628e6c8bc911ae9ff50795db2"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -202,7 +202,7 @@
     {
       "path": "docs/CI-POLICY.md",
       "mode": "100644",
-      "gitBlob": "6b0fa3d67f6919732dad369c7c5594c8b4b962e9"
+      "gitBlob": "5ebebc45ec33db68a1d11c4393f1fad0806e855f"
     },
     {
       "path": "docs/CONTRACT.md",
@@ -252,7 +252,7 @@
     {
       "path": "docs/RELEASE-v0.6.2-preview.1.md",
       "mode": "100644",
-      "gitBlob": "14924b3360dca655782ea77b6b65724f1e32a332"
+      "gitBlob": "7c6894bfb6e4e4e1af5615907aea783d314464d5"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",

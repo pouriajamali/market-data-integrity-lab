@@ -6,13 +6,27 @@ and bundled runtime **10.0.15**. [Tagged source](https://github.com/pouriajamali
 The separate CSV action retains its immutable **v0.6.0-preview.1** binaries and
 exact checksum pins.
 
-Source preparation for **0.6.2-preview.1** targets SDK **11.0.100**, **net11.0**,
-stable **C# 15** and bundled runtime **11.0.0**. Own Linux input CI has verified the17 frozen test dependency signatures and
-generated the four net11 source locks and Linux RID lock using the qualified SDK.
-Product builds/tests, Windows native inputs and publication remain pending. No behavior, schema or performance change is proposed.
-New .NET 11 x64 bundles require **x86-64-v2** hardware. The published downloads
-and their evidence below remain the accepted .NET 10 release.
-[Candidate scope and pending gates](docs/RELEASE-v0.6.2-preview.1.md).
+The unreleased **0.6.2-preview.1** candidate targets SDK **11.0.100**,
+**net11.0**, stable **C# 15** and bundled runtime **11.0.0**.
+[Linux input CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44096474043)
+verified the17 frozen test dependency signatures and generated the four source
+locks and Linux RID lock. [Linux product CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44098116245)
+passed165 units and the fixed pre-packaging scenarios, then stopped at a consumer
+cache-hash comparison. After correcting that comparison,
+[packaging CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44100029409)
+passed60 extracted-apphost checks using unchanged product/oracle source; it did
+not repeat the165 units. The tested36,614,199-byte Linux candidate was downloaded
+and its SHA256/manifest matched. It is not a public release.
+
+On2026-11-17 the owner stopped further GitHub Actions because the quota was
+exhausted. No new CI, tag or release is authorized under that stop. Windows native
+input acceptance, its actual RID lock/product tests and the final exact-tag
+release gate remain incomplete. The final documentation commit is signed and
+pushed with `[skip ci]`; it has no new CI result. Existing workflows and
+protection/security/billing settings remain unchanged. No behavior, schema or
+performance change is claimed. New .NET11 x64 bundles require **x86-64-v2** hardware.
+The published downloads above remain the accepted .NET10 release.
+[Candidate evidence and remaining gates](docs/RELEASE-v0.6.2-preview.1.md).
 
 Check **local OHLC CSV without silent rounding**, inspect quarantined rows, and
 study separate synthetic validation/process-crash recovery examples. This offline
@@ -224,6 +238,13 @@ See [NOTICE](NOTICE.md). CV/profile/shared projects are outside this repository.
 [CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
 
 
-## Inert SDK11 shared input route
+## SDK11 shared input route and current execution stop
 
-Own bounded input-curation and product routes are authorized for this technology refresh. The exact shared SDK input module c37e2f48 and normal catalog8995a4d2 are consumed unchanged, including accepted Linux and Windows producer host facts. Each consumer call independently proves current03 source, held worker, own kernel limits and original deadline. Producer host qualification is not product acceptance. Native Windows package inputs and its actual RID lock, both165unit/60apphost product rows, notices/advisory checks and a signed draft before public release remain pending. Input-curation dispatches execute only fixed package verification and private graph restores; they produce no release.
+The exact shared SDK module c37e2f48 and normal catalog8995a4d2 are consumed unchanged,
+including the accepted producer Linux/Windows SDK host facts. Each consumer call
+independently binds current03 source, its held worker, own kernel limits and the
+original deadline. Producer host qualification is not Windows native-package or
+product acceptance. Linux input/build/test/package evidence is recorded above;
+the Windows native gate remains closed. The owner no-Actions instruction now
+supersedes execution of these workflow routes. Future execution/publication needs
+fresh owner authority and the remaining unchanged validation/signature gates.

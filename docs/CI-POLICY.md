@@ -1,5 +1,14 @@
 # CI resource policy
 
+**Owner stop,2026-11-17:** no further GitHub Actions execution is authorized because
+the quota is exhausted. Complete only already-authorized local work, sign and
+push safe feature-branch documentation/source heads with `[skip ci]` after reading
+the actual event triggers. Do not create a tag/release/PR/merge or push that can
+start Actions. Keep required checks, protection, workflows and security/billing
+settings unchanged. CI after this stop is recorded as not run per owner, never as
+passed. The workflow policy below describes the retained configuration; it grants
+no execution authority while the owner stop remains in force.
+
 This workflow policy separates documentation checks from unchanged runtime builds. It does not change application behavior, dependencies, release versions, published assets, account budgets or repository protection.
 
 - Push validation targets the default `main` branch; pull requests retain validation without an extra feature-branch push run. Existing tag patterns are preserved. Manual dispatch always requests full native checks.
