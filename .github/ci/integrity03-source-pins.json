@@ -17,7 +17,7 @@
     {
       "path": ".github/ci/curate_inputs_03.py",
       "mode": "100644",
-      "gitBlob": "8e37b1cfa7c52e0c468e8ce1e23ed9ddb006c39e"
+      "gitBlob": "31b5273281fac82884e61536ace4e4992107cde4"
     },
     {
       "path": ".github/ci/dotnet11-host-qualification.schema.json",
@@ -27,12 +27,12 @@
     {
       "path": ".github/ci/host_controller03.py",
       "mode": "100644",
-      "gitBlob": "6a385627e2fdf6f55233e60071e0e091e86afb25"
+      "gitBlob": "2a8b6e8187271acca1d92ff306a100ed8adca7bd"
     },
     {
       "path": ".github/ci/integrity03-linux-inputs.json",
       "mode": "100644",
-      "gitBlob": "44f0fa61b9a61f055c134e5b1d408d5223aa38b0"
+      "gitBlob": "3ead74853b00336cbb19c178c2d221319b43898d"
     },
     {
       "path": ".github/ci/integrity03-profile.json",
@@ -47,7 +47,17 @@
     {
       "path": ".github/ci/integrity03-supported-binding.json",
       "mode": "100644",
-      "gitBlob": "237c854728579ae8fe476d2d5c27c52fe995cec7"
+      "gitBlob": "898944d7f92bf668ee9617d8930fffe368ef9e2b"
+    },
+    {
+      "path": ".github/ci/integrity03-test-input-acceptance.json",
+      "mode": "100644",
+      "gitBlob": "c7394e8872b950f8dc2b1f4c0366172dc9e1d255"
+    },
+    {
+      "path": ".github/ci/integrity03-windows-profile.json",
+      "mode": "100644",
+      "gitBlob": "0b40e4a2313888464d59f1ad8404a0e0ee0893ff"
     },
     {
       "path": ".github/ci/manager-admission.schema.json",
@@ -57,7 +67,7 @@
     {
       "path": ".github/ci/native_worker_03.py",
       "mode": "100644",
-      "gitBlob": "ae6134106f2355279b56e4cd226dfa568b16343f"
+      "gitBlob": "4b674e607cdc95e6cb3d7375b68e62afaba7cdce"
     },
     {
       "path": ".github/ci/policy.py",
@@ -77,7 +87,7 @@
     {
       "path": ".github/ci/runtime_policy_03.py",
       "mode": "100644",
-      "gitBlob": "2636ce63f86d96fe6ad1e49cdc0fcd185c63b731"
+      "gitBlob": "8571ac08f1cb655142211261228802425f423c50"
     },
     {
       "path": ".github/ci/sdk03_binding.py",
@@ -87,7 +97,7 @@
     {
       "path": ".github/ci/supported_ci_route_03.py",
       "mode": "100644",
-      "gitBlob": "664c20b8ea03c2ac61d5b5aed93ef51933e9bba3"
+      "gitBlob": "dc91be9f2d32332c01605aee0df12047001ff9de"
     },
     {
       "path": ".github/ci/test_ci03_sdk0.py",
@@ -117,7 +127,7 @@
     {
       "path": ".github/workflows/verify.yml",
       "mode": "100644",
-      "gitBlob": "cc39aca4d7815cfa1d13e09fb305c98454ed0ddc"
+      "gitBlob": "ce22dd5803345885c2534d56af8c4b23cd491c5f"
     },
     {
       "path": ".gitignore",
@@ -162,7 +172,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "93195f72464600785deb6132dc0f2feb445c436e"
+      "gitBlob": "bb5e9162d98f31eecc547884b1562ad1b466da3d"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -173,6 +183,11 @@
       "path": "action.yml",
       "mode": "100644",
       "gitBlob": "3cb0cb18745d6fdc04da07c796d18f839db5b2f3"
+    },
+    {
+      "path": "build/locks/Integrity.linux-x64.lock.json",
+      "mode": "100644",
+      "gitBlob": "d0a5005680aa454a2bce7131fbf031211d291efc"
     },
     {
       "path": "docs/CASE-STUDY.md",
@@ -232,7 +247,7 @@
     {
       "path": "docs/RELEASE-v0.6.2-preview.1.md",
       "mode": "100644",
-      "gitBlob": "49b647f7d8180d6143bc2639a699ca83485bdc2f"
+      "gitBlob": "14924b3360dca655782ea77b6b65724f1e32a332"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -313,6 +328,36 @@
       "path": "docs/evidence/measurements/summary.json",
       "mode": "100644",
       "gitBlob": "ad963f693b05b8a8089524a46ba84b3e0fff6f33"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/.gitattributes",
+      "mode": "100644",
+      "gitBlob": "d1bbc7236da159c9c3fadb813206ad9e3ed8dd94"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/linux-actual-sdk-graphs.json",
+      "mode": "100644",
+      "gitBlob": "6ee4d642c9125d26ccb9c585ed1a084810474e1a"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/linux-caps.json",
+      "mode": "100644",
+      "gitBlob": "850e791a93fe3055dc93778d0848d7359b6c8f45"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/linux-input-receipt.json",
+      "mode": "100644",
+      "gitBlob": "fa3a0ef8a27d02487c1c7f8a091fc5d1516431f8"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/linux-nuget-verify.log",
+      "mode": "100644",
+      "gitBlob": "f8d72738d16eab6701e3ca0b2d520e7264661fbd"
+    },
+    {
+      "path": "docs/evidence/net11-inputs/linux-terminal.json",
+      "mode": "100644",
+      "gitBlob": "722f8b07010c4c5dcbceb43fe62a2a88ece5349b"
     },
     {
       "path": "docs/measurement-protocol.json",
@@ -437,7 +482,7 @@
     {
       "path": "src/Integrity/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "4a91a8cd78fbfd79345585bb9bdbb8099ec40383"
+      "gitBlob": "0ecce8c5645ed2e07ea8e2427cf9a931992f1c4b"
     },
     {
       "path": "tests/Integrity.Tests/BehaviorTests.cs",
@@ -492,7 +537,7 @@
     {
       "path": "tests/Integrity.Tests/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "51f140d7a22a2de2dd60182f4a434c75859861a8"
+      "gitBlob": "684a6c9cd1bce0f2f02c467b5de2a53d3d8a135c"
     },
     {
       "path": "tests/RecoveryProbe/Program.cs",
@@ -507,7 +552,7 @@
     {
       "path": "tests/RecoveryProbe/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "886ec4987fef43d8760ce956db3bd3c567fbb182"
+      "gitBlob": "5d97df895fdea3ceb59e6ccf14e85fb19b40181d"
     },
     {
       "path": "tools/Measurements/Measurements.csproj",
@@ -522,7 +567,7 @@
     {
       "path": "tools/Measurements/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "886ec4987fef43d8760ce956db3bd3c567fbb182"
+      "gitBlob": "5d97df895fdea3ceb59e6ccf14e85fb19b40181d"
     },
     {
       "path": "tools/analyze_measurements.py",

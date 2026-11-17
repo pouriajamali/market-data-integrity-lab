@@ -195,17 +195,6 @@
       "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
     },
     {
-      "id": "Microsoft.NETCore.App.Host.linux-x64",
-      "version": "11.0.0",
-      "bytes": 5085644,
-      "sha256": "a152b2d7ebb7fb9431ab96490e4c35c86af564419c20d81745e71760a4465469",
-      "rawSHA512Base64": "p9VMbSVN0vWAf1oj+NTm2Yuki5lU+7evJplPeiZ2C89B12L6Y2JrTAdzvETFKFzHPxn/4cRmy5tI4tJ/Ed5hbA==",
-      "contentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==",
-      "kind": "accepted-shared-linux-native",
-      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.host.linux-x64/11.0.0/microsoft.netcore.app.host.linux-x64.11.0.0.nupkg",
-      "nativeSignatureState": "PRODUCER04_ACCEPTED_EXACT_RAW_IDENTITY"
-    },
-    {
       "id": "Microsoft.NETCore.App.Runtime.linux-x64",
       "version": "11.0.0",
       "bytes": 42270532,
@@ -249,5 +238,14 @@
       }
     ],
     "scope": "Exact17 unchanged M1 test dependency IDs independently checked absent from captured complete pages. Exact three11.0.0 native versions no match consumed from qualified producer04 fact. Feed permits SDK implicit RID graph to resolve only this finite set; no feature/framework reference added."
-  }
+  },
+  "testInputAcceptance": {
+    "file": ".github/ci/integrity03-test-input-acceptance.json",
+    "sha256": "1bf604dbccfbcd67b58f9a4a0ca86857edd51aeca1b0e0ef0c7170cbde2ad0a9"
+  },
+  "actualImplicitRuntimeDownloadIds": [
+    "Microsoft.AspNetCore.App.Runtime.linux-x64",
+    "Microsoft.NETCore.App.Runtime.linux-x64"
+  ],
+  "apphostInput": "Qualified SDK11.0.100 already contains Microsoft.NETCore.App.Host.linux-x6411.0.0; own observed assets request only AspNetRuntime and CoreRuntime. No new framework reference or behavior change."
 }

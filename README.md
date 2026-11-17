@@ -7,10 +7,9 @@ The separate CSV action retains its immutable **v0.6.0-preview.1** binaries and
 exact checksum pins.
 
 Source preparation for **0.6.2-preview.1** targets SDK **11.0.100**, **net11.0**,
-stable **C# 15** and bundled runtime **11.0.0**. This candidate has not been
-restored, built, tested, packaged or published. Its source dependency locks still
-describe net10.0 until admitted SDK-based regeneration and review; the source
-build is not yet ready. No behavior, schema or performance change is proposed.
+stable **C# 15** and bundled runtime **11.0.0**. Own Linux input CI has verified the17 frozen test dependency signatures and
+generated the four net11 source locks and Linux RID lock using the qualified SDK.
+Product builds/tests, Windows native inputs and publication remain pending. No behavior, schema or performance change is proposed.
 New .NET 11 x64 bundles require **x86-64-v2** hardware. The published downloads
 and their evidence below remain the accepted .NET 10 release.
 [Candidate scope and pending gates](docs/RELEASE-v0.6.2-preview.1.md).
@@ -227,4 +226,4 @@ See [NOTICE](NOTICE.md). CV/profile/shared projects are outside this repository.
 
 ## Inert SDK11 shared input route
 
-Own bounded input-curation and product routes are authorized for this technology refresh. The exact shared SDK input module c37e2f48 and normal catalog8995a4d2 are consumed unchanged, including accepted Linux and Windows producer host facts. Each consumer call independently proves current03 source, held worker, own kernel limits and original deadline. Producer host qualification is not product acceptance. Native Windows package inputs, actual net11/RID lock generation, both165unit/60apphost product rows, notices/advisory checks and a signed draft before public release remain pending. Input-curation dispatches execute only fixed package verification and private graph restores; they produce no release.
+Own bounded input-curation and product routes are authorized for this technology refresh. The exact shared SDK input module c37e2f48 and normal catalog8995a4d2 are consumed unchanged, including accepted Linux and Windows producer host facts. Each consumer call independently proves current03 source, held worker, own kernel limits and original deadline. Producer host qualification is not product acceptance. Native Windows package inputs and its actual RID lock, both165unit/60apphost product rows, notices/advisory checks and a signed draft before public release remain pending. Input-curation dispatches execute only fixed package verification and private graph restores; they produce no release.

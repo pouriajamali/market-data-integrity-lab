@@ -76,9 +76,12 @@ def curate(repo,own,sdk,actual,catalog,stage):
     require(-300<=time.time()-catalog['advisory']['observedAtUnix']<=catalog['advisory']['maxAgeSeconds']<=86400,'OWN_ADVISORY_SNAPSHOT_STALE')
     rows=catalog['packages'];require(19<=len(rows)<=20 and len({r['id'].lower() for r in rows})==len(rows) and sum(r['bytes'] for r in rows)<=268435456,'OWN_FINITE_PACKAGE_INPUTS')
     require(all(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,99}',r['id']) and re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+',r['version']) for r in rows),'OWN_FIXED_PACKAGE_NAMES')
-    native={r['id'] for r in rows if r['kind']=='accepted-shared-linux-native'}
-    require(len([r for r in rows if r['kind']=='fixed-M1-test-dependency'])==17 and {'Microsoft.NETCore.App.Host.linux-x64','Microsoft.NETCore.App.Runtime.linux-x64'}<=native<={'Microsoft.NETCore.App.Host.linux-x64','Microsoft.NETCore.App.Runtime.linux-x64','Microsoft.AspNetCore.App.Runtime.linux-x64'},'OWN_SHARED_INPUT_SCOPE')
-    require(catalog['advisory']['state']=='NO_TEST_ID_PRESENT_AND_SHARED_NATIVE_VERSION_NO_MATCH' and catalog['sharedInputFactSHA256']=='b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df','OWN_QUALIFIED_FACT_AND_ADVISORY')
+    native_kind='accepted-shared-'+('windows' if actual['rid']=='win-x64' else 'linux')+'-native'
+    native={r['id'] for r in rows if r['kind']==native_kind}
+    allowed={'Microsoft.NETCore.App.Runtime.'+actual['rid'],'Microsoft.AspNetCore.App.Runtime.'+actual['rid'],'Microsoft.NETCore.App.Host.'+actual['rid']}
+    require(len([r for r in rows if r['kind']=='fixed-M1-test-dependency'])==17 and native==set(catalog['actualImplicitRuntimeDownloadIds']) and native<=allowed and 'Microsoft.NETCore.App.Runtime.'+actual['rid'] in native,'OWN_SHARED_INPUT_SCOPE')
+    require(catalog['advisory']['state']=='NO_TEST_ID_PRESENT_AND_SHARED_NATIVE_VERSION_NO_MATCH','OWN_QUALIFIED_ADVISORY')
+    if actual['rid']=='linux-x64':require(catalog['sharedInputFactSHA256']=='b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df','OWN_QUALIFIED_LINUX_NATIVE_FACT')
     end=actual['deadlineMonotonicNs']-50*10**9;require(time.monotonic_ns()<end,'OWN_INPUT_TERMINAL_RESERVE')
     evidence=repo/'artifacts/input-curation';evidence.mkdir(parents=True,exist_ok=False)
     feed=own/'feed';feed.mkdir(mode=0o700);notices=evidence/'original-notices';notices.mkdir()
@@ -122,11 +125,15 @@ def curate(repo,own,sdk,actual,catalog,stage):
             while process.poll() is None:
                 require(time.monotonic_ns()<deadline and output.stat().st_size+error.stat().st_size<=8388608,'OWN_INPUT_COMMAND_DEADLINE_OR_LOG_CAP');time.sleep(.02)
         require(process.returncode==0,'OWN_INPUT_COMMAND_'+label.upper());commands.append({'name':label,'exitCode':process.returncode,'stdoutSHA256':hashlib.sha256(output.read_bytes()).hexdigest(),'stderrSHA256':hashlib.sha256(error.read_bytes()).hexdigest()});return output.read_text(encoding='utf-8-sig')
-    own_rows=[r for r in rows if r['kind']!='accepted-shared-linux-native']
-    verified=verification_report(run('verify-signed-inputs',['nuget','verify',*[feed/(r['id'].lower()+'.'+r['version']+'.nupkg') for r in own_rows],'--all','--configfile',config,'--verbosity','normal'],180),own_rows,0)
-    verified.extend({'id':r['id'],'version':r['version'],'normalizedNuGetContentHash':r['contentHash'],'reusedQualifiedProducerFactSHA256':catalog['sharedInputFactSHA256'],'newSharedQualificationPerformed':False} for r in rows if r['kind']=='accepted-shared-linux-native')
+    own_rows=[r for r in rows if r['kind']=='fixed-M1-test-dependency']
+    acceptance_binding=catalog['testInputAcceptance'];acceptance_path=repo/acceptance_binding['file']
+    require(acceptance_path.resolve().is_relative_to(repo.resolve()) and hashlib.sha256(acceptance_path.read_bytes()).hexdigest()==acceptance_binding['sha256'],'OWN_FIXED_TEST_INPUT_ACCEPTANCE_SOURCE')
+    acceptance=json.loads(acceptance_path.read_bytes())
+    require(acceptance['state']=='ACTUAL_SEVENTEEN_FROZEN_TEST_INPUT_SIGNATURES_ACCEPTED' and acceptance['nativeVerificationExit']==0 and acceptance['warningOrUnknownAccepted'] is False and acceptance['runId']==44096474043 and acceptance['packages']==own_rows,'OWN_FIXED_TEST_INPUT_ACCEPTANCE')
+    verified=[{'id':r['id'],'version':r['version'],'normalizedNuGetContentHash':r['contentHash'],'reusedOwnExactInputAcceptanceSHA256':acceptance_binding['sha256'],'qualifiedOnRid':acceptance['rid'],'newQualificationPerformed':False} for r in own_rows]
+    verified.extend({'id':r['id'],'version':r['version'],'normalizedNuGetContentHash':r['contentHash'],'reusedQualifiedProducerFactSHA256':catalog['sharedInputFactSHA256'],'newSharedQualificationPerformed':False} for r in rows if r['kind']==native_kind)
     if stage=='product':
-        return {'dotnet':str(dotnet),'python':os.sys.executable,'privateEnvironment':env,'offlineConfig':str(config),'admittedRidLock':str(repo/'build/locks'/('Integrity.'+actual['rid']+'.lock.json')),'runtimePack':str(own/'packages'/('microsoft.netcore.app.runtime.'+actual['rid'])/'11.0.0'),'inputReceipt':verified}
+        return {'dotnet':str(dotnet),'python':os.sys.executable,'privateEnvironment':env,'offlineConfig':str(config),'admittedRidLock':str(repo/'build/locks'/('Integrity.'+actual['rid']+'.lock.json')),'runtimePack':str(own/'packages'/('microsoft.netcore.app.runtime.'+actual['rid'])/'11.0.0'),'inputReceipt':verified,'nativeRows':[r for r in rows if r['kind']==native_kind],'privateFeed':str(feed)}
     for project in ('tests/Integrity.Tests/Integrity.Tests.csproj','tools/Measurements/Measurements.csproj'):
         args=['restore',project,'--configfile',config,'--packages',own/'packages','-p:NuGetAudit=false']
         args+=['--force-evaluate','--use-lock-file'] if stage=='input-curation' else ['--locked-mode']
@@ -153,6 +160,42 @@ def curate(repo,own,sdk,actual,catalog,stage):
             if row['type']=='Project':continue
             expected=next((r for r in rows if r['id'].lower()==key.lower()),None);require(expected and row['resolved']==expected['version'] and row['contentHash']==expected['contentHash'],'OWN_UNEXPECTED_LOCK_GRAPH_OR_HASH')
         target=evidence/Path(project).parent/'packages.lock.json';target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes());locks.append({'path':str(Path(project).parent/'packages.lock.json'),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-    receipt={'scope':'OWN19_INPUT_SIGNATURE_HASH_NOTICES_ADVISORY_AND_GRAPH','rid':actual['rid'],'sourceCommit':actual['commit'],'commands':commands,'inputs':verified,'rawInputs':raw,'locks':locks,'productExecuted':False,'otherRidRequiredForDelivery':True,'SDK_READY':False}
+    receipt={'scope':'OWN_FIXED_INPUT_HASH_NOTICES_ADVISORY_AND_ACTUAL_GRAPH','rid':actual['rid'],'sourceCommit':actual['commit'],'commands':commands,'inputs':verified,'rawInputs':raw,'locks':locks,'productExecuted':False,'otherRidRequiredForDelivery':True,'SDK_READY':False}
     (evidence/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
     return {'dotnet':str(dotnet),'python':os.sys.executable,'privateEnvironment':env,'admittedRidLock':str(lock),'runtimePack':str(own/'packages'/('microsoft.netcore.app.runtime.'+actual['rid'])/'11.0.0'),'inputReceipt':receipt}
+
+
+def validate_native_packs(selected,rid):
+    """Compare NuGet extraction with the independently pinned signed archives.
+
+    NuGet omits packaging relationships and lowercases its nuspec filename.
+    The only extra files allowed are its original nupkg and three cache records.
+    No directory is admitted using a manifest derived from that directory.
+    """
+    feed=Path(selected['privateFeed']);packages=Path(selected['privateEnvironment']['NUGET_PACKAGES']);proof=[]
+    rows=selected['nativeRows'];required={r['id'] for r in rows}
+    observed=set()
+    for row in rows:
+        lower=row['id'].lower();pack=packages/lower/row['version']
+        if not pack.exists():
+            require(row['id'] not in required,'OWN_REQUIRED_NATIVE_PACK_MISSING');continue
+        require(pack.is_dir() and not pack.is_symlink(),'OWN_NATIVE_PACK_DIRECTORY');observed.add(row['id'])
+        original=feed/(lower+'.'+row['version']+'.nupkg');require(hashlib.sha256(original.read_bytes()).hexdigest()==row['sha256'],'OWN_ORIGINAL_NATIVE_ARCHIVE_CHANGED')
+        expected={}
+        with zipfile.ZipFile(original) as archive:
+            for info in archive.infolist():
+                name=info.filename
+                if info.is_dir() or name.startswith(('_rels/','package/')) or name=='[Content_Types].xml':continue
+                target=name.lower() if name.endswith('.nuspec') else name
+                require(target not in expected,'OWN_NATIVE_PROJECTION_COLLISION')
+                expected[target]={'bytes':info.file_size,'sha256':hashlib.sha256(archive.read(info)).hexdigest()}
+        archive_name=lower+'.'+row['version']+'.nupkg';extras={archive_name,archive_name+'.sha512','.nupkg.metadata'}
+        actual={p.relative_to(pack).as_posix() for p in pack.rglob('*') if p.is_file()}
+        require(actual==set(expected)|extras and not any(p.is_symlink() for p in pack.rglob('*')),'OWN_NATIVE_CACHE_NAMESPACE')
+        for name,identity in expected.items():
+            path=pack/name;require(path.stat().st_size==identity['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==identity['sha256'],'OWN_NATIVE_CACHE_MEMBER')
+        require(hashlib.sha256((pack/archive_name).read_bytes()).hexdigest()==row['sha256'],'OWN_NATIVE_CACHED_RAW_ARCHIVE')
+        require((pack/(archive_name+'.sha512')).read_text(encoding='utf-8-sig').strip()==row['contentHash'],'OWN_NATIVE_CACHE_NORMALIZED_HASH')
+        metadata=json.loads((pack/'.nupkg.metadata').read_bytes());require(set(metadata)=={'version','contentHash','source'} and metadata['version']==2 and metadata['contentHash']==row['contentHash'] and Path(metadata['source']).resolve()==feed.resolve(),'OWN_NATIVE_MATERIALIZATION_METADATA')
+        proof.append({'id':row['id'],'version':row['version'],'originalSignedArchiveSHA256':row['sha256'],'normalizedNuGetContentHash':row['contentHash'],'archiveMembersVerified':len(expected),'cacheNamespaceVerified':len(actual),'noticesVerifiedFromOriginalSignedArchive':True})
+    require(required<=observed,'OWN_REQUIRED_NATIVE_PACKS');return proof

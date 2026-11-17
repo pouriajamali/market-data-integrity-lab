@@ -1,0 +1,71 @@
+[
+  {
+    "project": "src/Integrity/Integrity.csproj",
+    "assetSHA256": "4006307a0bc507b06f1cfea21a0eef147f2940cb5e903aa7f868871a62c193cb",
+    "frameworks": {
+      "net11.0": {
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+            "version": "[11.0.0, 11.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+            "version": "[11.0.0, 11.0.0]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  {
+    "project": "tests/Integrity.Tests/Integrity.Tests.csproj",
+    "assetSHA256": "18ae9b3e75d52a1f532a25c646a8a93dfe7ccb1eb33f63d7a34dbc3e917f502e",
+    "frameworks": {
+      "net11.0": {
+        "downloadDependencies": [],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  {
+    "project": "tests/RecoveryProbe/RecoveryProbe.csproj",
+    "assetSHA256": "ee8e73b1d308165a16f28a47eb32812a48da1996a37f81ac7b22f5532eaded59",
+    "frameworks": {
+      "net11.0": {
+        "downloadDependencies": [],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  {
+    "project": "tools/Measurements/Measurements.csproj",
+    "assetSHA256": "0da662c724fa61c4ddf75dfd1db5efbeb4f692205d80c766cf67970f282d5cba",
+    "frameworks": {
+      "net11.0": {
+        "downloadDependencies": [],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+]

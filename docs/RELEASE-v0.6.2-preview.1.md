@@ -14,7 +14,7 @@ Those receipts are not evidence of this candidate.
 
 The framework/runtime/version preparation and supported-host route are committed
 privately with the existing SSH signing key. This is not a tested release.
-Source locks still contain net10.0; net11/RID regeneration and actual product
+Four source locks and the Linux RID lock were generated in successful own input CI44096474043. Windows RID lock generation and actual product
 tests remain blocked on qualified inputs. Shared input work is limited to this
 project's requirements. Local cached test-package bytes are candidates only.
 
@@ -50,3 +50,5 @@ Microsoft references: [C#15](https://learn.microsoft.com/en-us/dotnet/csharp/wha
 [x64 hardware minimum](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/minimum-hardware-requirements).
 
 The authorized own input-curation route consumes the finalized common SDK inputs. Own graph, build, test and release gates remain pending. Windows native input acceptance remains a separate producer04 dependency.
+
+Own Linux input CI verified all17 unchanged test input signatures with required official repository signers, generated the actual four net11 source locks and Linux RID lock, and observed the SDK implicit downloads (AspNetRuntime and CoreRuntime11.0.0). The qualified SDK supplies the apphost pack. No extra framework reference was added. Product and Windows acceptance remain separate pending gates.

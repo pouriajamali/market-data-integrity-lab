@@ -1,0 +1,835 @@
+X.509 certificate chain validation will use the fallback certificate bundle at '/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/trustedroots/codesignctl.pem'.
+X.509 certificate chain validation will use the fallback certificate bundle at '/home/runner/work/_temp/sdk11-normal-03-97b5fc2c01d4e0dbeff82939/sdk/sdk/11.0.100/trustedroots/timestampctl.pem'.
+
+Verifying xunit.v3.4.0.2
+Content hash: TdjM2OAx7w/0E88E6PgaigLoTbQaxbSR3HF/8p92plchTjf29jPHW27ylvEOz+Nx8CvPwWKGQlOR1fDv6/Qh5A==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:28
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:11:26
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.4.0.2'.
+
+Verifying Microsoft.ApplicationInsights.2.23.0
+Content hash: nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.applicationinsights.2.23.0.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: F25C45D17C53D4E0D1DC9FB9DFD0731FCF904B77
+  SHA256 hash: 566A31882BE208BE4422F7CFD66ED09F5D4524A5994F50CCC8B05EC0528C1353
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 07/27/2023 00:00:00 to 10/17/2026 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 02/18/2025 23:39:51
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert Timestamp 2024, O=DigiCert, C=US
+  SHA1 hash: DBD385EE62DBD23E7BE4F67148508724D5865B45
+  SHA256 hash: 76769FA8F2632F1F430B3A2330AED65675FED773DB05D665B9059398438F9ADB
+  Issued by: CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA, O="DigiCert, Inc.", C=US
+  Valid from: 09/26/2024 00:00:00 to 11/25/2035 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: AppInsightsSdk, Microsoft
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 02/19/2025 22:31:48
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert Timestamp 2024, O=DigiCert, C=US
+  SHA1 hash: DBD385EE62DBD23E7BE4F67148508724D5865B45
+  SHA256 hash: 76769FA8F2632F1F430B3A2330AED65675FED773DB05D665B9059398438F9ADB
+  Issued by: CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA, O="DigiCert, Inc.", C=US
+  Valid from: 09/26/2024 00:00:00 to 11/25/2035 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'Microsoft.ApplicationInsights.2.23.0'.
+
+Verifying Microsoft.Bcl.AsyncInterfaces.6.0.0
+Content hash: UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.bcl.asyncinterfaces.6.0.0.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: A6E18D21B507879FC7F9C392A5CE355936E3AD2C
+  SHA256 hash: AA12DA22A49BCE7D5C1AE64CC1F3D892F150DA76140F210ABD2CBFFCA2C18A27
+  Issued by: CN=DigiCert SHA2 Assured ID Code Signing CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+  Valid from: 09/30/2020 00:00:00 to 10/05/2023 12:00:00
+  CRL URL: http://crl3.digicert.com/sha2-assured-cs-g1.crl
+  CRL URL: http://crl4.digicert.com/sha2-assured-cs-g1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/27/2021 22:57:54
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=Symantec SHA256 TimeStamping Signer - G3, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  SHA1 hash: A9A4121063D71D48E8529A4681DE803E3E7954B0
+  SHA256 hash: C474CE76007D02394E0DA5E4DE7C14C680F9E282013CFEF653EF5DB71FDF61F8
+  Issued by: CN=Symantec SHA256 TimeStamping CA, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  Valid from: 12/23/2017 00:00:00 to 03/22/2029 23:59:59
+  CRL URL: http://ts-crl.ws.symantec.com/sha256-tss-ca.crl
+  OCSP URL: http://ts-ocsp.ws.symantec.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: dotnetframework, Microsoft
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: 68FC37CCC293766A607DBC26A26DF371B0249328
+  SHA256 hash: 5A2901D6ADA3D18260B9C6DFE2133C95D74B9EEF6AE0E5DC334C8454D1477DF4
+  Issued by: CN=DigiCert SHA2 Assured ID Code Signing CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+  Valid from: 02/16/2021 00:00:00 to 05/15/2024 23:59:59
+  CRL URL: http://crl3.digicert.com/sha2-assured-cs-g1.crl
+  CRL URL: http://crl4.digicert.com/sha2-assured-cs-g1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 11/08/2021 06:32:47
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=Symantec SHA256 TimeStamping Signer - G3, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  SHA1 hash: A9A4121063D71D48E8529A4681DE803E3E7954B0
+  SHA256 hash: C474CE76007D02394E0DA5E4DE7C14C680F9E282013CFEF653EF5DB71FDF61F8
+  Issued by: CN=Symantec SHA256 TimeStamping CA, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  Valid from: 12/23/2017 00:00:00 to 03/22/2029 23:59:59
+  CRL URL: http://ts-crl.ws.symantec.com/sha256-tss-ca.crl
+  OCSP URL: http://ts-ocsp.ws.symantec.com
+
+Successfully verified package 'Microsoft.Bcl.AsyncInterfaces.6.0.0'.
+
+Verifying Microsoft.Testing.Extensions.Telemetry.2.5.1
+Content hash: mu2iyoHovwl0q1mGeeRU0h8+LALXC7HqbxniLa1shTKYdJGl+KPoCEgjWIQ8MLzk1tlTGPOfg1JsxdH3RxhMCA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.testing.extensions.telemetry.2.5.1.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: 80A3561749D46D67F4548F4B5416925C5195A03E
+  SHA256 hash: 9A1B131BEE0605433056A4EA3815478A8E177961A968C6C0027C1093D1FEB630
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 09/08/2026 00:00:00 to 12/03/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 15:07:16
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: Microsoft, MSTestFramework
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 16:47:02
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'Microsoft.Testing.Extensions.Telemetry.2.5.1'.
+
+Verifying Microsoft.Testing.Extensions.TrxReport.Abstractions.2.5.1
+Content hash: DYTZAguaHz0wNJdHDTTGYOXtnlDoLoIbTMDKSApNNcytm55DJcnwpwELfQGLk5DB5QlgaEjNhnGo1Pu5QvL5VA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.testing.extensions.trxreport.abstractions.2.5.1.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: 80A3561749D46D67F4548F4B5416925C5195A03E
+  SHA256 hash: 9A1B131BEE0605433056A4EA3815478A8E177961A968C6C0027C1093D1FEB630
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 09/08/2026 00:00:00 to 12/03/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 15:07:15
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: Microsoft, MSTestFramework
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 16:45:51
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'Microsoft.Testing.Extensions.TrxReport.Abstractions.2.5.1'.
+
+Verifying Microsoft.Testing.Platform.2.5.1
+Content hash: FAMaFFWnULW+hDHMb40Qzhcgz9cAU2/EtgRCBNX/DdQoKo0sPG2EiY+w7bQdl/BgHnf/DbpXLbf5Xy0o15M8NA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.testing.platform.2.5.1.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: 80A3561749D46D67F4548F4B5416925C5195A03E
+  SHA256 hash: 9A1B131BEE0605433056A4EA3815478A8E177961A968C6C0027C1093D1FEB630
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 09/08/2026 00:00:00 to 12/03/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 15:07:15
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: Microsoft, MSTestFramework
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 16:46:31
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'Microsoft.Testing.Platform.2.5.1'.
+
+Verifying Microsoft.Testing.Platform.MSBuild.2.5.1
+Content hash: lYawcAwY+h76rQmpma2n0HaL8zkOFbbKapso0Eb+uOAUQn7333pIByLftEuiO67csAoZufHNMwi6PqhNemWQXA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.testing.platform.msbuild.2.5.1.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: 80A3561749D46D67F4548F4B5416925C5195A03E
+  SHA256 hash: 9A1B131BEE0605433056A4EA3815478A8E177961A968C6C0027C1093D1FEB630
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 09/08/2026 00:00:00 to 12/03/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 15:07:15
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: Microsoft, MSTestFramework
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/07/2026 16:45:57
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'Microsoft.Testing.Platform.MSBuild.2.5.1'.
+
+Verifying Microsoft.Win32.Registry.5.0.0
+Content hash: dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/microsoft.win32.registry.5.0.0.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: F404000FB11E61F446529981C7059A76C061631E
+  SHA256 hash: 3F9001EA83C560D712C24CF213C3D312CB3BFF51EE89435D3430BD06B5D0EECE
+  Issued by: CN=DigiCert SHA2 Assured ID Code Signing CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+  Valid from: 02/26/2018 00:00:00 to 01/27/2021 12:00:00
+  CRL URL: http://crl3.digicert.com/sha2-assured-cs-g1.crl
+  CRL URL: http://crl4.digicert.com/sha2-assured-cs-g1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/20/2020 13:29:52
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=Symantec SHA256 TimeStamping Signer - G3, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  SHA1 hash: A9A4121063D71D48E8529A4681DE803E3E7954B0
+  SHA256 hash: C474CE76007D02394E0DA5E4DE7C14C680F9E282013CFEF653EF5DB71FDF61F8
+  Issued by: CN=Symantec SHA256 TimeStamping CA, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  Valid from: 12/23/2017 00:00:00 to 03/22/2029 23:59:59
+  CRL URL: http://ts-crl.ws.symantec.com/sha256-tss-ca.crl
+  OCSP URL: http://ts-ocsp.ws.symantec.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: dotnetframework, Microsoft
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: 8FB6D7FCF7AD49EB774446EFE778B33365BB7BFB
+  SHA256 hash: 0E5F38F57DC1BCC806D8494F4F90FBCEDD988B46760709CBEEC6F4219AA6157D
+  Issued by: CN=DigiCert SHA2 Assured ID Code Signing CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+  Valid from: 04/10/2018 00:00:00 to 04/14/2021 12:00:00
+  CRL URL: http://crl3.digicert.com/sha2-assured-cs-g1.crl
+  CRL URL: http://crl4.digicert.com/sha2-assured-cs-g1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 11/09/2020 23:47:54
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=Symantec SHA256 TimeStamping Signer - G3, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  SHA1 hash: A9A4121063D71D48E8529A4681DE803E3E7954B0
+  SHA256 hash: C474CE76007D02394E0DA5E4DE7C14C680F9E282013CFEF653EF5DB71FDF61F8
+  Issued by: CN=Symantec SHA256 TimeStamping CA, OU=Symantec Trust Network, O=Symantec Corporation, C=US
+  Valid from: 12/23/2017 00:00:00 to 03/22/2029 23:59:59
+  CRL URL: http://ts-crl.ws.symantec.com/sha256-tss-ca.crl
+  OCSP URL: http://ts-ocsp.ws.symantec.com
+
+Successfully verified package 'Microsoft.Win32.Registry.5.0.0'.
+
+Verifying System.Security.AccessControl.6.0.1
+Content hash: IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/system.security.accesscontrol.6.0.1.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: F25C45D17C53D4E0D1DC9FB9DFD0731FCF904B77
+  SHA256 hash: 566A31882BE208BE4422F7CFD66ED09F5D4524A5994F50CCC8B05EC0528C1353
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 07/27/2023 00:00:00 to 10/17/2026 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 03/22/2024 21:34:48
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert Timestamp 2023, O="DigiCert, Inc.", C=US
+  SHA1 hash: 66F02B32C2C2C90F825DCEAA8AC9C64F199CCF40
+  SHA256 hash: D2F6E46DED7422CCD1D440576841366F828ADA559AAE3316AF4D1A9AD40C7828
+  Issued by: CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA, O="DigiCert, Inc.", C=US
+  Valid from: 07/14/2023 00:00:00 to 10/13/2034 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: dotnetframework, Microsoft
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 04/09/2024 17:04:27
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert Timestamp 2023, O="DigiCert, Inc.", C=US
+  SHA1 hash: 66F02B32C2C2C90F825DCEAA8AC9C64F199CCF40
+  SHA256 hash: D2F6E46DED7422CCD1D440576841366F828ADA559AAE3316AF4D1A9AD40C7828
+  Issued by: CN=DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA, O="DigiCert, Inc.", C=US
+  Valid from: 07/14/2023 00:00:00 to 10/13/2034 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'System.Security.AccessControl.6.0.1'.
+
+Verifying xunit.analyzers.2.2.0
+Content hash: dXMIIztipcAyL3a19gtUrih/RLrE33/4VJdICoinYqIXXo1KLtsMPsaQ9dO2pE8xajDguwE2kqVbBqE5/EoJ0Q==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.analyzers.2.2.0.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 15:28:56
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:14:45
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.analyzers.2.2.0'.
+
+Verifying xunit.v3.assert.4.0.2
+Content hash: 5PKRexYlvufWFdXenRcRGKqvaJBBZFJZpqUGlUs9p13eKEgVdOrLpkPknjzUvLY5kEUicK9871DIUDcCPA6AXA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.assert.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:29
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:12:50
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.assert.4.0.2'.
+
+Verifying xunit.v3.common.4.0.2
+Content hash: ++CtT8daIf6qfieQev/8V88U3zViIDWou5cj+oWps1/Hf73UoaY/L0hKyi3v7Zlt3BmbU0pUc73zCB1GiB4nYA==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.common.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:29
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:11:20
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.common.4.0.2'.
+
+Verifying xunit.v3.core.mtp-v2.4.0.2
+Content hash: XyPMcQRsnUQLhmBBRRgYWsuPc8TyiANzcXtqfzyWfDpPuyh3Q0K4oWozZYQKZRNGnqJ97ifD6qUDWhsEEe32uw==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.core.mtp-v2.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:30
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:13:27
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.core.mtp-v2.4.0.2'.
+
+Verifying xunit.v3.extensibility.core.4.0.2
+Content hash: ARTt+pGyd86mdtiFBkKpyBQvRC3u0rr8oidBlII2GsAg7D6TfOsDFCsoQtFij83V5pE57m3whUIqT4xjiARXbQ==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.extensibility.core.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:30
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:10:32
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.extensibility.core.4.0.2'.
+
+Verifying xunit.v3.mtp-v2.4.0.2
+Content hash: XLV32FhkuvheBStvX0DvjfPEtI+4SOVcIhnlTS+549r8VfVwsjpWdkJtQmQ7D23PA+Zoaqo+sTjBkRSkidC6Tw==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.mtp-v2.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:31
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:15:17
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.mtp-v2.4.0.2'.
+
+Verifying xunit.v3.runner.common.4.0.2
+Content hash: YlYKVhTJVcwEgJ6rm59Pjf71lQqKwKxEHqVRxWUuwrwm/nxB/mNFP/lP4vlntDO3GclNnLT9BjYOpJH9gViGQg==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.runner.common.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:31
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:12:33
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.runner.common.4.0.2'.
+
+Verifying xunit.v3.runner.inproc.console.4.0.2
+Content hash: cg4XNpCN4Ry9nswutknpreN3ckSUBwtjMRmEQSNK/sIKPo6KN5tDGGGCaHDm5HGA4yFVVtTJX65tLCsZArUNfQ==
+/home/runner/work/_temp/integrity03-47669abbf9236c9d470852ac/feed/xunit.v3.runner.inproc.console.4.0.2.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=xUnit.net (.NET Foundation), O=xUnit.net (.NET Foundation), L=Redmond, S=Washington, C=US, SERIALNUMBER=603 389 068, businessCategory=Private Organization, jurisdictionStateOrProvinceName=Washington, jurisdictionCountryName=US
+  SHA1 hash: E49A663526BCC40878466BE4F49F9833B3302C0A
+  SHA256 hash: 0D7662406AABB78B853A1901343BF9F7757492B785402172C5962D8204408161
+  Issued by: CN=.NET Foundation Projects Code Signing CA2, O=.NET Foundation, C=US
+  Valid from: 06/08/2024 00:00:00 to 06/08/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  CRL URL: http://crl4.digicert.com/NETFoundationProjectsCodeSigningCA2.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 16:20:31
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: xunit
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+Timestamp: 10/09/2026 17:11:14
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+
+Successfully verified package 'xunit.v3.runner.inproc.console.4.0.2'.

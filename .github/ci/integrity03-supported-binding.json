@@ -14,7 +14,7 @@
     "linuxSwapBytes": 0,
     "outerJobSeconds": 1200
   },
-  "controllerSha256": "1d88063392cfc2565fb19d5177a0697e40fa10e7f5439691ba3896e9bbab79b5",
+  "controllerSha256": "746cff7fd28cc4c781ac213bb0a4505d2c97a522475fcfa67b67463fef5c1a0f",
   "contractSha256": "26a18c7015cf7df9597afcd6e6696dabc99d41fbf88de3ece8ea1f3f20ee3f21",
   "controllerPython": {
     "linux-x64": {
@@ -34,19 +34,19 @@
   "sourceFiles": [
     {
       "path": ".github/ci/host_controller03.py",
-      "sha256": "1d88063392cfc2565fb19d5177a0697e40fa10e7f5439691ba3896e9bbab79b5"
+      "sha256": "746cff7fd28cc4c781ac213bb0a4505d2c97a522475fcfa67b67463fef5c1a0f"
     },
     {
       "path": ".github/ci/supported_ci_route_03.py",
-      "sha256": "7b4e357c57873ddfa4bba5f4e393d403022626f1e21e1b9c272fe343180a7155"
+      "sha256": "b55cab1dc1b2dbb3363c5d856eb95fde59388ad986dee83c08f3eec7c2029b59"
     },
     {
       "path": ".github/ci/runtime_policy_03.py",
-      "sha256": "07c1ef638fed8cc7278d3035ce260150ced2bb463817f03964a65ccd643851a6"
+      "sha256": "b755a64c6173456a0b786efa4eb3f27883e7a2a1b3c2a884d3f79b950fcc78a7"
     },
     {
       "path": ".github/ci/curate_inputs_03.py",
-      "sha256": "4ed80e5047cd096d3656c54b3ae4748710d89aff16992ee11d01541d1f61ce4d"
+      "sha256": "db9d71ff9cf13c26e9ab9bf20841267a20844f3c6410d904917cfae7e78c2797"
     },
     {
       "path": ".github/ci/typed_host_03.py",
@@ -54,7 +54,7 @@
     },
     {
       "path": ".github/ci/native_worker_03.py",
-      "sha256": "4162f3fe9105f510bc71d5aec6ece58d00c41c5ceb9f81cfb6a7dd21469adea6"
+      "sha256": "117961b1afe2c8cbf416e20a870cd89039c62f558f30327d9525276bb386648a"
     },
     {
       "path": ".github/ci/integrity03-profile.json",
@@ -66,7 +66,11 @@
     },
     {
       "path": ".github/ci/integrity03-linux-inputs.json",
-      "sha256": "60571fbd14ce98d56f1728429b1f0cb56c504fd3505c7adad84e24b62fa995db"
+      "sha256": "767f48ecf534879ee643d4c4a1ed4468d73cbce811f15a03702c26ccb8f31e61"
+    },
+    {
+      "path": ".github/ci/integrity03-windows-profile.json",
+      "sha256": "494ba2e9cf254accf8df8f83b9ce46358fa90bb6db853c53ac9deb715c2b4dfd"
     }
   ],
   "sharedAPISha256": "c37e2f48ee21ef1f02e4afb2bb1cd0af397781e487265c31e43fe06ea182befd",

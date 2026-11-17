@@ -1,0 +1,279 @@
+{
+  "scope": "OWN19_INPUT_SIGNATURE_HASH_NOTICES_ADVISORY_AND_GRAPH",
+  "rid": "linux-x64",
+  "sourceCommit": "e30aae57bc0f6cf7ba3625d9584db1c35372567f",
+  "commands": [
+    {
+      "name": "verify-signed-inputs",
+      "exitCode": 0,
+      "stdoutSHA256": "92b2855a897b95b29f75388efc15ba399f26a18edcdd6ac6c0a58d74c62a6fcc",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "restore-Integrity.Tests",
+      "exitCode": 0,
+      "stdoutSHA256": "16bfe09de344886a7342e372379473b9547584a7e61126f274eb210afa2f8ea9",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "restore-Measurements",
+      "exitCode": 0,
+      "stdoutSHA256": "204d728d950438f30939ce4eae2fce61097db5988e10e44d5ff6ad9f56a41866",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "restore-rid",
+      "exitCode": 0,
+      "stdoutSHA256": "81e071c9307489c964502776f92785ecc79476657f9d509ee68ae63e696993db",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "xunit.v3",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "TdjM2OAx7w/0E88E6PgaigLoTbQaxbSR3HF/8p92plchTjf29jPHW27ylvEOz+Nx8CvPwWKGQlOR1fDv6/Qh5A==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.ApplicationInsights",
+      "version": "2.23.0",
+      "normalizedNuGetContentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Bcl.AsyncInterfaces",
+      "version": "6.0.0",
+      "normalizedNuGetContentHash": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.Telemetry",
+      "version": "2.5.1",
+      "normalizedNuGetContentHash": "mu2iyoHovwl0q1mGeeRU0h8+LALXC7HqbxniLa1shTKYdJGl+KPoCEgjWIQ8MLzk1tlTGPOfg1JsxdH3RxhMCA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+      "version": "2.5.1",
+      "normalizedNuGetContentHash": "DYTZAguaHz0wNJdHDTTGYOXtnlDoLoIbTMDKSApNNcytm55DJcnwpwELfQGLk5DB5QlgaEjNhnGo1Pu5QvL5VA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Testing.Platform",
+      "version": "2.5.1",
+      "normalizedNuGetContentHash": "FAMaFFWnULW+hDHMb40Qzhcgz9cAU2/EtgRCBNX/DdQoKo0sPG2EiY+w7bQdl/BgHnf/DbpXLbf5Xy0o15M8NA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Testing.Platform.MSBuild",
+      "version": "2.5.1",
+      "normalizedNuGetContentHash": "lYawcAwY+h76rQmpma2n0HaL8zkOFbbKapso0Eb+uOAUQn7333pIByLftEuiO67csAoZufHNMwi6PqhNemWQXA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.Win32.Registry",
+      "version": "5.0.0",
+      "normalizedNuGetContentHash": "dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "System.Security.AccessControl",
+      "version": "6.0.1",
+      "normalizedNuGetContentHash": "IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.analyzers",
+      "version": "2.2.0",
+      "normalizedNuGetContentHash": "dXMIIztipcAyL3a19gtUrih/RLrE33/4VJdICoinYqIXXo1KLtsMPsaQ9dO2pE8xajDguwE2kqVbBqE5/EoJ0Q==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.assert",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "5PKRexYlvufWFdXenRcRGKqvaJBBZFJZpqUGlUs9p13eKEgVdOrLpkPknjzUvLY5kEUicK9871DIUDcCPA6AXA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.common",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "++CtT8daIf6qfieQev/8V88U3zViIDWou5cj+oWps1/Hf73UoaY/L0hKyi3v7Zlt3BmbU0pUc73zCB1GiB4nYA==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.core.mtp-v2",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "XyPMcQRsnUQLhmBBRRgYWsuPc8TyiANzcXtqfzyWfDpPuyh3Q0K4oWozZYQKZRNGnqJ97ifD6qUDWhsEEe32uw==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.extensibility.core",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "ARTt+pGyd86mdtiFBkKpyBQvRC3u0rr8oidBlII2GsAg7D6TfOsDFCsoQtFij83V5pE57m3whUIqT4xjiARXbQ==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.mtp-v2",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "XLV32FhkuvheBStvX0DvjfPEtI+4SOVcIhnlTS+549r8VfVwsjpWdkJtQmQ7D23PA+Zoaqo+sTjBkRSkidC6Tw==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.runner.common",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "YlYKVhTJVcwEgJ6rm59Pjf71lQqKwKxEHqVRxWUuwrwm/nxB/mNFP/lP4vlntDO3GclNnLT9BjYOpJH9gViGQg==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "xunit.v3.runner.inproc.console",
+      "version": "4.0.2",
+      "normalizedNuGetContentHash": "cg4XNpCN4Ry9nswutknpreN3ckSUBwtjMRmEQSNK/sIKPo6KN5tDGGGCaHDm5HGA4yFVVtTJX65tLCsZArUNfQ==",
+      "actualNativeVerificationExit": 0
+    },
+    {
+      "id": "Microsoft.NETCore.App.Host.linux-x64",
+      "version": "11.0.0",
+      "normalizedNuGetContentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==",
+      "reusedQualifiedProducerFactSHA256": "b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df",
+      "newSharedQualificationPerformed": false
+    },
+    {
+      "id": "Microsoft.NETCore.App.Runtime.linux-x64",
+      "version": "11.0.0",
+      "normalizedNuGetContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w==",
+      "reusedQualifiedProducerFactSHA256": "b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df",
+      "newSharedQualificationPerformed": false
+    },
+    {
+      "id": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+      "version": "11.0.0",
+      "normalizedNuGetContentHash": "yakDdyyMIIXJfCuuaGDt3lFQ/0J0SCISfvmZNQ0StQvG1scXFzfstv/JMFbeQgTM7xHbxAAwMeXz7gWI4s49YA==",
+      "reusedQualifiedProducerFactSHA256": "b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df",
+      "newSharedQualificationPerformed": false
+    }
+  ],
+  "rawInputs": [
+    {
+      "bytes": 32099,
+      "sha256": "5b166770769b3d2aa7164b7c10200e4094c1e959a0914ee64617a81e0b70541e",
+      "sha512Base64": "jPqJKMQnhWCysQkAPjU8E4t3ejl/EOCd3ENcU/biyvtNuRncK+fDFDEw4Ixp6Gh83k5f5FBTH/RzTxaY18jSQg=="
+    },
+    {
+      "bytes": 1737910,
+      "sha256": "e6c7f76e0ec26598c7b1e2be1777e839c84486655e8a878fc4c655bd2e918dbd",
+      "sha512Base64": "3Ul7+tDGXlSk940qFkTz0IVNTNAd2DulBvjV1TY14oFSx8EyEN1d05hXgKqxRqdiDePrrq2O8SxvhwiGdsIVfw=="
+    },
+    {
+      "bytes": 76354,
+      "sha256": "e3df87fe2170a7e01f0880af59caa8f6eb380b3c40a4f282dfb43912aaf0f895",
+      "sha512Base64": "IhoFoMkQ96h7Yg2PODHtOStOuV0RK+4nTTXycAmtKiZEXenXzSNf5vtKA/JVCHS9o7493dlu2vnAhSqcI9ewmQ=="
+    },
+    {
+      "bytes": 517730,
+      "sha256": "a147dea733de14c70e2127ad993a563ca352cad5c8e930aba727fe4c04f38d94",
+      "sha512Base64": "H8IrMlaB5PWlgq5DK10cDledyH1KuVf3W7aJxg/H7voSDG9vz+a+Tng7+Xlzk8JLwnD76veM1VRPX+0W7S6j/g=="
+    },
+    {
+      "bytes": 114290,
+      "sha256": "4523b0a92743a53399cdbd54a46dd7b441fb802e514b32313b778db0c1d074bb",
+      "sha512Base64": "/PtK+XveuP1hbPoL9duOfn/dj+uhjyxEIzyzpg1u2lw5T088TcJ1Qj8aK7Ziw6s0ZIgLSRbD1NRDW+9/SgOT2w=="
+    },
+    {
+      "bytes": 3775300,
+      "sha256": "7d35092c70b86599314adf05bf4a7061da03fc08c8e493f029da6bd4da6ef369",
+      "sha512Base64": "rNqtkMbcc4LtzZk1I79k5k3j8zlN5UlOz0umKecCrKfe2v4UgjMXDWtpjl3pzOkPwguZQIzQ1qKvOKYlq0fVIw=="
+    },
+    {
+      "bytes": 2276133,
+      "sha256": "335136824e7f9bc8bc77f6700ddf536a264f2b27a307c32143bdfbac12a98f69",
+      "sha512Base64": "fqf4pHVr6I2UDZoe80a/l7jGZ7BTfvMZs98PxWWFjGa8L1RC+FeGRFwNgibshQ8XmAv8f0rvYet2Me82Muf9bQ=="
+    },
+    {
+      "bytes": 354731,
+      "sha256": "f64ca53c67ca65ce7cc85a8d29aefbb2da2672836731e1115e8cd62730dc5080",
+      "sha512Base64": "Rx5mVnzlnMhkda7OeBXQUmEmTOEU4MFoi6JVHdUUlJAfpy3XqPdPjo8PPbp0r4WV8XdVLzwGq7S/znZpIZcHbg=="
+    },
+    {
+      "bytes": 235270,
+      "sha256": "462e26f796417e8a4350655a85bbd4233b94cbd0f7150c1c5e9acfd88e885141",
+      "sha512Base64": "4b66cLRfjMWuBv3s82Xwu1tYua9tfHmsz+8VtafHu+9l4Qz58plBjrQTqshv/vqg6rnZFlDOd8w5jTkPBZftQg=="
+    },
+    {
+      "bytes": 339308,
+      "sha256": "66d3c3b642e1f1ceaa702c0e1d8901d918268bf177690bc270a34d680b23d225",
+      "sha512Base64": "oGNwquEwEWjZ+Y1Hkkn89NXHZfZ89QT2lWQ4qZ62q5SlNXANwMfdT7FK0v/7AMR2gHOrzlQpgp1GHKpZhmCbhw=="
+    },
+    {
+      "bytes": 293797,
+      "sha256": "f82e735f8fd36464a979ca954bd67ac231bc6788c68f72e60c0c8fd1442f1648",
+      "sha512Base64": "/LNPM/flmirdCeQpvnBjG+cqmmJfwDmZMOcEdPTOpe/m5H4YUhQqvZpt7qc6LZ7RZMH3ILxDRWQPuiNQMdGStw=="
+    },
+    {
+      "bytes": 169782,
+      "sha256": "16796161ae73e4fcae92fc255cccfea7e4253d36a8776711cd237bb96f8d2179",
+      "sha512Base64": "DUTzm+tsHSksbFHpweqmuZzJLdUGub/3eATQsuMT7nGGQLTbhAomkFbJ8pTC1BfVjTMldZvJsmK881YRNiAyYA=="
+    },
+    {
+      "bytes": 433321,
+      "sha256": "784ed0c6555880636dc3dcf84b27559bcd27f150242c7eff79e6a50d19913d72",
+      "sha512Base64": "u5fn3bF2TZwvJiHA10nDL8FulIPZGdUzaFhP4K2tcK1Rf+ioEZPR2zRxwal1x6BL8qnBLYkjB3SjhuCZOq71lQ=="
+    },
+    {
+      "bytes": 383303,
+      "sha256": "d48b164079004ca0507e16bae2756de9239f803999ac723957d377d49e319b7b",
+      "sha512Base64": "ykwWImyXV4nRDceLmylynYSoD+gP/Cs8KTDIhiG+n8H0jlOJXseC3oTYUaCOOZtn2R0XiGCt9/qT7gcfFlqqhQ=="
+    },
+    {
+      "bytes": 32228,
+      "sha256": "e8d378854775e4787114eb9a411b55f2a3e4020792d7c633113e26d9438cbfa5",
+      "sha512Base64": "OesFiVVe38QnAO3W7WhSvq1l7rNFS/Kf9ioQXmQ4zkV6fRAsI+RhWz1apRw6s70K2BLk4lq6ql10FKNeAkOyUQ=="
+    },
+    {
+      "bytes": 531712,
+      "sha256": "d4e4d47314f4a7b8f5690ae3cb3b2e36899443f097173c40764a97bd072d80e3",
+      "sha512Base64": "yqAKEnxozX74OKRRUchG/QVFdwhchqUKiym6wme6hTzbHhGy1kgmBZHXgH0y+etUxLJFCY2Q+F8vk4ce0RAxlg=="
+    },
+    {
+      "bytes": 134639,
+      "sha256": "240090d90d5229d9782185425f889307edcabfe683c589d1e7856fd630c076cd",
+      "sha512Base64": "xy9wIIPRqkaxu3c6RIBd9vZEPSLf8mZP/kWs8gdaMINwpBZNtis6ceKR0gYkHVEBtzW4640r58b9qO87hhsG8g=="
+    },
+    {
+      "bytes": 5085644,
+      "sha256": "a152b2d7ebb7fb9431ab96490e4c35c86af564419c20d81745e71760a4465469",
+      "sha512Base64": "p9VMbSVN0vWAf1oj+NTm2Yuki5lU+7evJplPeiZ2C89B12L6Y2JrTAdzvETFKFzHPxn/4cRmy5tI4tJ/Ed5hbA=="
+    },
+    {
+      "bytes": 42270532,
+      "sha256": "458f0a7e0de107e4c08b3f375b920cd9427bbb5463870187b5f8afff0eb8664f",
+      "sha512Base64": "92vCWKQbiW9T2QgCRTwiHVHpxpv8fDAOiCRUnlO9QkLhd2oWGKJt9zhHN4mbd7Al/WmBwD+tF0Jt8Ux5Ofox7g=="
+    },
+    {
+      "bytes": 13048557,
+      "sha256": "3f4bdd1255f9ccf02a3ad22656e165bd86e9f0179f18d88cf0fc7de02b230593",
+      "sha512Base64": "7G7Rtb4wsazwSr4Q8XOwwfjfSPRw2id2hcKCGu58tuatIXSMVqFbbJqFfmdY4KugZgSKZEzK6q0J/4Lj7kY4FA=="
+    }
+  ],
+  "locks": [
+    {
+      "path": "src/Integrity/packages.lock.json",
+      "sha256": "b3c5e4a8ca8e8e9b867124355fd997226d6a45ef7924fb06460bf389050392c5"
+    },
+    {
+      "path": "tests/Integrity.Tests/packages.lock.json",
+      "sha256": "3c1be87545f112ffa0070569c4e02142bba316ed807fa48d4f25677a2ea3aa0c"
+    },
+    {
+      "path": "tests/RecoveryProbe/packages.lock.json",
+      "sha256": "fbf1ee1424c81af464b0fb3339e31285f05496bf57baafe59073b685ed48a1fc"
+    },
+    {
+      "path": "tools/Measurements/packages.lock.json",
+      "sha256": "fbf1ee1424c81af464b0fb3339e31285f05496bf57baafe59073b685ed48a1fc"
+    }
+  ],
+  "productExecuted": false,
+  "otherRidRequiredForDelivery": true,
+  "SDK_READY": false
+}

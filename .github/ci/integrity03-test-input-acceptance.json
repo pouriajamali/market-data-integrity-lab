@@ -1,0 +1,209 @@
+{
+  "schema": "integrity03-test-input-acceptance/v1",
+  "state": "ACTUAL_SEVENTEEN_FROZEN_TEST_INPUT_SIGNATURES_ACCEPTED",
+  "sourceCommit": "e30aae57bc0f6cf7ba3625d9584db1c35372567f",
+  "runId": 44096474043,
+  "runURL": "https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44096474043",
+  "rid": "linux-x64",
+  "sdk": "11.0.100",
+  "runtime": "11.0.0",
+  "nativeVerificationExit": 0,
+  "warningOrUnknownAccepted": false,
+  "packages": [
+    {
+      "id": "xunit.v3",
+      "version": "4.0.2",
+      "bytes": 32099,
+      "sha256": "5b166770769b3d2aa7164b7c10200e4094c1e959a0914ee64617a81e0b70541e",
+      "rawSHA512Base64": "jPqJKMQnhWCysQkAPjU8E4t3ejl/EOCd3ENcU/biyvtNuRncK+fDFDEw4Ixp6Gh83k5f5FBTH/RzTxaY18jSQg==",
+      "contentHash": "TdjM2OAx7w/0E88E6PgaigLoTbQaxbSR3HF/8p92plchTjf29jPHW27ylvEOz+Nx8CvPwWKGQlOR1fDv6/Qh5A==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3/4.0.2/xunit.v3.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.ApplicationInsights",
+      "version": "2.23.0",
+      "bytes": 1737910,
+      "sha256": "e6c7f76e0ec26598c7b1e2be1777e839c84486655e8a878fc4c655bd2e918dbd",
+      "rawSHA512Base64": "3Ul7+tDGXlSk940qFkTz0IVNTNAd2DulBvjV1TY14oFSx8EyEN1d05hXgKqxRqdiDePrrq2O8SxvhwiGdsIVfw==",
+      "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.applicationinsights/2.23.0/microsoft.applicationinsights.2.23.0.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Bcl.AsyncInterfaces",
+      "version": "6.0.0",
+      "bytes": 76354,
+      "sha256": "e3df87fe2170a7e01f0880af59caa8f6eb380b3c40a4f282dfb43912aaf0f895",
+      "rawSHA512Base64": "IhoFoMkQ96h7Yg2PODHtOStOuV0RK+4nTTXycAmtKiZEXenXzSNf5vtKA/JVCHS9o7493dlu2vnAhSqcI9ewmQ==",
+      "contentHash": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.Telemetry",
+      "version": "2.5.1",
+      "bytes": 517730,
+      "sha256": "a147dea733de14c70e2127ad993a563ca352cad5c8e930aba727fe4c04f38d94",
+      "rawSHA512Base64": "H8IrMlaB5PWlgq5DK10cDledyH1KuVf3W7aJxg/H7voSDG9vz+a+Tng7+Xlzk8JLwnD76veM1VRPX+0W7S6j/g==",
+      "contentHash": "mu2iyoHovwl0q1mGeeRU0h8+LALXC7HqbxniLa1shTKYdJGl+KPoCEgjWIQ8MLzk1tlTGPOfg1JsxdH3RxhMCA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.testing.extensions.telemetry/2.5.1/microsoft.testing.extensions.telemetry.2.5.1.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+      "version": "2.5.1",
+      "bytes": 114290,
+      "sha256": "4523b0a92743a53399cdbd54a46dd7b441fb802e514b32313b778db0c1d074bb",
+      "rawSHA512Base64": "/PtK+XveuP1hbPoL9duOfn/dj+uhjyxEIzyzpg1u2lw5T088TcJ1Qj8aK7Ziw6s0ZIgLSRbD1NRDW+9/SgOT2w==",
+      "contentHash": "DYTZAguaHz0wNJdHDTTGYOXtnlDoLoIbTMDKSApNNcytm55DJcnwpwELfQGLk5DB5QlgaEjNhnGo1Pu5QvL5VA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.testing.extensions.trxreport.abstractions/2.5.1/microsoft.testing.extensions.trxreport.abstractions.2.5.1.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Testing.Platform",
+      "version": "2.5.1",
+      "bytes": 3775300,
+      "sha256": "7d35092c70b86599314adf05bf4a7061da03fc08c8e493f029da6bd4da6ef369",
+      "rawSHA512Base64": "rNqtkMbcc4LtzZk1I79k5k3j8zlN5UlOz0umKecCrKfe2v4UgjMXDWtpjl3pzOkPwguZQIzQ1qKvOKYlq0fVIw==",
+      "contentHash": "FAMaFFWnULW+hDHMb40Qzhcgz9cAU2/EtgRCBNX/DdQoKo0sPG2EiY+w7bQdl/BgHnf/DbpXLbf5Xy0o15M8NA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.testing.platform/2.5.1/microsoft.testing.platform.2.5.1.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Testing.Platform.MSBuild",
+      "version": "2.5.1",
+      "bytes": 2276133,
+      "sha256": "335136824e7f9bc8bc77f6700ddf536a264f2b27a307c32143bdfbac12a98f69",
+      "rawSHA512Base64": "fqf4pHVr6I2UDZoe80a/l7jGZ7BTfvMZs98PxWWFjGa8L1RC+FeGRFwNgibshQ8XmAv8f0rvYet2Me82Muf9bQ==",
+      "contentHash": "lYawcAwY+h76rQmpma2n0HaL8zkOFbbKapso0Eb+uOAUQn7333pIByLftEuiO67csAoZufHNMwi6PqhNemWQXA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.testing.platform.msbuild/2.5.1/microsoft.testing.platform.msbuild.2.5.1.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "Microsoft.Win32.Registry",
+      "version": "5.0.0",
+      "bytes": 354731,
+      "sha256": "f64ca53c67ca65ce7cc85a8d29aefbb2da2672836731e1115e8cd62730dc5080",
+      "rawSHA512Base64": "Rx5mVnzlnMhkda7OeBXQUmEmTOEU4MFoi6JVHdUUlJAfpy3XqPdPjo8PPbp0r4WV8XdVLzwGq7S/znZpIZcHbg==",
+      "contentHash": "dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "System.Security.AccessControl",
+      "version": "6.0.1",
+      "bytes": 235270,
+      "sha256": "462e26f796417e8a4350655a85bbd4233b94cbd0f7150c1c5e9acfd88e885141",
+      "rawSHA512Base64": "4b66cLRfjMWuBv3s82Xwu1tYua9tfHmsz+8VtafHu+9l4Qz58plBjrQTqshv/vqg6rnZFlDOd8w5jTkPBZftQg==",
+      "contentHash": "IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/system.security.accesscontrol/6.0.1/system.security.accesscontrol.6.0.1.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.analyzers",
+      "version": "2.2.0",
+      "bytes": 339308,
+      "sha256": "66d3c3b642e1f1ceaa702c0e1d8901d918268bf177690bc270a34d680b23d225",
+      "rawSHA512Base64": "oGNwquEwEWjZ+Y1Hkkn89NXHZfZ89QT2lWQ4qZ62q5SlNXANwMfdT7FK0v/7AMR2gHOrzlQpgp1GHKpZhmCbhw==",
+      "contentHash": "dXMIIztipcAyL3a19gtUrih/RLrE33/4VJdICoinYqIXXo1KLtsMPsaQ9dO2pE8xajDguwE2kqVbBqE5/EoJ0Q==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.analyzers/2.2.0/xunit.analyzers.2.2.0.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.assert",
+      "version": "4.0.2",
+      "bytes": 293797,
+      "sha256": "f82e735f8fd36464a979ca954bd67ac231bc6788c68f72e60c0c8fd1442f1648",
+      "rawSHA512Base64": "/LNPM/flmirdCeQpvnBjG+cqmmJfwDmZMOcEdPTOpe/m5H4YUhQqvZpt7qc6LZ7RZMH3ILxDRWQPuiNQMdGStw==",
+      "contentHash": "5PKRexYlvufWFdXenRcRGKqvaJBBZFJZpqUGlUs9p13eKEgVdOrLpkPknjzUvLY5kEUicK9871DIUDcCPA6AXA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.assert/4.0.2/xunit.v3.assert.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.common",
+      "version": "4.0.2",
+      "bytes": 169782,
+      "sha256": "16796161ae73e4fcae92fc255cccfea7e4253d36a8776711cd237bb96f8d2179",
+      "rawSHA512Base64": "DUTzm+tsHSksbFHpweqmuZzJLdUGub/3eATQsuMT7nGGQLTbhAomkFbJ8pTC1BfVjTMldZvJsmK881YRNiAyYA==",
+      "contentHash": "++CtT8daIf6qfieQev/8V88U3zViIDWou5cj+oWps1/Hf73UoaY/L0hKyi3v7Zlt3BmbU0pUc73zCB1GiB4nYA==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.common/4.0.2/xunit.v3.common.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.core.mtp-v2",
+      "version": "4.0.2",
+      "bytes": 433321,
+      "sha256": "784ed0c6555880636dc3dcf84b27559bcd27f150242c7eff79e6a50d19913d72",
+      "rawSHA512Base64": "u5fn3bF2TZwvJiHA10nDL8FulIPZGdUzaFhP4K2tcK1Rf+ioEZPR2zRxwal1x6BL8qnBLYkjB3SjhuCZOq71lQ==",
+      "contentHash": "XyPMcQRsnUQLhmBBRRgYWsuPc8TyiANzcXtqfzyWfDpPuyh3Q0K4oWozZYQKZRNGnqJ97ifD6qUDWhsEEe32uw==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.core.mtp-v2/4.0.2/xunit.v3.core.mtp-v2.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.extensibility.core",
+      "version": "4.0.2",
+      "bytes": 383303,
+      "sha256": "d48b164079004ca0507e16bae2756de9239f803999ac723957d377d49e319b7b",
+      "rawSHA512Base64": "ykwWImyXV4nRDceLmylynYSoD+gP/Cs8KTDIhiG+n8H0jlOJXseC3oTYUaCOOZtn2R0XiGCt9/qT7gcfFlqqhQ==",
+      "contentHash": "ARTt+pGyd86mdtiFBkKpyBQvRC3u0rr8oidBlII2GsAg7D6TfOsDFCsoQtFij83V5pE57m3whUIqT4xjiARXbQ==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.extensibility.core/4.0.2/xunit.v3.extensibility.core.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.mtp-v2",
+      "version": "4.0.2",
+      "bytes": 32228,
+      "sha256": "e8d378854775e4787114eb9a411b55f2a3e4020792d7c633113e26d9438cbfa5",
+      "rawSHA512Base64": "OesFiVVe38QnAO3W7WhSvq1l7rNFS/Kf9ioQXmQ4zkV6fRAsI+RhWz1apRw6s70K2BLk4lq6ql10FKNeAkOyUQ==",
+      "contentHash": "XLV32FhkuvheBStvX0DvjfPEtI+4SOVcIhnlTS+549r8VfVwsjpWdkJtQmQ7D23PA+Zoaqo+sTjBkRSkidC6Tw==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.mtp-v2/4.0.2/xunit.v3.mtp-v2.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.runner.common",
+      "version": "4.0.2",
+      "bytes": 531712,
+      "sha256": "d4e4d47314f4a7b8f5690ae3cb3b2e36899443f097173c40764a97bd072d80e3",
+      "rawSHA512Base64": "yqAKEnxozX74OKRRUchG/QVFdwhchqUKiym6wme6hTzbHhGy1kgmBZHXgH0y+etUxLJFCY2Q+F8vk4ce0RAxlg==",
+      "contentHash": "YlYKVhTJVcwEgJ6rm59Pjf71lQqKwKxEHqVRxWUuwrwm/nxB/mNFP/lP4vlntDO3GclNnLT9BjYOpJH9gViGQg==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.runner.common/4.0.2/xunit.v3.runner.common.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    },
+    {
+      "id": "xunit.v3.runner.inproc.console",
+      "version": "4.0.2",
+      "bytes": 134639,
+      "sha256": "240090d90d5229d9782185425f889307edcabfe683c589d1e7856fd630c076cd",
+      "rawSHA512Base64": "xy9wIIPRqkaxu3c6RIBd9vZEPSLf8mZP/kWs8gdaMINwpBZNtis6ceKR0gYkHVEBtzW4640r58b9qO87hhsG8g==",
+      "contentHash": "cg4XNpCN4Ry9nswutknpreN3ckSUBwtjMRmEQSNK/sIKPo6KN5tDGGGCaHDm5HGA4yFVVtTJX65tLCsZArUNfQ==",
+      "kind": "fixed-M1-test-dependency",
+      "url": "https://api.nuget.org/v3-flatcontainer/xunit.v3.runner.inproc.console/4.0.2/xunit.v3.runner.inproc.console.4.0.2.nupkg",
+      "nativeSignatureState": "MUST_VERIFY_WITH_OWN_QUALIFIED_SDK_BEFORE_GRAPH_OR_TARGETS"
+    }
+  ],
+  "evidenceSHA256": {
+    "linux-input-receipt.json": "c33237e373e9b18f01b4e300492b6a629efd80ae1cc444f6f818d1c670d9abc5",
+    "linux-actual-sdk-graphs.json": "b72e0e18518654f6e716f9c0b5373ce4bb6da29dd302c3cde278b8a569d8572a",
+    "linux-nuget-verify.log": "92b2855a897b95b29f75388efc15ba399f26a18edcdd6ac6c0a58d74c62a6fcc",
+    "linux-caps.json": "2713556bf48a8b25b71cee6c6f30e0d87fcc9d113709cae94d8260b7a5533edc",
+    "linux-terminal.json": "d0891b270724db0366373947764cab21593c7d1440975b76231cdedd99f1c6a1"
+  },
+  "scope": "Exact signed raw identities and normalized content hashes of17 unchanged M1 test inputs; actual NuGet require-mode trusted repository chain/timestamp checks on own Linux host. Windows restore still validates its own OS trust. No product/Windows native acceptance."
+}

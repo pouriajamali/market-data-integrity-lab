@@ -248,32 +248,44 @@ def route_main(WindowsJob,row_started):
     require(digest(repo/'.github/ci/host_controller03.py')==binding['controllerSha256'],'CONTROLLER_SOURCE')
     if os.name!='nt':return linux_starter(repo,temp,actual,binding,Path(args.binding).resolve())
     require(actual['rid'] in binding['nativeInputRids'],'WINDOWS_NATIVE_SHARED_INPUT_PENDING')
-    # The original project03 Job source is reused by source identity only.
-    # Every consuming Windows job must obtain fresh held-child/readback/active0.
     job=WindowsJob(binding,secrets.token_hex(16))
-    own=temp/('integrity03-'+secrets.token_hex(12));own.mkdir()
-    proof={'projectId':'03','runId':actual['runId'],'jobId':binding['consumerInstance']['jobId'],'sourceSha256':binding['controllerSha256'],'heldChildBeforeTargets':False,'effectiveProfile':PROFILE}
+    own=temp/('integrity03-'+secrets.token_hex(12));own.mkdir();job.outputRoot=own
+    K=job.k
+    import ctypes
+    from ctypes import wintypes as W
+    K.GetProcessTimes.argtypes=[W.HANDLE,*[ctypes.POINTER(W.FILETIME)]*4]
+    times=[W.FILETIME() for _ in range(4)]
+    require(K.GetProcessTimes(K.GetCurrentProcess(),*[ctypes.byref(t) for t in times]),'OWN_PARENT_START')
+    actual.update(supervisorPID=os.getpid(),supervisorStartIdentity='FILETIME:'+str((times[0].dwHighDateTime<<32)|times[0].dwLowDateTime))
+    git_exe=Path('C:/Program Files/Git/cmd/git.exe')
+    require(digest(git_exe,32*1024*1024)=='20d0dde30a65afb6e5810a883700a94dcd77fbf3b44b32868d45bf7c9b30137c','OWN_WINDOWS_GIT_IDENTITY')
+    actual['sourceTree']=subprocess.check_output([str(git_exe),'-C',str(repo),'rev-parse','HEAD^{tree}'],text=True,timeout=remaining(actual,5)).strip()
+    require(subprocess.check_output([str(git_exe),'-C',str(repo),'rev-parse','HEAD'],text=True,timeout=remaining(actual,5)).strip()==actual['commit'],'OWN_WINDOWS_EVENT_SOURCE')
     context={'temp':str(own),'repo':str(repo),'actual':actual,'binding':binding}
     payload=own/'windows-context.json';payload.write_text(json.dumps(context),encoding='utf-8')
-    argv=[str(Path(sys.executable).resolve()),'-E',str(Path(__file__).resolve()),'--windows-worker',str(payload)]
-    # spawn() assigns the suspended root and reads effective limits before resume.
-    started=time.monotonic();child=job.spawn(argv,os.environ.copy())
+    allowed=('SystemRoot','WINDIR','COMSPEC','PATHEXT','NUMBER_OF_PROCESSORS','PROCESSOR_ARCHITECTURE','RUNNER_ARCH','GITHUB_ACTIONS','RUNNER_ENVIRONMENT','ImageOS','ImageVersion','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','RUNNER_NAME','GITHUB_REPOSITORY','GITHUB_SHA','GITHUB_WORKSPACE','GITHUB_JOB','RUNNER_OS','RUNNER_TEMP')
+    env={k:os.environ[k] for k in allowed if k in os.environ};env.update(PATH='C:/Windows/System32;C:/Windows;C:/Program Files/Git/cmd',PYTHONDONTWRITEBYTECODE='1')
+    argv=[str(Path(sys.executable).resolve()),'-E',str(repo/'.github/ci/host_controller03.py'),'--windows-worker',str(payload)]
+    child=job.spawn(argv,env);started=time.monotonic()
     require(job.lastHeld['pid']==child.pid and job.lastHeld['resumePreviousCount']==1,'WINDOWS_HELD_CHILD_IDENTITY')
-    proof['heldChildBeforeTargets']=True;proof['effectiveReadback']=job.controls();proof['heldChild']=job.lastHeld
-    actual['ownControlProof']=proof
-    raw_proof=json.dumps(proof,sort_keys=True,separators=(',',':')).encode()
-    with (own/'kernel-readback.json').open('xb') as evidence:evidence.write(raw_proof)
-    proof['evidenceSha256']=hashlib.sha256(raw_proof).hexdigest()
-    (own/'control-proof.json').write_text(json.dumps(proof),encoding='utf-8')
+    effective=job.lastHeld['effectiveBeforeResume']['aggregateAndWorkerJobs'][1]
+    worker={'pid':child.pid,'processStartIdentity':'FILETIME:'+job.lastHeld['creationFileTime'],'jobName':job.name,'memoryMaxBytes':effective['memoryBytes'],'tasksMax':effective['pids'],'cpuRate':effective['cpuRate'],'logicalHostCpu':os.cpu_count()}
+    proof={'schema':'sdk11-own-current-cap-evidence/v1','projectId':'03','repository':actual['repository'],'sourceCommit':actual['commit'],'sourceTree':actual['sourceTree'],'profileSha256':digest(repo/'.github/ci/integrity03-windows-profile.json'),'controllerSha256':digest(repo/'.github/ci/host_controller03.py'),'worker':worker,'heldBeforeExec':dict(worker,state='SUSPENDED',membershipBeforeRelease=True,retainedStartHandle=True),'supervisor':{'pid':actual['supervisorPID'],'processStartIdentity':actual['supervisorStartIdentity'],'deadlineMonotonicNs':actual['deadlineMonotonicNs']},'rowStartedMonotonicNs':actual['rowStartedMonotonicNs'],'deadlineMonotonicNs':actual['deadlineMonotonicNs'],'bootstrap':{'pythonVersion':platform.python_version(),'pythonExeSha256':digest(Path(sys.executable).resolve(),32*1024*1024),'gitSha256':digest(git_exe,32*1024*1024)}}
+    from runtime_policy_03 import canonical
+    (own/'control-proof.json').write_bytes(canonical(proof))
     try:
-        child.communicate(timeout=remaining(actual,WORK_SECONDS))
-        require(child.returncode==0,'WINDOWS_WORKER_INCOMPLETE')
+        while child.poll() is None:
+            require(time.monotonic_ns()<actual['deadlineMonotonicNs'],'OWN_WINDOWS_ORIGINAL_DEADLINE')
+            require(sum(p.stat().st_size for p in own.iterdir() if p.is_file() and p.suffix in ('.stdout','.stderr','.log'))<=268435456,'OWN_WINDOWS_LOG_CAP')
+            time.sleep(remaining(actual,.05))
     finally:
         if job.active():job.stop()
         child.wait(timeout=remaining(actual,5))
         require(not job.active(),'WINDOWS_OWNED_DESCENDANTS_NOT_ZERO')
-        terminal={'status':'OWN_JOB_TERMINAL_NOT_GLOBAL_READY','controls':job.controls(),'childExit':child.returncode,'durationSeconds':time.monotonic()-started}
-        (own/'controller-result.json').write_text(json.dumps(terminal,indent=2),encoding='utf-8');job.close()
+        for file in job.outputFiles:file.close()
+        terminal={'state':'OWN_WINDOWS_JOB_TERMINAL','controls':job.controls(),'childExit':child.returncode,'durationSeconds':time.monotonic()-started,'ownedPopulation':0,'retainedWorkerHandleTerminal':True}
+        (own/'controller-terminal.json').write_text(json.dumps(terminal),encoding='utf-8');retain(repo,own);job.close()
+    require(child.returncode==0 and (own/'worker-result.json').is_file(),'WINDOWS_WORKER_INCOMPLETE')
     return own
 
 

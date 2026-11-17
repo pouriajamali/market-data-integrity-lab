@@ -269,8 +269,9 @@ class WindowsJob:
         need((os.cpu_count() or 0)>0,'CPU_TOPOLOGY')
         self.rate=min(10000,math.floor(20000/os.cpu_count()))
         need(0<self.rate<=10000,'CPU_TOPOLOGY')
-        def create(rate):
-            job=K.CreateJobObjectW(None,None);need(job,'CREATE_JOB')
+        self.name='Local\\integrity03-'+token
+        def create(rate,name=None):
+            job=K.CreateJobObjectW(None,name);need(job,'CREATE_JOB')
             ext=Extended();ext.BasicLimitInformation.LimitFlags=0x2000|0x200|0x8
             ext.BasicLimitInformation.ActiveProcessLimit=PIDS;ext.JobMemoryLimit=MEMORY
             cpu=CPU(1|4,rate)
@@ -279,12 +280,16 @@ class WindowsJob:
             return job
         self.aggregate=create(self.rate)
         need(K.AssignProcessToJobObject(self.aggregate,K.GetCurrentProcess()),'CONTROLLER_JOB_ASSIGNMENT')
-        # Nested CPU percentages are relative to the parent's allocation. Worker
-        #100% preserves, rather than multiplies, the aggregate2-CPU ceiling.
-        self.job=create(10000)
+        # The dedicated named worker Job matches the shared current-host API.
+        # Its rate also remains inside the aggregate2-CPU ceiling; nesting may
+        # impose a stricter effective allocation, never a higher cap.
+        self.job=create(self.rate,self.name)
         self.lastPID=None
     def spawn(self,argv,env):
-        process=subprocess.Popen(argv,cwd=REPO,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,creationflags=0x4|0x08000000)
+        self.outputFiles=[]
+        if hasattr(self,'outputRoot'):
+            self.outputFiles=[(self.outputRoot/'worker.log').open('xb'),(self.outputRoot/'worker-error.log').open('xb')]
+        process=subprocess.Popen(argv,cwd=REPO,env=env,stdout=self.outputFiles[0] if self.outputFiles else subprocess.PIPE,stderr=self.outputFiles[1] if self.outputFiles else subprocess.PIPE,creationflags=0x4|0x08000000)
         try:
             need(self.k.AssignProcessToJobObject(self.job,wintypes.HANDLE(int(process._handle))),'SUSPENDED_CHILD_JOB_ASSIGNMENT')
             # Resume the single initial thread only after job assignment/readback.
@@ -323,7 +328,7 @@ class WindowsJob:
         return info.ActiveProcesses!=0
     def controls(self):
         records=[]
-        for job,expectedRate in [(self.aggregate,self.rate),(self.job,10000)]:
+        for job,expectedRate in [(self.aggregate,self.rate),(self.job,self.rate)]:
             ext=self.Extended();cpu=self.CPU()
             need(self.k.QueryInformationJobObject(job,9,ctypes.byref(ext),ctypes.sizeof(ext),None),'JOB_LIMIT_READBACK')
             need(self.k.QueryInformationJobObject(job,15,ctypes.byref(cpu),ctypes.sizeof(cpu),None),'JOB_CPU_READBACK')

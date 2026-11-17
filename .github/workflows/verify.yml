@@ -11,6 +11,16 @@ on:
         type: choice
         options: [product, input-curation]
         default: product
+      validation_rid:
+        description: Manual product row selection; tag releases always require both
+        type: choice
+        options: [both, linux-x64, win-x64]
+        default: both
+      curation_rid:
+        description: One own graph to curate; no product or release
+        type: choice
+        options: [linux-x64, win-x64]
+        default: linux-x64
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
   DOTNET_GENERATE_ASPNET_CERTIFICATE: "false"
@@ -67,7 +77,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - name: Own current held caps and fixed input or product gate
-        if: github.event.inputs.stage != 'input-curation' || matrix.rid == 'linux-x64'
+        if: (github.event.inputs.stage == 'input-curation' && matrix.rid == github.event.inputs.curation_rid) || (github.event.inputs.stage != 'input-curation' && (github.event_name != 'workflow_dispatch' || github.event.inputs.validation_rid == 'both' || github.event.inputs.validation_rid == matrix.rid))
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
@@ -75,7 +85,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $bindingPath = Join-Path $PWD '.github/ci/integrity03-supported-binding.json'
-          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'e4c7b6f01313e27b130fad124e2b84eda9c15412684dc9b6bec00f3f0c9e4aaf') { throw 'BINDING_IDENTITY' }
+          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne '98bbae7d7b0dab97df2da28be802cc2becd8e13b6a4b8be351e0f02f8de0131d') { throw 'BINDING_IDENTITY' }
           $binding = [IO.File]::ReadAllText($bindingPath) | ConvertFrom-Json
           if ($IsWindows) {
             $python = Join-Path $env:RUNNER_TOOL_CACHE $binding.controllerPython.'win-x64'.pathRelativeToRunnerToolCache
@@ -89,10 +99,10 @@ jobs:
           } else { $python = $binding.controllerPython.'linux-x64'.path; $expected = $binding.controllerPython.'linux-x64'.sha256 }
           if (-not [IO.Path]::IsPathFullyQualified($python)) { throw 'ABSOLUTE_EXISTING_CONTROLLER_REQUIRED' }
           if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) { throw 'CONTROLLER_IDENTITY' }
-          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 e4c7b6f01313e27b130fad124e2b84eda9c15412684dc9b6bec00f3f0c9e4aaf --stage $env:OWN_STAGE
+          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 98bbae7d7b0dab97df2da28be802cc2becd8e13b6a4b8be351e0f02f8de0131d --stage $env:OWN_STAGE
           if ($LASTEXITCODE -ne 0) { throw 'OWN_CI_ROUTE_INCOMPLETE' }
       - name: Retain tested runtime archive
-        if: (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && github.event.inputs.stage != 'input-curation'
+        if: (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && github.event.inputs.stage != 'input-curation' && (github.event_name != 'workflow_dispatch' || github.event.inputs.validation_rid == 'both' || github.event.inputs.validation_rid == matrix.rid)
         uses: actions/upload-artifact@v4
         with:
           name: binary-${{ matrix.rid }}
