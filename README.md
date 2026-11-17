@@ -1,40 +1,25 @@
 # Market Data Integrity Lab
 
-Current CLI preview: **[v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1)**, built with SDK **10.0.404**
-and bundled runtime **10.0.15**. [Tagged source](https://github.com/pouriajamali/market-data-integrity-lab/tree/v0.6.1-preview.1) Ãƒâ€šÃ‚Â·
-[Exact release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681).
-The separate CSV action retains its immutable **v0.6.0-preview.1** binaries and
-exact checksum pins.
+Current CLI preview: **[0.6.2-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1)**, built
+with SDK **11.0.100**, **net11.0**, stable **C#15** and bundled runtime **11.0.0**.
+[Exact runtime source](https://github.com/pouriajamali/market-data-integrity-lab/tree/cli-v0.6.2-preview.1) Â·
+[Release verification and limitations](docs/RELEASE-v0.6.2-preview.1.md).
 
-The unreleased **0.6.2-preview.1** candidate targets SDK **11.0.100**,
-**net11.0**, stable **C# 15** and bundled runtime **11.0.0**.
-[Linux input CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44096474043)
-verified the17 frozen test dependency signatures and generated the four source
-locks and Linux RID lock. [Linux product CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44098116245)
-passed165 units and the fixed pre-packaging scenarios, then stopped at a consumer
-cache-hash comparison. After correcting that comparison,
-[packaging CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44100029409)
-passed60 extracted-apphost checks using unchanged product/oracle source; it did
-not repeat the165 units. The tested36,614,199-byte Linux candidate was downloaded
-and its SHA256/manifest matched. It is not a public release.
-
-On2026-11-17 the owner stopped further GitHub Actions because the quota was
-exhausted. No new CI, tag or release is authorized under that stop. Windows native
-input acceptance, its actual RID lock/product tests and the final exact-tag
-release gate remain incomplete. The final documentation commit is signed and
-pushed with `[skip ci]`; it has no new CI result. Existing workflows and
-protection/security/billing settings remain unchanged. No behavior, schema or
-performance change is claimed. New .NET11 x64 bundles require **x86-64-v2** hardware.
-The published downloads above remain the accepted .NET10 release.
-[Candidate evidence and remaining gates](docs/RELEASE-v0.6.2-preview.1.md).
+**165 tests and60 extracted-apphost invocations passed on each OS.** Linux uses
+retained verified CI; Windows used the qualified local SDK and bounded native
+Jobs. Publication is direct: **no new Actions or release-tag CI** after the owner
+quota stop. Healthy completed checks were reused. Application behavior, schemas,
+fixtures and four vendor pins remain unchanged; the independent CSV action keeps
+its immutable **0.6.0-preview.1** assets and exact pins. No new performance claim.
+New x64 bundles require **x86-64-v2** hardware.
 
 Check **local OHLC CSV without silent rounding**, inspect quarantined rows, and
 study separate synthetic validation/process-crash recovery examples. This offline
 C#/.NET lab uses an explicit CSV profile; it does not connect to a market or
 account and does not trade. User-file provenance is UNVERIFIED.
 
-[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) Ãƒâ€šÃ‚Â·
-[Download v0.6.1-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1) Ãƒâ€šÃ‚Â·
+[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) ·
+[Download 0.6.2-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1) ·
 [Source and developer commands](docs/DEVELOPMENT.md)
 
 ## Try the CSV preview
@@ -42,7 +27,7 @@ account and does not trade. User-file provenance is UNVERIFIED.
 [Watch the original 0.6.0 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
 The CSV demo generates six rows: two accepted and four quarantined. Then use
 `validate-csv` with your own local file and explicit price/volume scales.
-[CSV format and command](#check-your-own-csv) Ãƒâ€šÃ‚Â· [Download and run](#download-and-run)
+[CSV format and command](#check-your-own-csv) ·
 
 For a repeatable check on your own runner, use the
 [CSV CI action](docs/CSV-CI.md). It verifies its pinned signed v0.6.0-preview.1
@@ -69,7 +54,7 @@ parser problem, provide a small invented fixture using the format in
 allocated more managed bytes than A2. The 100k operation median was 2.720s versus
 1.625s (3 samples per mode). The modes use different writer/flush/checkpoint paths;
 the study did **not** isolate their causal shares. Allocation is not peak memory.
-These measurements describe [d9ece502/v0.4](docs/CASE-STUDY.md), **not the current 0.6.1
+These measurements describe [d9ece502/v0.4](docs/CASE-STUDY.md), **not the current 0.6.2
 binaries**. [Raw samples](docs/evidence/measurements/results.json) and
 [local red/green development evidence](docs/evidence/development/index.json)
 remain inspectable. No speed or production-performance claim follows.
@@ -77,15 +62,15 @@ remain inspectable. No speed or production-performance claim follows.
 ## Download and run
 
 Choose your x64 platform. Follow the [provenance guide](PROVENANCE.md) to verify
-[the checksum signature](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SHA256SUMS.txt.sig) with the trusted fingerprint
-and [public key](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SIGNING-PUBLIC-KEY.pub), then check the selected archive against
-[SHA256SUMS.txt](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/SHA256SUMS.txt),
+[the checksum signature](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/SHA256SUMS.txt.sig) with the trusted fingerprint
+and [public key](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/SIGNING-PUBLIC-KEY.pub), then check the selected archive against
+[SHA256SUMS.txt](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/SHA256SUMS.txt),
 then extract **the whole directory**. Keep the app beside its bundled runtime.
 
-- [Windows x64 ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1-win-x64.zip)
-- [Linux glibc x64 tar.gz](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1-linux-x64.tar.gz)
+- [Windows x64 ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/market-data-integrity-lab-v0.6.2-preview.1-win-x64.zip)
+- [Linux glibc x64 tar.gz](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/market-data-integrity-lab-v0.6.2-preview.1-linux-x64.tar.gz)
 
-Developers can also download the [source ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.1-preview.1/market-data-integrity-lab-v0.6.1-preview.1.zip).
+Developers can also download the [source ZIP](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/cli-v0.6.2-preview.1/market-data-integrity-lab-v0.6.2-preview.1.zip).
 
 Windows PowerShell, from the extracted directory:
 
@@ -107,18 +92,17 @@ target is glibc x64, tested on Ubuntu 24.04; Alpine/musl, ARM and macOS are not
 included. Windows is x64; actual tested OS versions are recorded in build/CI
 receipts. Application binaries are not OS code-signed; SSH release provenance
 is separate. See
-[.NET native prerequisites](https://github.com/dotnet/core/blob/main/release-notes/10.0/dotnet-dependencies.md).
+[.NET native prerequisites](https://github.com/dotnet/core/blob/main/release-notes/11.0/dotnet-dependencies.md).
 
 Each package includes `BUILD-MANIFEST.json` (version, exact source commit, RID,
 SDK, bundled runtime and payload hashes), licenses and a short offline quickstart.
-CI extracts the archives and directly runs the apphosts from paths/cwd containing
-spaces, with empty PATH and nonexistent DOTNET_ROOT. The hosts may themselves
-have SDKs installed; that is **not** a claim of an empirically SDK-free host test.
-
-The [exact release CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/42882215681) at commit
-06f3b6104446fa7b781c70cc759d0a8eed4e3fa8 passed **165 tests and 60 extracted-apphost
-invocations on each OS**, using .NET 10.0.15. This is functional/native-package
-evidence; the historical A4 performance study was not rerun.
+Matching-OS verification extracts the archives and directly runs the apphosts
+from paths/cwd containing spaces, with empty PATH and nonexistent DOTNET_ROOT.
+The hosts may have SDKs installed; this does not claim an SDK-free machine.
+Linux retained165 unit tests plus60 apphost checks; local Windows passed the
+same165 units and60 apphost checks. See the [release notes](docs/RELEASE-v0.6.2-preview.1.md)
+and [portable evidence](docs/evidence/technology-refresh-20261117.json).
+The historical A4 performance study was not rerun.
 
 ## Check your own CSV
 
@@ -167,7 +151,7 @@ Paths, supplied argument values and CSV rows are never echoed by these messages.
 
 The parser, `ohlc-csv-v1`, report bytes, and file-fatal versus row-quarantine
 rules remain unchanged. Other command usage stays the same.
-[Release notes](docs/RELEASE-v0.6.1-preview.1.md) Ãƒâ€šÃ‚Â·
+[Release notes](docs/RELEASE-v0.6.1-preview.1.md) ·
 [Exact diagnostics and examples](docs/CSV.md#command-argument-refusal)
 
 ## Separate synthetic demo
@@ -213,10 +197,10 @@ partial decisions/checkpoints, fallback and repeated interruptions.
 - B2 adds offline CSV checks. Current binaries have not been performance-measured. Historical
   tags, archives and raw measurement bytes remain unchanged.
 
-[CSV contract](docs/CSV.md) Ãƒâ€šÃ‚Â· [Synthetic input contract](docs/CONTRACT.md) Ãƒâ€šÃ‚Â· [Sequence contract](docs/SEQUENCE.md) Ãƒâ€šÃ‚Â·
-[Recovery contract](docs/RECOVERY.md) Ãƒâ€šÃ‚Â· [Case study](docs/CASE-STUDY.md) Ãƒâ€šÃ‚Â·
-[Claim-to-evidence map](docs/EVIDENCE.md) Ãƒâ€šÃ‚Â· [Measurement definitions](docs/MEASUREMENTS.md) Ãƒâ€šÃ‚Â·
-[Design](docs/DESIGN.md) Ãƒâ€šÃ‚Â· [Changes](CHANGELOG.md)
+[CSV contract](docs/CSV.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Synthetic input contract](docs/CONTRACT.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Sequence contract](docs/SEQUENCE.md) ·
+[Recovery contract](docs/RECOVERY.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Case study](docs/CASE-STUDY.md) ·
+[Claim-to-evidence map](docs/EVIDENCE.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Measurement definitions](docs/MEASUREMENTS.md) ·
+[Design](docs/DESIGN.md) ·
 
 ## Verify release provenance
 
@@ -235,16 +219,18 @@ assessed individual code share. [MIT license](LICENSE) covers original sample
 material; bundled .NET runtime and third-party notices retain their own terms.
 See [NOTICE](NOTICE.md). CV/profile/shared projects are outside this repository.
 
-[CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
+[CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Previously published tags and assets remain immutable; the new preview is delivered directly without Actions.
 
 
-## SDK11 shared input route and current execution stop
+## SDK11 shared inputs and direct delivery
 
-The exact shared SDK module c37e2f48 and normal catalog8995a4d2 are consumed unchanged,
-including the accepted producer Linux/Windows SDK host facts. Each consumer call
-independently binds current03 source, its held worker, own kernel limits and the
-original deadline. Producer host qualification is not Windows native-package or
-product acceptance. Linux input/build/test/package evidence is recorded above;
-the Windows native gate remains closed. The owner no-Actions instruction now
-supersedes execution of these workflow routes. Future execution/publication needs
-fresh owner authority and the remaining unchanged validation/signature gates.
+The shared SDK module c37e2f48 and normal catalog8995a4d2 remain unchanged.
+Existing producer facts establish byte identity; the actual local Windows host
+was separately qualified under current03 caps before product execution.
+Native runtime originals came from the sole shared producer and were verified
+by the qualified SDK. Current certificate/CRL identities and advisory snapshot
+were reused only within their exact scope and freshness windows.
+No second common-source writer, new SDK installation or Actions execution was used.
+Both native delivery gates passed; the signed preview is published directly.
+The [CI resource policy](docs/CI-POLICY.md) retains the configured workflows and
+records the owner's no-Actions boundary separately from local test results.

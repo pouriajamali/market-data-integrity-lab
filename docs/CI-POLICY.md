@@ -1,13 +1,18 @@
 # CI resource policy
 
-**Owner stop,2026-11-17:** no further GitHub Actions execution is authorized because
-the quota is exhausted. Complete only already-authorized local work, sign and
-push safe feature-branch documentation/source heads with `[skip ci]` after reading
-the actual event triggers. Do not create a tag/release/PR/merge or push that can
-start Actions. Keep required checks, protection, workflows and security/billing
-settings unchanged. CI after this stop is recorded as not run per owner, never as
-passed. The workflow policy below describes the retained configuration; it grants
-no execution authority while the owner stop remains in force.
+**Owner boundary,2026-11-17:** GitHub Actions remain unavailable and forbidden.
+The owner explicitly authorized valid bounded local qualification/build/test,
+packaging/signing and direct GitHub publication. Existing healthy Linux CI and
+archives are reused; actual Windows results are local, not CI. Release-tag CI is
+recorded as **not run per owner**. No guard, required check, branch protection,
+workflow, trust store, security or billing setting is weakened.
+
+The signed `cli-v0.6.2-preview.1` tag matches neither `v*` nor `csv-action-v*`.
+Both actual workflows have push/pull_request/workflow_dispatch only, with no
+release/create trigger. Signed main/feature delivery heads use `[skip ci]` after
+local/remote trigger inspection. There is no dispatch, rerun or PR event.
+This authorized direct delivery replaces the Actions release transport and
+retains actual matching-OS tests, archive checks and known-key signatures.
 
 This workflow policy separates documentation checks from unchanged runtime builds. It does not change application behavior, dependencies, release versions, published assets, account budgets or repository protection.
 

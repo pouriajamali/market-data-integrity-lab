@@ -1,0 +1,117 @@
+{
+  "schema": "integrity03-direct-preview-delivery/v1",
+  "version": "0.6.2-preview.1",
+  "releaseTag": "cli-v0.6.2-preview.1",
+  "runtimeSourceCommit": "8c48e6ad827fcfc492b29a754e21361bcca71f0a",
+  "SDK": "11.0.100",
+  "targetFramework": "net11.0",
+  "language": "C#15",
+  "runtime": "11.0.0",
+  "channel": "preview",
+  "applicationBehaviorChanged": false,
+  "vendorPinsChanged": false,
+  "CSVActionVersionUnchanged": "0.6.0-preview.1",
+  "Linux": {
+    "unitTests": 165,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "notRun": 0,
+    "prepackagingRun": 44098116245,
+    "prepackagingSource": "f9f904fbfa0e0dfe86196af8b110b0eff49aed0e",
+    "runtimeSourceIdentityGate": "same non-documentation product/input/oracle source",
+    "packagingRun": 44100029409,
+    "packagingSource": "8c48e6ad827fcfc492b29a754e21361bcca71f0a",
+    "apphostInvocations": 60,
+    "host": "GitHub Ubuntu 24.04 x64",
+    "archiveSHA256": "742dcbd0e911f0e747169df8026a39580134e9daa4e9a7060acaef1c5c5cbffd",
+    "archiveBytes": 36614199,
+    "existingHealthyEvidenceReplayed": false
+  },
+  "Windows": {
+    "unitTests": 165,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "notRun": 0,
+    "prepackagingSource": "8c48e6ad827fcfc492b29a754e21361bcca71f0a",
+    "packagingSource": "8c48e6ad827fcfc492b29a754e21361bcca71f0a",
+    "apphostInvocations": 60,
+    "host": "Actual local Windows client 26H2, kernel10.0.26300.9974 AMD64",
+    "hostQualification": "Eight fixed SDK commands actually passed in private copy of previously acquired exact official SDK tree; no new SDK installation",
+    "hostLimit": "Project compatibility evidence on this machine; not a GitHub Server2025 result or an explicit Microsoft .NET11/26H2 support-matrix certification",
+    "archiveSHA256": "eb0a1b3fa820e5a70868daaa1d4095b4933187108b6c2e1d882c6fd6bbdb9ce4",
+    "archiveBytes": 38517555,
+    "kernelCaps": {
+      "memoryBytes": 4294967296,
+      "maxProcesses": 128,
+      "cpuCoresCeiling": 2,
+      "scratchBytes": 8589934592,
+      "logBytes": 268435456,
+      "phaseDeadlineSeconds": 1110,
+      "heldWorkerReadback": true,
+      "terminalActiveProcesses": 0
+    },
+    "nativeInputVerification": [
+      {
+        "id": "Microsoft.AspNetCore.App.Runtime.win-x64",
+        "version": "11.0.0",
+        "normalizedNuGetContentHash": "9C5d4MdoOMnvqiWgUSl3ScvXHB41XYMEpXLwrgZJOhQuD4ekSlBLVzj8wDVKTjL1OGQTYMCfcOys/7e+zny0yg==",
+        "actualNativeVerificationExit": 0
+      },
+      {
+        "id": "Microsoft.NETCore.App.Runtime.win-x64",
+        "version": "11.0.0",
+        "normalizedNuGetContentHash": "nAsnzl0M8c9nqmkmC/+eIgTsfLadtoCMkSYlerf3fuasvKYNhVXmbxpi2bJzpx3kW343wuH4HI38DDZ8QeAA4A==",
+        "actualNativeVerificationExit": 0
+      }
+    ],
+    "nativeCertificateCRLProof": "Exact certificate/role/CRL identity and current data-window reuse of producer fact b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df; new package/CMS/RFC3161/hash verification actually performed by qualified SDK",
+    "RIDGraph": {
+      "state": "ACTUAL_SDK_WIN_RID_GRAPH",
+      "sourceCommit": "8c48e6ad827fcfc492b29a754e21361bcca71f0a",
+      "downloadDependencies": [
+        {
+          "name": "Microsoft.NETCore.App.Runtime.win-x64",
+          "version": "[11.0.0, 11.0.0]"
+        }
+      ],
+      "generatedLockSHA256": "249bf7485faffcb2b0cdeb5d90c9984eb9e80e235813ee4b7c3046ea2aaeb346"
+    },
+    "publishProperty": "DisableTransitiveFrameworkReferenceDownloads=true",
+    "publishPropertyScope": "Documented SDK option omits unreferenced ASP.NET/Desktop runtime downloads. Plain console app actually requires CoreRuntime11.0.0 only. Missing required packs still fail. Prior two native signatures are retained, not repeated."
+  },
+  "packageChecks": {
+    "directApphost": true,
+    "emptyPATH": true,
+    "nonexistentDOTNET_ROOT": true,
+    "extractedPathAndCwdHaveSpaces": true,
+    "nativeArchiveToCacheMembersAndNoticesVerified": true,
+    "selfContained": true,
+    "singleFile": false,
+    "trimmed": false,
+    "AOT": false,
+    "ReadyToRun": false,
+    "OSBinaryCodeSigned": false
+  },
+  "deliveryPolicy": {
+    "ownerActionsStop": "2026-11-17T14:26:39Z",
+    "newActionsExecuted": 0,
+    "newSDKDownloadsOrInstalls": 0,
+    "newBillingInfrastructureSecurityChanges": 0,
+    "exactReleaseTagCI": "NOT_RUN_PER_OWNER_NO_ACTIONS",
+    "pipeline": "Original local package/check/signing tools plus direct GitHub release asset API. Existing healthy Linux CI reused. Signed cli-v tag deliberately avoids v* and csv-action-v* push filters; no release/create event exists. Main/feature documentation head uses [skip ci]."
+  },
+  "retainedReceiptsSHA256": {
+    "local-windows-package-direct-framework-8c48e6a-20261117/WINDOWS-PREPACKAGING.json": "a26904f17c98f181ea5e5738383f99de499bfcc1997716d2d1024c86389ecf55",
+    "local-windows-package-direct-framework-8c48e6a-20261117/APPHOST60.json": "f2d97355badc19e5a16bc32bc6089c02ba4845db772f042684737bdd5ac9407c",
+    "local-windows-package-direct-framework-8c48e6a-20261117/TERMINAL.json": "3d6ead2bef54a09cd6d8469d6b70aa9e8d011f09e022e33e1c21fe5a78445fb0",
+    "local-windows-package-direct-framework-8c48e6a-20261117/LEASE-RELEASED.json": "15f04ebdcc303119545bc11593b71533d616fbc395e0a4ca05c25be1e0a8a810",
+    "local-windows-prepack-localgit-8c48e6a-20261117/WINDOWS-PREPACKAGING.json": "95d551663145c3e02700b9acdb40660f8bc124a7dd576198003976b16abc1b3e",
+    "local-windows-prepack-localgit-8c48e6a-20261117/TERMINAL.json": "3d6ead2bef54a09cd6d8469d6b70aa9e8d011f09e022e33e1c21fe5a78445fb0",
+    "local-windows-native-package-8c48e6a-20261117/NATIVE-INPUT-QUALIFICATION.json": "8d2293013139435b4caae13ff3169d9d12701ab426e43bf2b9a066df7774c737",
+    "local-sdk11-qualification-20261117/QUALIFICATION.json": "a9f1f7dd0fa95b2125c4add1a65b28f938ae33315b5435c5cb95ea7c69c5e68c",
+    "local-sdk11-qualification-20261117/TERMINAL.json": "1946d2861dd80245d56fccabba52c4efcd57adfc3079c0a42e081a6079b9a6a9",
+    "own-linux-packaging-8c48e6a-once/tested-binary-readback/READBACK.json": "61733cbb1ef6cca45ba82080f4b0f6be03cf6338c676994d338dd8c479fd6847"
+  }
+}

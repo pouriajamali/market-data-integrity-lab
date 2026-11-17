@@ -14,7 +14,7 @@ identity proof. The key is public; never share or request the private signing ke
 
 ## What is signed
 
-The commands below verify [**v0.6.1-preview.1**](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/v0.6.1-preview.1). Its
+The commands below verify [**0.6.2-preview.1**](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1). Its
 `SHA256SUMS.txt.sig` is an SSH signature over the exact `SHA256SUMS.txt` bytes in
 the `file` namespace. Verify that signature first, then the chosen archive's hash.
 A matching unsigned hash alone is not authenticated provenance.
@@ -47,8 +47,8 @@ from the signed checksum file to verify a different OS archive.
 
 ```sh
 repo='pouriajamali/market-data-integrity-lab'
-tag='v0.6.1-preview.1'
-archive='market-data-integrity-lab-v0.6.1-preview.1.zip'
+tag='cli-v0.6.2-preview.1'
+archive='market-data-integrity-lab-v0.6.2-preview.1.zip'
 for name in "$archive" SHA256SUMS.txt SHA256SUMS.txt.sig SIGNING-PUBLIC-KEY.pub; do
   curl --fail --location --output "$name" "https://github.com/$repo/releases/download/$tag/$name" || exit 1
 done
@@ -78,8 +78,8 @@ These commands do not install tools or change security settings.
 ```powershell
 $ErrorActionPreference = 'Stop'
 $repo = 'pouriajamali/market-data-integrity-lab'
-$tag = 'v0.6.1-preview.1'
-$archive = 'market-data-integrity-lab-v0.6.1-preview.1.zip'
+$tag = 'cli-v0.6.2-preview.1'
+$archive = 'market-data-integrity-lab-v0.6.2-preview.1.zip'
 foreach ($name in @($archive, 'SHA256SUMS.txt', 'SHA256SUMS.txt.sig', 'SIGNING-PUBLIC-KEY.pub')) {
     Invoke-WebRequest -Uri "https://github.com/$repo/releases/download/$tag/$name" -OutFile $name
 }
@@ -122,7 +122,7 @@ signature over different bytes or a matching hash for another filename does not
 verify the chosen archive. Preserve failures and obtain a trusted copy rather
 than skipping a failed signature or fingerprint check.
 
-## Current tagged release and unchanged legacy pins
+## Historical 0.6.1 release and unchanged legacy pins
 
 The annotated signed `v0.6.1-preview.1` tag object is
 `a39b0e9843d73ec4328a39afc5bb96bc5b1d0cd0` and peels to
@@ -148,15 +148,22 @@ The old v0.6.0-preview.1 release/tag, archives and checksum signature remain
 unchanged. The separately versioned CSV action still pins those original
 binaries/hashes; current CLI verification does not silently repin the action.
 
-## Unreleased technology candidate
+## Current .NET11 preview provenance
 
-0.6.2-preview.1 is source preparation only. No tag, checksum, signature, binary
-or public download for it is claimed here. Existing instructions and immutable
-0.6.1-preview.1 downloads above still describe the accepted release.
+The signed annotated `cli-v0.6.2-preview.1` tag object is `929fd4ddea429137327638b666817cb499a0a589`
+and peels to exact runtime source `8c48e6ad827fcfc492b29a754e21361bcca71f0a`. Both tested runtime
+BUILD-MANIFEST.json files identify that source, SDK11.0.100 and runtime11.0.0.
+The immutable source ZIP retains its original candidate documentation; current
+publication notes and actual Windows RID lock are supplied separately in the
+signed-checksum `RELEASE-EVIDENCE.zip` and current repository documentation.
 
-Before publication, bind the new signed source commit and annotated tag to both
-matching-native exact-tag CI results and same-commit tested archives. Verify the
-actual11.0.100 SDK,11.0.0 bundled runtime, RID, source and license inventory; sign
-the final checksum bytes with the established trusted key. Then verify all six
-actual public downloads and live repository/release/README/About links. No old
-cached-archive exception or old test receipt proves this new candidate.
+Linux retained verified CI165 units and60 extracted-apphost checks. Windows
+passed165 units and60 extracted-apphost checks locally under current own caps,
+using the separately qualified existing SDK. No new Actions or release-tag CI
+ran after the owner quota stop. See [actual verification and host limits](docs/RELEASE-v0.6.2-preview.1.md).
+
+The known-key SSH signature covers the exact four checksum entries: two native
+runtime archives, the exact-source ZIP and the evidence ZIP. Verify the signature
+first, then the chosen archive. The separately published public key must match
+the independently trusted fingerprint above. Historical releases/signatures and
+the independent CSV action pins remain unchanged.

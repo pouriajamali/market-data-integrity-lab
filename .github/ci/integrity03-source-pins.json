@@ -172,12 +172,12 @@
     {
       "path": "PROVENANCE.md",
       "mode": "100644",
-      "gitBlob": "c518dcacf8adfbeb042e027f2688a78a9aa57df9"
+      "gitBlob": "2e96caa0a6f5dc766a862ec3eead3f3b685ea788"
     },
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "3bd44499266a291628e6c8bc911ae9ff50795db2"
+      "gitBlob": "4b582fdcc073b8f3cdbdbe22ab2628bf9f651214"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -202,7 +202,7 @@
     {
       "path": "docs/CI-POLICY.md",
       "mode": "100644",
-      "gitBlob": "5ebebc45ec33db68a1d11c4393f1fad0806e855f"
+      "gitBlob": "567302000e6406c9bef54d61dec873e005790ca7"
     },
     {
       "path": "docs/CONTRACT.md",
@@ -227,7 +227,7 @@
     {
       "path": "docs/DEVELOPMENT.md",
       "mode": "100644",
-      "gitBlob": "8e56e81c5fb9ca08d77615abed67f151080a2a80"
+      "gitBlob": "9045421d7e24d23a3f8869e6fa1cb7dd96ddc61c"
     },
     {
       "path": "docs/EVIDENCE.md",
@@ -252,7 +252,7 @@
     {
       "path": "docs/RELEASE-v0.6.2-preview.1.md",
       "mode": "100644",
-      "gitBlob": "7c6894bfb6e4e4e1af5615907aea783d314464d5"
+      "gitBlob": "b6d1b49423f01185344f4e49d653b74bda46ca17"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -363,6 +363,16 @@
       "path": "docs/evidence/net11-inputs/linux-terminal.json",
       "mode": "100644",
       "gitBlob": "722f8b07010c4c5dcbceb43fe62a2a88ece5349b"
+    },
+    {
+      "path": "docs/evidence/technology-refresh-20261117.json",
+      "mode": "100644",
+      "gitBlob": "8723136cabf039fba7a46efe7ce025d633c41c04"
+    },
+    {
+      "path": "docs/evidence/technology-refresh-win-x64.lock.json",
+      "mode": "100644",
+      "gitBlob": "7300880e47c8b218048b9f98d1a09986db4345e5"
     },
     {
       "path": "docs/measurement-protocol.json",
