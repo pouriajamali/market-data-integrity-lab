@@ -106,7 +106,7 @@ def linux_starter(repo,temp,actual,binding,pinned_binding):
           '--property=ExecStopPost='+observer,'--property=SendSIGKILL=yes','--property=FinalKillSignal=SIGKILL','--property=MemoryMax=4294967296','--property=MemorySwapMax=0','--property=TasksMax=128',
           '--property=CPUQuota=200%','--property=CPUQuotaPeriodSec=100ms',
           '--property=RuntimeMaxSec='+str(remaining(actual,WORK_SECONDS)-20),'--property=TimeoutStopSec=5','--property=KillMode=control-group',
-          '--property=Environment='+ ' '.join(k+'='+os.environ[k] for k in ('GITHUB_SHA','GITHUB_ACTIONS','RUNNER_ARCH','GITHUB_WORKSPACE','RUNNER_TEMP','GITHUB_REPOSITORY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','RUNNER_NAME','RUNNER_ENVIRONMENT','RUNNER_OS','ImageOS','ImageVersion') if k in os.environ),'--property=WorkingDirectory='+str(repo),'--property=StandardOutput=append:'+str(own/'worker.log'),
+          *['--setenv='+k+'='+os.environ[k] for k in ('GITHUB_SHA','GITHUB_ACTIONS','RUNNER_ARCH','GITHUB_WORKSPACE','RUNNER_TEMP','GITHUB_REPOSITORY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','RUNNER_NAME','RUNNER_ENVIRONMENT','RUNNER_OS','ImageOS','ImageVersion') if k in os.environ],'--property=WorkingDirectory='+str(repo),'--property=StandardOutput=append:'+str(own/'worker.log'),
           '--property=StandardError=append:'+str(own/'worker-error.log'),
           str(Path(sys.executable).resolve()),'-E',str(repo/'.github/ci/host_controller03.py'),'--held-worker',str(context)]
     subprocess.run(argv,check=True,timeout=remaining(actual,15))

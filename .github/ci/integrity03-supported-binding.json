@@ -38,7 +38,7 @@
     },
     {
       "path": ".github/ci/supported_ci_route_03.py",
-      "sha256": "ff9111b7aa21e99369557f85cd1e2be209b12fec4f6d004969e1b839e4c8d714"
+      "sha256": "207828c33ae68c1ab8ab17bc2da9f6f17f9f709abe1ba02482c715edc1238ae5"
     },
     {
       "path": ".github/ci/runtime_policy_03.py",
