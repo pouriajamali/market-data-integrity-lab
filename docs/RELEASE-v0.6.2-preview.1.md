@@ -48,3 +48,5 @@ exact integer scaling, fixed safe diagnostics and no live feed/account/trading.
 Microsoft references: [C#15](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15),
 [.NET11 breaking changes](https://learn.microsoft.com/en-us/dotnet/core/compatibility/11),
 [x64 hardware minimum](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/minimum-hardware-requirements).
+
+The authorized own input-curation route consumes the finalized common SDK inputs. Own graph, build, test and release gates remain pending. Windows native input acceptance remains a separate producer04 dependency.

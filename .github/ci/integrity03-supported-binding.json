@@ -1,9 +1,11 @@
 {
   "schema": "integrity03-supported-ci-binding/v1",
-  "status": "INERT_DESIGN_NOT_ADMITTED",
+  "status": "AUTHORIZED_OWN_SOURCE_CURRENT_HOST_PROOF_REQUIRED",
   "projectId": "03",
-  "purpose": "NO_TARGET_EXECUTION",
-  "contractSha256": "580764a79b07f9a64a4f15acd01d41f276917d95d16f8a10c6caacd0b8d79e06",
+  "purpose": "OWN_FIXED_INPUT_AND_PRODUCT",
+  "nativeInputRids": [
+    "linux-x64"
+  ],
   "profile": {
     "projectId": "03",
     "memoryBytes": 4294967296,
@@ -13,30 +15,62 @@
     "outerJobSeconds": 1200
   },
   "controllerSha256": "1d88063392cfc2565fb19d5177a0697e40fa10e7f5439691ba3896e9bbab79b5",
-  "actualProducerFactsProvided": [
-    "Linux only757ab; acceptance0452; no own runtime admission"
-  ],
-  "requiredBeforeActivation": [
-    "Windows normal DENIED; Linux transport requires exact own runtime policy and current held evidence",
-    "Actual immutable qualifiedOn run/job/source/host evidence and separate admittedFor class/image policy",
-    "Current own numeric API job identity/source/tree/host/UID/caps/held-child/terminal receipts",
-    "Real input catalog, Core/Host pack, actionlint/trusted tool identities and exact portable04 transport source/API admission",
-    "Admitted source/RID net11 locks with pinned package graph and actual notices/audit",
-    "Exact workflow source/CI event/artifact/storage/zero-cost/protection gate; no local fallback"
-  ],
-  "consumerAdmissionInterface": {
-    "schemaId": "urn:pouria:dotnet11-host-qualification:v1",
-    "definition": "#/$defs/consumerAdmission",
-    "schemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
-    "sourceState": "FROZEN_SOURCE_INTERFACE_ONLY_NOT_APPLIED_NO_ACTUAL_FACTS"
+  "contractSha256": "26a18c7015cf7df9597afcd6e6696dabc99d41fbf88de3ece8ea1f3f20ee3f21",
+  "controllerPython": {
+    "linux-x64": {
+      "path": "/usr/bin/python3.12",
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "win-x64": {
+      "pathRelativeToRunnerToolCache": "Python/3.12.10/x64/python.exe",
+      "sha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a"
+    }
   },
-  "controllerEnvelopeBoundary": "Private inert source policy only. Actual consumerAdmission is instantiated against the canonical definition AFTER own current job/kernel observations; no currentExecution placeholder or fake native fact is provided.",
-  "requiredInputs": [
-    "Accepted canonical producer04 host fact and its immutable qualifiedOn",
-    "Canonical admittedFor producerFact/member/contract/source/profile pins",
-    "Actual currentExecution and ownCapsEvidenceSha256",
-    "Exact manager source/host/CI gate before any import or execution"
+  "trustedTools": {
+    "/usr/bin/sudo": "6ae6665cc51295ea8aaba94a3377dafa563f950aafc6296c0704fb33401a31ff",
+    "/usr/bin/systemd-run": "de28cc5757d3789efa5f6fed5659893410469f68b42175d4531f5b34d3a09e16",
+    "/usr/bin/systemctl": "37ec607113f55f1b385b4fa75588a43402aec0de57927500763b267713f10f63"
+  },
+  "sourceFiles": [
+    {
+      "path": ".github/ci/host_controller03.py",
+      "sha256": "1d88063392cfc2565fb19d5177a0697e40fa10e7f5439691ba3896e9bbab79b5"
+    },
+    {
+      "path": ".github/ci/supported_ci_route_03.py",
+      "sha256": "ff9111b7aa21e99369557f85cd1e2be209b12fec4f6d004969e1b839e4c8d714"
+    },
+    {
+      "path": ".github/ci/runtime_policy_03.py",
+      "sha256": "07c1ef638fed8cc7278d3035ce260150ced2bb463817f03964a65ccd643851a6"
+    },
+    {
+      "path": ".github/ci/curate_inputs_03.py",
+      "sha256": "eb008403093d41113d3beb877d8b9d1dfcc4e1734ae7170cabc9c8dae6f70465"
+    },
+    {
+      "path": ".github/ci/typed_host_03.py",
+      "sha256": "7c09e36e75b19c47fd84114e26debbf68afa386abe191f31022d0f205eac2f7a"
+    },
+    {
+      "path": ".github/ci/native_worker_03.py",
+      "sha256": "4162f3fe9105f510bc71d5aec6ece58d00c41c5ceb9f81cfb6a7dd21469adea6"
+    },
+    {
+      "path": ".github/ci/integrity03-profile.json",
+      "sha256": "4a7625795b617ae2a11c57964356a3c896ba08ea1aa96ca3ce60a8b0843ab306"
+    },
+    {
+      "path": ".github/ci/integrity03-route-contract.json",
+      "sha256": "26a18c7015cf7df9597afcd6e6696dabc99d41fbf88de3ece8ea1f3f20ee3f21"
+    },
+    {
+      "path": ".github/ci/integrity03-linux-inputs.json",
+      "sha256": "60571fbd14ce98d56f1728429b1f0cb56c504fd3505c7adad84e24b62fa995db"
+    }
   ],
-  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
-  "profileSha256": "4a7625795b617ae2a11c57964356a3c896ba08ea1aa96ca3ce60a8b0843ab306"
+  "sharedAPISha256": "c37e2f48ee21ef1f02e4afb2bb1cd0af397781e487265c31e43fe06ea182befd",
+  "sharedSDKQualificationReplay": false,
+  "SDK_READY": false,
+  "productAdmission": false
 }

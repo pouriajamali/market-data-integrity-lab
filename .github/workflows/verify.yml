@@ -5,6 +5,12 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      stage:
+        description: Fixed own input graph curation or full product validation
+        type: choice
+        options: [product, input-curation]
+        default: product
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
   DOTNET_GENERATE_ASPNET_CERTIFICATE: "false"
@@ -60,21 +66,33 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Exact inert source binding; no ambient SDK/tool installation
+      - name: Own current held caps and fixed input or product gate
+        if: github.event.inputs.stage != 'input-curation' || matrix.rid == 'linux-x64'
         shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWN_STAGE: ${{ github.event.inputs.stage || 'product' }}
         run: |
           $ErrorActionPreference = 'Stop'
           $bindingPath = Join-Path $PWD '.github/ci/integrity03-supported-binding.json'
-          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'cd34c3e4948077abc03f362cd6a640ec0c2c77bc74821f6ae5bb79abf710876f') { throw 'BINDING_IDENTITY' }
+          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'f87119197a88bd907a8b067f01ce868e0dc5b9fbd759d32b781acd1fea7d3339') { throw 'BINDING_IDENTITY' }
           $binding = [IO.File]::ReadAllText($bindingPath) | ConvertFrom-Json
-          if ($binding.status -ne 'ADMITTED_EXACT_SOURCE_AND_HOST_FACT') { throw 'INERT_SOURCE_DESIGN_NO_EXECUTION' }
-          $python = [string]$binding.controllerPython.path
+          if ($IsWindows) {
+            $python = Join-Path $env:RUNNER_TOOL_CACHE $binding.controllerPython.'win-x64'.pathRelativeToRunnerToolCache
+            $expected = $binding.controllerPython.'win-x64'.sha256
+            $dll = Join-Path (Split-Path $python) 'python312.dll'
+            if ((Get-FileHash $dll -Algorithm SHA256).Hash.ToLowerInvariant() -ne '9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120') { throw 'PYTHON_DLL' }
+            foreach ($p in @($python, $dll)) {
+              $signature = Get-AuthenticodeSignature -LiteralPath $p
+              if ($signature.Status -ne 'Valid' -or $null -eq $signature.TimeStamperCertificate -or $signature.SignerCertificate.Subject -notmatch 'Python Software Foundation') { throw 'PYTHON_SIGNATURE' }
+            }
+          } else { $python = $binding.controllerPython.'linux-x64'.path; $expected = $binding.controllerPython.'linux-x64'.sha256 }
           if (-not [IO.Path]::IsPathFullyQualified($python)) { throw 'ABSOLUTE_EXISTING_CONTROLLER_REQUIRED' }
-          if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $binding.controllerPython.sha256) { throw 'CONTROLLER_IDENTITY' }
-          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 cd34c3e4948077abc03f362cd6a640ec0c2c77bc74821f6ae5bb79abf710876f
+          if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) { throw 'CONTROLLER_IDENTITY' }
+          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 f87119197a88bd907a8b067f01ce868e0dc5b9fbd759d32b781acd1fea7d3339 --stage $env:OWN_STAGE
           if ($LASTEXITCODE -ne 0) { throw 'OWN_CI_ROUTE_INCOMPLETE' }
       - name: Retain tested runtime archive
-        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        if: (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && github.event.inputs.stage != 'input-curation'
         uses: actions/upload-artifact@v4
         with:
           name: binary-${{ matrix.rid }}
@@ -92,6 +110,8 @@ jobs:
             artifacts/recovery-tests/
             artifacts/binary-smoke-*.json
             artifacts/runtime-locks/
+            artifacts/input-curation/
+            artifacts/host-proof/
           retention-days: ${{ (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && 7 || 3 }}
           if-no-files-found: warn
   release:

@@ -1,7 +1,7 @@
 {
   "schema": "integrity03-route-contract/v1",
-  "state": "INERT_SOURCE_PROPOSAL",
-  "authority": "Complete-local142dac plus supported-CI9b3e and shared-normal e092; exact apply/runtime/public gate absent",
+  "state": "AUTHORIZED_FIXED_INPUT_CURATION_THEN_PRODUCT_GATES",
+  "authority": "Direct human instruction20261117: finish03 upgrade through tests and preview release without intermediate approval; producer04 only required inputs; sole04 shared source writer. Current own caps/source/host/input admission remains mandatory.",
   "projectId": "03",
   "repository": "pouriajamali/market-data-integrity-lab",
   "versions": "11.0.100/net11.0/15.0/11.0.0/0.6.2-preview.1",
@@ -25,10 +25,10 @@
       "linux-x64",
       "win-x64"
     ],
-    "locks": "four net11 and separate RID lock; currently net10 HOLD",
+    "locks": "Actual four net11 source locks and each required RID lock; source still net10 until own SDK curation evidence is accepted.",
     "noticesAuditSignatures": "unchanged",
-    "release": "signed draft before public remains blocked"
+    "release": "Both native product rows must pass before new signed preview draft is made public; old releases and independent CSV action remain unchanged."
   },
-  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
+  "sharedInterfaceSha256": "eca0dd5cfe425623119aff5b05dcf70c881ce2c23414be48fb7a74920c2f89d9",
   "noNewJobOrBudget": true
 }
