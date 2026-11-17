@@ -71,7 +71,7 @@ def private_environment(sdk,own):
     return env
 
 def curate(repo,own,sdk,actual,catalog,stage):
-    require(stage in ('input-curation','product') and catalog['rid']==actual['rid'],'OWN_INPUT_STAGE_OR_RID')
+    require(stage in ('input-curation','product','packaging') and catalog['rid']==actual['rid'],'OWN_INPUT_STAGE_OR_RID')
     require(catalog['state']=='SOURCE_BOUND_CANDIDATES_REQUIRING_OWN_NATIVE_VERIFICATION','OWN_INPUT_SOURCE_STATE')
     require(-300<=time.time()-catalog['advisory']['observedAtUnix']<=catalog['advisory']['maxAgeSeconds']<=86400,'OWN_ADVISORY_SNAPSHOT_STALE')
     rows=catalog['packages'];require(19<=len(rows)<=20 and len({r['id'].lower() for r in rows})==len(rows) and sum(r['bytes'] for r in rows)<=268435456,'OWN_FINITE_PACKAGE_INPUTS')
@@ -86,7 +86,8 @@ def curate(repo,own,sdk,actual,catalog,stage):
     evidence=repo/'artifacts/input-curation';evidence.mkdir(parents=True,exist_ok=False)
     feed=own/'feed';feed.mkdir(mode=0o700);notices=evidence/'original-notices';notices.mkdir()
     raw=[]
-    for row in rows:
+    acquired=[r for r in rows if r['kind']==native_kind] if stage=='packaging' else rows
+    for row in acquired:
         path=feed/(row['id'].lower()+'.'+row['version']+'.nupkg');raw.append(fetch_exact(row,path,end))
         with zipfile.ZipFile(path) as archive:
             names=archive.namelist();require(len(names)<=4096 and len(set(names))==len(names) and '.signature.p7s' in names,'OWN_SIGNED_ARCHIVE_NAMESPACE')
@@ -132,7 +133,7 @@ def curate(repo,own,sdk,actual,catalog,stage):
     require(acceptance['state']=='ACTUAL_SEVENTEEN_FROZEN_TEST_INPUT_SIGNATURES_ACCEPTED' and acceptance['nativeVerificationExit']==0 and acceptance['warningOrUnknownAccepted'] is False and acceptance['runId']==44096474043 and acceptance['packages']==own_rows,'OWN_FIXED_TEST_INPUT_ACCEPTANCE')
     verified=[{'id':r['id'],'version':r['version'],'normalizedNuGetContentHash':r['contentHash'],'reusedOwnExactInputAcceptanceSHA256':acceptance_binding['sha256'],'qualifiedOnRid':acceptance['rid'],'newQualificationPerformed':False} for r in own_rows]
     verified.extend({'id':r['id'],'version':r['version'],'normalizedNuGetContentHash':r['contentHash'],'reusedQualifiedProducerFactSHA256':catalog['sharedInputFactSHA256'],'newSharedQualificationPerformed':False} for r in rows if r['kind']==native_kind)
-    if stage=='product':
+    if stage in ('product','packaging'):
         return {'dotnet':str(dotnet),'python':os.sys.executable,'privateEnvironment':env,'offlineConfig':str(config),'admittedRidLock':str(repo/'build/locks'/('Integrity.'+actual['rid']+'.lock.json')),'runtimePack':str(own/'packages'/('microsoft.netcore.app.runtime.'+actual['rid'])/'11.0.0'),'inputReceipt':verified,'nativeRows':[r for r in rows if r['kind']==native_kind],'privateFeed':str(feed)}
     for project in ('tests/Integrity.Tests/Integrity.Tests.csproj','tools/Measurements/Measurements.csproj'):
         args=['restore',project,'--configfile',config,'--packages',own/'packages','-p:NuGetAudit=false']
@@ -195,7 +196,9 @@ def validate_native_packs(selected,rid):
         for name,identity in expected.items():
             path=pack/name;require(path.stat().st_size==identity['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==identity['sha256'],'OWN_NATIVE_CACHE_MEMBER')
         require(hashlib.sha256((pack/archive_name).read_bytes()).hexdigest()==row['sha256'],'OWN_NATIVE_CACHED_RAW_ARCHIVE')
-        require((pack/(archive_name+'.sha512')).read_text(encoding='utf-8-sig').strip()==row['contentHash'],'OWN_NATIVE_CACHE_NORMALIZED_HASH')
+        # NuGet's sha512 sidecar hashes the complete signed archive. Its
+        # metadata/lock contentHash uses NuGet's signature-normalized identity.
+        require((pack/(archive_name+'.sha512')).read_text(encoding='utf-8-sig').strip()==row['rawSHA512Base64'],'OWN_NATIVE_CACHE_RAW_SHA512')
         metadata=json.loads((pack/'.nupkg.metadata').read_bytes());require(set(metadata)=={'version','contentHash','source'} and metadata['version']==2 and metadata['contentHash']==row['contentHash'] and Path(metadata['source']).resolve()==feed.resolve(),'OWN_NATIVE_MATERIALIZATION_METADATA')
         proof.append({'id':row['id'],'version':row['version'],'originalSignedArchiveSHA256':row['sha256'],'normalizedNuGetContentHash':row['contentHash'],'archiveMembersVerified':len(expected),'cacheNamespaceVerified':len(actual),'noticesVerifiedFromOriginalSignedArchive':True})
     require(required<=observed,'OWN_REQUIRED_NATIVE_PACKS');return proof

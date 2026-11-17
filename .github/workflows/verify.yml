@@ -9,7 +9,7 @@ on:
       stage:
         description: Fixed own input graph curation or full product validation
         type: choice
-        options: [product, input-curation]
+        options: [product, input-curation, packaging]
         default: product
       validation_rid:
         description: Manual product row selection; tag releases always require both
@@ -85,7 +85,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $bindingPath = Join-Path $PWD '.github/ci/integrity03-supported-binding.json'
-          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'aa263048ddba0aed6ea61c2cdada62f9204eba21f7aaf79a1a1841cd197e0ced') { throw 'BINDING_IDENTITY' }
+          if ((Get-FileHash -LiteralPath $bindingPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne '3b2c2854c7c59b747427e74f3d100ac2b7c20ee6ae02cfc6dabbee2a5dddb3bb') { throw 'BINDING_IDENTITY' }
           $binding = [IO.File]::ReadAllText($bindingPath) | ConvertFrom-Json
           if ($IsWindows) {
             $python = Join-Path $env:RUNNER_TOOL_CACHE $binding.controllerPython.'win-x64'.pathRelativeToRunnerToolCache
@@ -99,7 +99,7 @@ jobs:
           } else { $python = $binding.controllerPython.'linux-x64'.path; $expected = $binding.controllerPython.'linux-x64'.sha256 }
           if (-not [IO.Path]::IsPathFullyQualified($python)) { throw 'ABSOLUTE_EXISTING_CONTROLLER_REQUIRED' }
           if ((Get-FileHash -LiteralPath $python -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) { throw 'CONTROLLER_IDENTITY' }
-          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 aa263048ddba0aed6ea61c2cdada62f9204eba21f7aaf79a1a1841cd197e0ced --stage $env:OWN_STAGE
+          & $python -E .github/ci/host_controller03.py --binding $bindingPath --binding-sha256 3b2c2854c7c59b747427e74f3d100ac2b7c20ee6ae02cfc6dabbee2a5dddb3bb --stage $env:OWN_STAGE
           if ($LASTEXITCODE -ne 0) { throw 'OWN_CI_ROUTE_INCOMPLETE' }
       - name: Retain tested runtime archive
         if: (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && github.event.inputs.stage != 'input-curation' && (github.event_name != 'workflow_dispatch' || github.event.inputs.validation_rid == 'both' || github.event.inputs.validation_rid == matrix.rid)

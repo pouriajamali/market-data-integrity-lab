@@ -269,7 +269,7 @@ def retain(repo,own):
 
 
 def route_main(WindowsJob,row_started):
-    parser=argparse.ArgumentParser();parser.add_argument('--binding',required=True);parser.add_argument('--binding-sha256',required=True);parser.add_argument('--stage',choices=['input-curation','product'],default='product')
+    parser=argparse.ArgumentParser();parser.add_argument('--binding',required=True);parser.add_argument('--binding-sha256',required=True);parser.add_argument('--stage',choices=['input-curation','product','packaging'],default='product')
     args=parser.parse_args();binding=document(Path(args.binding),args.binding_sha256)
     repo,temp,actual=observe(binding)
     began=datetime.datetime.fromisoformat(actual['jobStartedAt'].replace('Z','+00:00')).timestamp()

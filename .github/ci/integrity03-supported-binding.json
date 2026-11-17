@@ -38,7 +38,7 @@
     },
     {
       "path": ".github/ci/supported_ci_route_03.py",
-      "sha256": "33bba5c2c56e6f187e9555759e0fb1982fc1a5902f16c4c50560586c6415de5f"
+      "sha256": "c093c1cc63d3ac88f54d2c8a93957c95a5dce80140ae633c0ab3172757a42899"
     },
     {
       "path": ".github/ci/runtime_policy_03.py",
@@ -46,7 +46,7 @@
     },
     {
       "path": ".github/ci/curate_inputs_03.py",
-      "sha256": "db9d71ff9cf13c26e9ab9bf20841267a20844f3c6410d904917cfae7e78c2797"
+      "sha256": "ac5bab1f3375f3a785e2fef3a78e717cea9328134e89fdd7a3ce33405097e77b"
     },
     {
       "path": ".github/ci/typed_host_03.py",
@@ -54,7 +54,7 @@
     },
     {
       "path": ".github/ci/native_worker_03.py",
-      "sha256": "117961b1afe2c8cbf416e20a870cd89039c62f558f30327d9525276bb386648a"
+      "sha256": "22580d2ee82b2489e5049b76a326aace5d4168bd0a705fdd97d555e190bba633"
     },
     {
       "path": ".github/ci/integrity03-profile.json",

@@ -1,0 +1,822 @@
+{
+  "schema": "integrity03-actual-linux-prepackaging/v1",
+  "state": "ACTUAL_UNITS_AND_FIXED_PREPACKAGING_SCENARIOS_PASSED_PACKAGING_NOT_EXECUTED",
+  "sourceCommit": "f9f904fbfa0e0dfe86196af8b110b0eff49aed0e",
+  "runId": 44098116245,
+  "runURL": "https://github.com/pouriajamali/market-data-integrity-lab/actions/runs/44098116245",
+  "rid": "linux-x64",
+  "unitSummary": {
+    "total": 165,
+    "errors": 0,
+    "failed": 0,
+    "skipped": 0,
+    "notRun": 0
+  },
+  "completedFixedLabels": [
+    "version",
+    "restore-tests",
+    "build-tests",
+    "units",
+    "restore-measurements",
+    "build-measurements",
+    "measurement-oracles",
+    "frozen-summary-recompute",
+    "tiny-worker-correctness",
+    "generate-a1",
+    "validate-a1",
+    "generate-a2",
+    "validate-a2",
+    "locked-rid-restore"
+  ],
+  "exitEvidence": "Exact signed native_worker invokes each label sequentially and checks required exit immediately; all completed before the subsequently observed native cache sidecar comparison rejection. Individual stdout/stderr retained unchanged; no fabricated per-command OS exit receipt. New runs persist explicit command progress.",
+  "logs": {
+    "version.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\version.stdout",
+      "bytes": 9,
+      "sha256": "ce0ed33fa65d926bf35a4b5fa3e9bd13266a9931237db41d283edcc123ecb9ff"
+    },
+    "version.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "restore-tests.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\restore-tests.stdout",
+      "bytes": 436,
+      "sha256": "96e7a6d8e2c3909218ab3e2b74e105bf0d881d8e21753728949f970d827cf36e"
+    },
+    "restore-tests.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\restore-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-tests.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\build-tests.stdout",
+      "bytes": 509,
+      "sha256": "f72047066735d805ef13eae71f47e56ed130717c86768f5680bbf775a7eb4184"
+    },
+    "build-tests.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\build-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "units.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\units.stdout",
+      "bytes": 448,
+      "sha256": "ef3ffab3e5008bb9fdde1764b59c6af5735e2244873215db72beb837c89de4a3"
+    },
+    "units.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\units.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "restore-measurements.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\restore-measurements.stdout",
+      "bytes": 215,
+      "sha256": "8c6ba98499ec6509d6420e5ba1498aa72a63d99fefb53d1b93d826640e574905"
+    },
+    "restore-measurements.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\restore-measurements.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-measurements.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\build-measurements.stdout",
+      "bytes": 353,
+      "sha256": "9e93cfea94a71fc072ee8c44c0c8b4407d6139e472ef0c76951e17288285f725"
+    },
+    "build-measurements.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\build-measurements.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "measurement-oracles.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\measurement-oracles.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "measurement-oracles.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\measurement-oracles.stderr",
+      "bytes": 105,
+      "sha256": "b896ec92bef469338ebf5e6ce5c1d48adaac4acf693e80b6e5c5d8aef366f633"
+    },
+    "frozen-summary-recompute.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\frozen-summary-recompute.stdout",
+      "bytes": 2090,
+      "sha256": "7dc068ac36a9ceab4705ab014a9a933b498f282263cc91f7cbfd043b604d4d71"
+    },
+    "frozen-summary-recompute.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\frozen-summary-recompute.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tiny-worker-correctness.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\tiny-worker-correctness.stdout",
+      "bytes": 102,
+      "sha256": "93c5a1aa203912ff8bde1e21051d4655774409444f12d65645703cc04966bf9f"
+    },
+    "tiny-worker-correctness.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\tiny-worker-correctness.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "generate-a1.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\generate-a1.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "generate-a1.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\generate-a1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validate-a1.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\validate-a1.stdout",
+      "bytes": 35,
+      "sha256": "6896b54240b24496e0b8def234804873a9a3cec188f5416cd36ee8f71b203768"
+    },
+    "validate-a1.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\validate-a1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "generate-a2.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\generate-a2.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "generate-a2.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\generate-a2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validate-a2.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\validate-a2.stdout",
+      "bytes": 51,
+      "sha256": "02cd36a46cd1a926217c4896c61d5662ba262c0beba8768e98901bdbefa4dc38"
+    },
+    "validate-a2.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\validate-a2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "locked-rid-restore.stdout": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\locked-rid-restore.stdout",
+      "bytes": 162,
+      "sha256": "767f2d51cb9fc20dbc9f8526ec7b8a17542831707c0a8b66e606cccd81f75d6e"
+    },
+    "locked-rid-restore.stderr": {
+      "actualPath": "E:\\Codex WorkSpace\\Git Projects\\market-data-integrity-lab\\outputs\\tech-refresh-m0-20261114\\own-linux-product-f9f904f-once\\evidence-linux-x64\\host-proof\\locked-rid-restore.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "unchangedProductSourceRows": [
+    {
+      "path": ".gitattributes",
+      "gitBlob": "0f505954e263eececa36c1d0fee0ceebef3c3911",
+      "mode": "100644"
+    },
+    {
+      "path": ".gitignore",
+      "gitBlob": "a70bdbb7c7a096972929c1fd17626c63fcf7f1b5",
+      "mode": "100644"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "gitBlob": "3645c2e0b1b8728b2273c97412fc67a55f41f101",
+      "mode": "100644"
+    },
+    {
+      "path": "CITATION.cff",
+      "gitBlob": "aeef741855d260f78a26f8dfd0e63c3a5860c5e5",
+      "mode": "100644"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "gitBlob": "8eda3709f6924e882456147e9dde69ce9c1d0d49",
+      "mode": "100644"
+    },
+    {
+      "path": "Directory.Build.props",
+      "gitBlob": "9436678f2f13e69e09106b0c4e18a27c42ef9749",
+      "mode": "100644"
+    },
+    {
+      "path": "LICENSE",
+      "gitBlob": "e67e64a5ab7fcec5def82845d73fc7f96f82c9ba",
+      "mode": "100644"
+    },
+    {
+      "path": "NOTICE.md",
+      "gitBlob": "36992ef456ff5ba7ceb9b59ca563e1bbb14b567a",
+      "mode": "100644"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "gitBlob": "c518dcacf8adfbeb042e027f2688a78a9aa57df9",
+      "mode": "100644"
+    },
+    {
+      "path": "SIGNING-PUBLIC-KEY.pub",
+      "gitBlob": "260690d2d8ede6631c0792fe61d2883c383f5466",
+      "mode": "100644"
+    },
+    {
+      "path": "action.yml",
+      "gitBlob": "3cb0cb18745d6fdc04da07c796d18f839db5b2f3",
+      "mode": "100644"
+    },
+    {
+      "path": "build/locks/Integrity.linux-x64.lock.json",
+      "gitBlob": "d0a5005680aa454a2bce7131fbf031211d291efc",
+      "mode": "100644"
+    },
+    {
+      "path": "examples/ci/clean.csv",
+      "gitBlob": "0b85fab8b58ee3b780f0a0b2c8062618aca85caf",
+      "mode": "100644"
+    },
+    {
+      "path": "examples/ci/fatal.csv",
+      "gitBlob": "689f1565ff91a00e3e62275f6b783db1d0e6d941",
+      "mode": "100644"
+    },
+    {
+      "path": "examples/ci/quarantine.csv",
+      "gitBlob": "fd0f9dccdb89075187c8876db1480ef51dc1b3b2",
+      "mode": "100644"
+    },
+    {
+      "path": "global.json",
+      "gitBlob": "358949390c3e30f6a7f3ad491a914ecd69d437a2",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/AssemblyInfo.cs",
+      "gitBlob": "051990dd51a9227fea2b1e905324f044f9501a3a",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/BoundedReader.cs",
+      "gitBlob": "db3616d4b81f6d958da65c3b70b219974bb9719e",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/Contracts.cs",
+      "gitBlob": "8330babc7673ff51d070549bea8fdba482b875c6",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/CsvContract.cs",
+      "gitBlob": "6ad8ed023f6c8a30f7c8e6a70c5d7c249c0c91aa",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/CsvDemo.cs",
+      "gitBlob": "d140c3088f82f5176e85a41a10e43c95ce32c459",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/CsvValidator.cs",
+      "gitBlob": "2b0cc21ef232e74afb2d9e89828d0718714621cb",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/Integrity.csproj",
+      "gitBlob": "519752c1ea8f9ce5bd2cefec2fb5351f36b4aadb",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/Program.cs",
+      "gitBlob": "3656f885605b8e4f9e4201d88449a1a608232a4d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/RecoveryCheckpoint.cs",
+      "gitBlob": "23cc44ac7b3ea9028c817e0a81afbe3cfc66962b",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/RecoveryContract.cs",
+      "gitBlob": "e5f7ab353a86e6bca2e50ca64293f6de99493b41",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/RecoveryRunner.cs",
+      "gitBlob": "3232b7b40f0095e5233c55d3dd083e9775b849dd",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/RecoveryStorage.cs",
+      "gitBlob": "3f4ab0957cd86bdada1e149f787e471ed01b543a",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/SequenceContract.cs",
+      "gitBlob": "0d9f68c50b40ebf2fd0acb5bda3913f185394ff9",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/SequenceEngine.cs",
+      "gitBlob": "46546f2ea22ca242745fbc46df166ff37a2efab3",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/SequenceSynthetic.cs",
+      "gitBlob": "aca9c18783091168c46b0067550edbee614341d7",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/SequenceValidator.cs",
+      "gitBlob": "0a5bdc964d8860117ac3dcbd5f19e13c70e03c53",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/Synthetic.cs",
+      "gitBlob": "a68b129593ebc746feabed04c2758d03d32dc5e6",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/SyntheticDemo.cs",
+      "gitBlob": "0faab0215b49c0e4f7d047b2e89e7f704c83167d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/Validator.cs",
+      "gitBlob": "c240dde48b1e059bd32e9290debb518dab42ff68",
+      "mode": "100644"
+    },
+    {
+      "path": "src/Integrity/packages.lock.json",
+      "gitBlob": "0ecce8c5645ed2e07ea8e2427cf9a931992f1c4b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/BehaviorTests.cs",
+      "gitBlob": "af95df542c18de302a25936520ab37f4bc5f0d8e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/CsvCliTests.cs",
+      "gitBlob": "5d5fc7f3b21643dbd507cad924ff8a5a81ecd5c1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/CsvTests.cs",
+      "gitBlob": "1948491d6012e4cde6c7aa9d8f73d010dc615954",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/DemoTests.cs",
+      "gitBlob": "2eeb844a2a743e85986adbde9d5c48de3ebafe3b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/Integrity.Tests.csproj",
+      "gitBlob": "a022b4412e98dcafb679484dfd65e1e1da2832c9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/RecoveryBoundsTests.cs",
+      "gitBlob": "199883aa8d417fa8608a53bd2d63ed2323b893f2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/RecoveryChild.cs",
+      "gitBlob": "d4324c587010f01519b1c078ec270bbcab05bac1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/RecoveryFixture.cs",
+      "gitBlob": "2ed5b51af28b611c3edcf417ec17830da1b9247c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/RecoveryTests.cs",
+      "gitBlob": "7dedf35f9358d27f63cd07014a2cc062b3a78c85",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/SequenceTests.cs",
+      "gitBlob": "b04d479af9de6e82659b166437c62deb2c63f207",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/Integrity.Tests/packages.lock.json",
+      "gitBlob": "684a6c9cd1bce0f2f02c467b5de2a53d3d8a135c",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/RecoveryProbe/Program.cs",
+      "gitBlob": "50fed5e1e9f266f9b8d8d8d7f0f015b50dd98d3f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/RecoveryProbe/RecoveryProbe.csproj",
+      "gitBlob": "086926847d14eadb4c960ce7134d44824c6239d0",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/RecoveryProbe/packages.lock.json",
+      "gitBlob": "5d97df895fdea3ceb59e6ccf14e85fb19b40181d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/Measurements/Measurements.csproj",
+      "gitBlob": "086926847d14eadb4c960ce7134d44824c6239d0",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/Measurements/Program.cs",
+      "gitBlob": "c99659d77ce05b60cfa2bcca583c3da42bb01d2e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/Measurements/packages.lock.json",
+      "gitBlob": "5d97df895fdea3ceb59e6ccf14e85fb19b40181d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/analyze_measurements.py",
+      "gitBlob": "455fd003282d5c63e319c5a1a224b9dcb0ada425",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_binary.py",
+      "gitBlob": "d6149292039943d1bb9b7a65a8e78cb5f8da55e0",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_csv_ci.py",
+      "gitBlob": "a88e4504483a660a35e7e8a6207c6c3bef32e1bd",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_dotnet11.py",
+      "gitBlob": "7ba2720e65558250706197e8deae108bfda987c0",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_measurements.py",
+      "gitBlob": "07729e815898b5f22f87a400bc534ac9aa71e0a6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/check_release_archives.py",
+      "gitBlob": "ec8f160227281a583168b537a6208182c4ecb93d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/dotnet11-host-qualification.schema.json",
+      "gitBlob": "4c505869b03dbf79c194bf8c7ca7b376ceee0223",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/materialize_qualification_linux.py",
+      "gitBlob": "16e4e7ef7b2e7747a17714e4f6a551c40c9a4829",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/normal_windows_input.py",
+      "gitBlob": "e299a97d1675b376422b4fde89bf8ca3889acb8d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/package_binary.py",
+      "gitBlob": "ecfdb14af91b69a6b5b4b4a0bffccd45dd99b5ff",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/qualification_input_guard.py",
+      "gitBlob": "ebc36eade0d00b3d419aa995f4913117ba64abd6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/run_measurements.py",
+      "gitBlob": "d11aeb61a9edb24a2535a22b67fed7df956ce193",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-native-inputs.lock.json",
+      "gitBlob": "e685329708f4c1395b1bbac026f1de08850a1296",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal-inputs.lock.json",
+      "gitBlob": "2c8ba9d70f9ba0cbd7d52dd1cd9463e384af8a35",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal-windows-admission.json",
+      "gitBlob": "9b1b715567ac517100acdaf302ce25f75ea12fe1",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/.gitattributes",
+      "gitBlob": "d56fde8267e5be8ab28db96e59c548b16e5dc58f",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-acceptance.json",
+      "gitBlob": "9ed6ac75a97db595caa5c6d9b84e03b7f21e7f2e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-fact.json",
+      "gitBlob": "391173426f2a48f2fb9797d70cc7cb618bd5ffaf",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-windows-acceptance.json",
+      "gitBlob": "cc193e041bcd13a024374e23df11c1cb850203a9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-windows-fact.json",
+      "gitBlob": "ac16ecce10590289223afcdaa9da2b815bb76493",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/FINAL-CANDIDATE.json",
+      "gitBlob": "d499de9bd11e22c4829ae2ea0e6bca2937536a4e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/cleanup-terminal.json",
+      "gitBlob": "721708c5f74330131aaaa6439aa70279e1e0a328",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/curation-current-network-deny.json",
+      "gitBlob": "098a071d174c2710653e826b70532b559b5ea633",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/curation-worker.json",
+      "gitBlob": "a68f3acaf9effe53133716d2fa083e24690b2660",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-0.ndjson",
+      "gitBlob": "6ebceaeee4091014c340afb88ab793b82c747532",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-1.ndjson",
+      "gitBlob": "99f2f8a9736814ce120be650fcfdfbd62549a145",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-2.ndjson",
+      "gitBlob": "20925537fb397eac9c447f5b967de2ae0d600290",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-0.der",
+      "gitBlob": "391ffc14d3d58e371d34cb61b6f6d7e875022792",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-1.der",
+      "gitBlob": "da8e7a1f2081f703dea8be1cded9a53557db2af7",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-2.der",
+      "gitBlob": "e50ccf14ab1db256d73d6651e82e0ea949e25b64",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-3.der",
+      "gitBlob": "99bcc84b7e68b5b28e4444f6fa21bc7c2baf497d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-4.der",
+      "gitBlob": "073e296fb681b769ca85f4a27037a6b2523b01c0",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-5.der",
+      "gitBlob": "7a55fa2951435b36e2c9beebb226d0c9d7b0e656",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-6.der",
+      "gitBlob": "da77258e90f16a320cbb0d16f0983c29f2e82dde",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-7.der",
+      "gitBlob": "db9a2660e3e1e35144337440411c7ea3fd647e7a",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-8.der",
+      "gitBlob": "7a55fa2951435b36e2c9beebb226d0c9d7b0e656",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/repository.json",
+      "gitBlob": "6e702dc6ac043750782c6c9bf40e8b068309df03",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/repository.json.wire",
+      "gitBlob": "e983a8bb7ac4b8bad3a711b7775bdd5d9a8f7331",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/service.json",
+      "gitBlob": "68b99b784a8e42e1f273bf6ba62e34e7efe27f70",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/service.json.wire",
+      "gitBlob": "859ed2a7643711b1a0074b3b1533394dd381816d",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/servicing.json",
+      "gitBlob": "75e9fed9290f8ebfa7789a1b79e1beb8e5d693c7",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/servicing.json.wire",
+      "gitBlob": "27f0e48f76dd746fca275e68ee4e34c1363f4838",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-index.json",
+      "gitBlob": "e91f67563e0c8ff7e41e0c45615aa7af767e8b6e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-index.json.wire",
+      "gitBlob": "d6d9109b6de94794c2e6b37c0a08dce1b06304f1",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-0.json",
+      "gitBlob": "a25426420f6fe6c7c6495a8784263ec32ff2b287",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-0.json.wire",
+      "gitBlob": "66508b3833883b8dcfd08ea9d8f42304daed50b8",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-1.json",
+      "gitBlob": "9e26dfeeb6e641a33dae4961196235bdb965b21b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-1.json.wire",
+      "gitBlob": "0a605d047cb89c0aff875aac08a49f82d8601e2c",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-0.log",
+      "gitBlob": "6b3fd602bbc950fac4111e7a79d732119ccd21c1",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-1.log",
+      "gitBlob": "15cff2ff8b24e2576d8d39a48794010549167e11",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-2.log",
+      "gitBlob": "3af711bf3f06bb7792fdfafb871f2a5ebd3a9115",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-1.data",
+      "gitBlob": "29e2479fd95da85624fdd8ce263ed2398f96715e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-143.data",
+      "gitBlob": "b6b9e77710e7fcc07969db9e4beea1fd53c8aed2",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-2.data",
+      "gitBlob": "b2aedf608ecc0167572a00788e232b0bb344cb41",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-4.data",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-1.data",
+      "gitBlob": "9bb765984b573ee066f4e634acce10daeacfb4c7",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-18.data",
+      "gitBlob": "05c8bc27e5f265f154daa9533eea51aa6c37ae71",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-4.data",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-6.data",
+      "gitBlob": "ca41ed84ced12bc3d9979c31df6ad456a4c8ac2f",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-1.data",
+      "gitBlob": "b5dffdffb04e1aec41b299c6174aa65e5535132c",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-210.data",
+      "gitBlob": "84830d0e28db82acf52273b041315fd851631af9",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-4.data",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-6.data",
+      "gitBlob": "ca41ed84ced12bc3d9979c31df6ad456a4c8ac2f",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/public-original-input-receipt.json",
+      "gitBlob": "4b479a672e72bf291f523b630fe46d9edbf64c71",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/recovered-metadata-0.json",
+      "gitBlob": "d049e0018a4f5e3dae9c21324d902ee4cf8e9265",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/recovered-metadata-1.json",
+      "gitBlob": "58f63c9fb8faadd9931a812a3307b80622eb39ea",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/sdk11_ci_facts.py",
+      "gitBlob": "dac0d7ae19e453d172790a9b16c54e4fa92c8d91",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_csv_ci.py",
+      "gitBlob": "edcc7afb0e3e8b1032f225185c5ddef95a97adc1",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_measurements.py",
+      "gitBlob": "c9bcd05c8025281008bbf7d6dbe4b909e8172896",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_shared_normal_windows_delta.py",
+      "gitBlob": "b6ce435e968eb0f3588f6dd34ddd77a52dbf6d68",
+      "mode": "100644"
+    }
+  ],
+  "terminal": {
+    "unit": "integrity03-44098116245-1-5dad715e6396-linux-x64",
+    "terminal": {
+      "MainPID": "0",
+      "ControlPID": "0",
+      "Result": "exit-code",
+      "ExecMainCode": "1",
+      "ExecMainStatus": "70"
+    },
+    "budgetFailure": null,
+    "populationZeroObserved": true,
+    "retainedWorkerAndObserverTerminal": true,
+    "stopObserver": {
+      "cgroup": "/system.slice/integrity03-44098116245-1-5dad715e6396-linux-x64.service",
+      "limits": {
+        "cpu.max": "200000 100000",
+        "memory.max": "4294967296",
+        "memory.swap.max": "0",
+        "pids.max": "128"
+      },
+      "observedNs": 228503635376,
+      "pid": 2996,
+      "remainingPopulationExcludingObserver": 0,
+      "start": "22844",
+      "state": "HELD_STOP_OBSERVER",
+      "unit": "integrity03-44098116245-1-5dad715e6396-linux-x64"
+    }
+  },
+  "SDKQualificationReplay": false,
+  "apphostInvocations": 0,
+  "releasePublished": false
+}

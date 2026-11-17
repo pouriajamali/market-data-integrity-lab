@@ -37,27 +37,32 @@ def run_fixed_plan(repo,own,binding,selected,actual):
                 time.sleep(0.05)
         require(child.returncode==expected,'PRODUCT_EXIT_MISMATCH')
         commands.append({'label':label,'argv':[str(v) for v in argv],'exit':child.returncode,'stdout':str(stdout),'stderr':str(stderr)})
+        (own/'product-progress.json').write_text(json.dumps({'state':'PARTIAL_FIXED_PLAN_PROGRESS_NOT_FINAL_PASS','sourceCommit':actual['commit'],'rid':actual['rid'],'commands':commands}),encoding='utf-8')
         return stdout
     tests='tests/Integrity.Tests/Integrity.Tests.csproj';measure='tools/Measurements/Measurements.csproj';app='src/Integrity/Integrity.csproj'
-    invoke('version',[sdk,'--version'])
-    require((own/'version.stdout').read_text().strip()=='11.0.100','SELECTED_SDK_VERSION')
     offline=['--configfile',selected['offlineConfig'],'--packages',env['NUGET_PACKAGES'],'-p:NuGetAudit=false']
-    invoke('restore-tests',[sdk,'restore',tests,'--locked-mode',*offline])
-    invoke('build-tests',[sdk,'build',tests,'-c','Release','--no-restore','-m:1','-p:UseSharedCompilation=false'])
-    units=invoke('units',[sdk,'run','--project',tests,'-c','Release','--no-build'])
-    # Exact summary syntax must be source-reviewed against actual runner output;
-    # no unparsed line is silently turned into165 passed tests.
-    text=units.read_text(encoding='utf-8',errors='strict')
-    require(re.search(r'Total:\s*165\b',text) and re.search(r'Failed:\s*0\b',text) and re.search(r'Skipped:\s*0\b',text),'UNIT_COUNTS_NOT_PROVED')
-    invoke('restore-measurements',[sdk,'restore',measure,'--locked-mode',*offline])
-    invoke('build-measurements',[sdk,'build',measure,'-c','Release','--no-restore','-m:1','-p:UseSharedCompilation=false'])
-    invoke('measurement-oracles',[python,'-E','tools/test_measurements.py'])
-    invoke('frozen-summary-recompute',[python,'-E','tools/analyze_measurements.py','docs/evidence/measurements','artifacts/recomputed-a4-summary.json'])
-    invoke('tiny-worker-correctness',[python,'-E','tools/check_measurements.py','--dotnet',sdk])
-    invoke('generate-a1',[sdk,'run','--project',app,'-c','Release','--no-build','--','generate','artifacts/demo','34'])
-    invoke('validate-a1',[sdk,'run','--project',app,'-c','Release','--no-build','--','validate','artifacts/demo/manifest.json','artifacts/demo/input.jsonl','artifacts/result'],2)
-    invoke('generate-a2',[sdk,'run','--project',app,'-c','Release','--no-build','--','generate-sequence','artifacts/sequence-demo'])
-    invoke('validate-a2',[sdk,'run','--project',app,'-c','Release','--no-build','--','validate-sequence','artifacts/sequence-demo/manifest.json','artifacts/sequence-demo/input.jsonl','artifacts/sequence-result'],2)
+    if actual['stage']=='packaging':
+        verify_prepackaging_source(repo,rid)
+    else:
+        invoke('version',[sdk,'--version'])
+        require((own/'version.stdout').read_text().strip()=='11.0.100','SELECTED_SDK_VERSION')
+        offline=['--configfile',selected['offlineConfig'],'--packages',env['NUGET_PACKAGES'],'-p:NuGetAudit=false']
+        invoke('restore-tests',[sdk,'restore',tests,'--locked-mode',*offline])
+        invoke('build-tests',[sdk,'build',tests,'-c','Release','--no-restore','-m:1','-p:UseSharedCompilation=false'])
+        units=invoke('units',[sdk,'run','--project',tests,'-c','Release','--no-build'])
+        # Exact summary syntax must be source-reviewed against actual runner output;
+        # no unparsed line is silently turned into165 passed tests.
+        text=units.read_text(encoding='utf-8',errors='strict')
+        require(re.search(r'Total:\s*165\b',text) and re.search(r'Failed:\s*0\b',text) and re.search(r'Skipped:\s*0\b',text),'UNIT_COUNTS_NOT_PROVED')
+        invoke('restore-measurements',[sdk,'restore',measure,'--locked-mode',*offline])
+        invoke('build-measurements',[sdk,'build',measure,'-c','Release','--no-restore','-m:1','-p:UseSharedCompilation=false'])
+        invoke('measurement-oracles',[python,'-E','tools/test_measurements.py'])
+        invoke('frozen-summary-recompute',[python,'-E','tools/analyze_measurements.py','docs/evidence/measurements','artifacts/recomputed-a4-summary.json'])
+        invoke('tiny-worker-correctness',[python,'-E','tools/check_measurements.py','--dotnet',sdk])
+        invoke('generate-a1',[sdk,'run','--project',app,'-c','Release','--no-build','--','generate','artifacts/demo','34'])
+        invoke('validate-a1',[sdk,'run','--project',app,'-c','Release','--no-build','--','validate','artifacts/demo/manifest.json','artifacts/demo/input.jsonl','artifacts/result'],2)
+        invoke('generate-a2',[sdk,'run','--project',app,'-c','Release','--no-build','--','generate-sequence','artifacts/sequence-demo'])
+        invoke('validate-a2',[sdk,'run','--project',app,'-c','Release','--no-build','--','validate-sequence','artifacts/sequence-demo/manifest.json','artifacts/sequence-demo/input.jsonl','artifacts/sequence-result'],2)
     lock=Path(selected['admittedRidLock'])
     require(lock.is_file(),'RID_LOCK_NOT_ADMITTED')
     invoke('locked-rid-restore',[sdk,'restore',app,'-r',rid,'--locked-mode','-p:SelfContained=true','-p:RuntimeFrameworkVersion=11.0.0','-p:NuGetLockFilePath='+str(lock),*offline])
@@ -74,7 +79,7 @@ def run_fixed_plan(repo,own,binding,selected,actual):
     value=json.loads(smoke.read_text())
     require(value['commit']==actual['commit'] and value['rid']==rid and len(value['observations'])==60,'APPHOST60_NOT_PROVED')
     require(value['status']=='EXTRACTED_APPHOST_DEMO_AND_CONTRACT_PASS','APPHOST_CHECK_INCOMPLETE')
-    return {'commands':commands,'nativePackMaterialization':native_proof,'unitsObserved':165,'apphostInvocationsObserved':60,'benchmarkExecuted':False,'otherRidRequiredForFinalDelivery':True}
+    return {'commands':commands,'nativePackMaterialization':native_proof,'unitsObservedInThisCall':0 if actual['stage']=='packaging' else 165,'priorAcceptedUnits':165 if actual['stage']=='packaging' else None,'apphostInvocationsObserved':60,'benchmarkExecuted':False,'otherRidRequiredForFinalDelivery':True}
 
 def extract_own(repo,own,rid):
     prefix='market-data-integrity-lab-v0.6.2-preview.1-'+rid
@@ -101,3 +106,17 @@ def extract_own(repo,own,rid):
                 require(count==(row.file_size if rid=='win-x64' else row.size),'SHORT')
             if rid!='win-x64':dest.chmod(row.mode&0o777)
     return target/prefix
+
+
+def verify_prepackaging_source(repo,rid):
+    require(rid=='linux-x64','PACKAGING_RESUME_ONLY_ACCEPTED_LINUX')
+    fact=json.loads((repo/'.github/ci/integrity03-linux-prepackaging.json').read_bytes())
+    require(fact['schema']=='integrity03-actual-linux-prepackaging/v1' and fact['state']=='ACTUAL_UNITS_AND_FIXED_PREPACKAGING_SCENARIOS_PASSED_PACKAGING_NOT_EXECUTED' and fact['runId']==44098116245 and fact['sourceCommit']=='f9f904fbfa0e0dfe86196af8b110b0eff49aed0e','OWN_PREPACKAGING_FACT')
+    tool='C:/Program Files/Git/cmd/git.exe' if os.name=='nt' else '/usr/bin/git'
+    current={}
+    raw=subprocess.check_output([tool,'-C',str(repo),'ls-tree','-r','-z','HEAD'],timeout=5)
+    for row in raw.split(b'\0'):
+        if not row:continue
+        meta,name=row.split(b'\t',1);mode,kind,blob=meta.decode().split();name=name.decode()
+        if not name.startswith(('.github/','docs/')) and name not in ('README.md',):current[name]={'path':name,'mode':mode,'gitBlob':blob}
+    require(current=={r['path']:r for r in fact['unchangedProductSourceRows']},'PRODUCT_INPUT_OR_ORACLE_CHANGED_FULL_TESTS_REQUIRED')
