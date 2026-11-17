@@ -14,6 +14,7 @@ import secrets
 import select
 import shlex
 import shutil
+import stat
 import datetime
 import urllib.request
 import signal
@@ -96,6 +97,7 @@ def linux_starter(repo,temp,actual,binding,pinned_binding):
     # Context contains only pinned metadata, paths and redacted env. Credentials
     # are not serialized here; provider must use the explicitly reviewed separate
     #0600 runner credential transport, never argv/log/query-string credentials.
+    actual['normalDirectory']=str(temp/('sdk11-normal-03-'+secrets.token_hex(12)))
     payload={'repo':str(repo),'temp':str(own),'actual':actual,'bindingPath':str(pinned_binding),'bindingSha256':digest(pinned_binding),'unit':unit}
     context.write_text(json.dumps(payload),encoding='utf-8');context.chmod(0o600)
     require(remaining(actual)>20,'NO_START_STOP_RESERVE')
@@ -146,7 +148,7 @@ def linux_starter(repo,temp,actual,binding,pinned_binding):
         os.kill(pid,signal.SIGCONT)
         # RuntimeMaxSec owns termination. Only read/query this unit. No additional
         # arbitrary sudo/root command is introduced for stop/collect/host repair.
-        observer_fd=None;stop=None
+        observer_fd=None;stop=None;last_budget=0;budget_failure=None
         while time.monotonic_ns()<actual['deadlineMonotonicNs']:
             if (own/'stop-held.json').is_file():
                 from runtime_policy_03 import canonical
@@ -154,10 +156,18 @@ def linux_starter(repo,temp,actual,binding,pinned_binding):
                 observer_fd=os.pidfd_open(opid,0)
                 require(stop['unit']==unit and stop['remainingPopulationExcludingObserver']==0 and stop['limits']==observed and stop['cgroup']==shown['ControlGroup'],'STOP_OBSERVER_BINDING')
                 statrow=Path('/proc',str(opid),'stat').read_text().rsplit(')',1)[1].split()
+                stop_end=min(actual['deadlineMonotonicNs'],time.monotonic_ns()+2*10**9)
+                while statrow[0]!='T' and time.monotonic_ns()<stop_end:
+                    time.sleep(.005);statrow=Path('/proc',str(opid),'stat').read_text().rsplit(')',1)[1].split()
                 require(statrow[19]==stop['start'] and statrow[0]=='T' and not select.select([observer_fd],[],[],0)[0],'STOP_OBSERVER_IDENTITY')
                 require((cg/'cgroup.procs').read_text().split()==[str(opid)],'STOP_OBSERVER_EXCLUSIVE')
                 signal.pidfd_send_signal(observer_fd,signal.SIGCONT)
                 break
+            if time.monotonic_ns()-last_budget>=10**9 and budget_failure is None:
+                try:size_budget(repo,own,actual)
+                except Denied as error:
+                    budget_failure=str(error);signal.pidfd_send_signal(pidfd,signal.SIGKILL)
+                last_budget=time.monotonic_ns()
             for log in [own/'worker.log',own/'worker-error.log']:
                 require(not log.exists() or log.stat().st_size<=134217728,'CI_LOG_CAP')
             time.sleep(remaining(actual,0.05))
@@ -176,7 +186,7 @@ def linux_starter(repo,temp,actual,binding,pinned_binding):
             final=dict(line.split('=',1) for line in raw.splitlines() if '=' in line)
         require(final.get('MainPID')=='0' and final.get('ControlPID')=='0' and 'Result' in final,'CAUSE_OR_TERMINAL_UNKNOWN')
         require((not cg.exists()) or ((cg/'cgroup.events').is_file() and 'populated 0' in (cg/'cgroup.events').read_text()),'POPULATION_ZERO_NOT_OBSERVED')
-        terminal={'unit':unit,'terminal':final,'populationZeroObserved':True,'retainedWorkerAndObserverTerminal':True,'stopObserver':stop}
+        terminal={'unit':unit,'terminal':final,'budgetFailure':budget_failure,'populationZeroObserved':True,'retainedWorkerAndObserverTerminal':True,'stopObserver':stop}
         (own/'controller-terminal.json').write_text(json.dumps(terminal),encoding='utf-8')
         retain(repo,own)
         require(final.get('Result')=='success' and final.get('ExecMainStatus')=='0' and (own/'worker-result.json').is_file(),'OWN_WORKER_NOT_SUCCESS')
@@ -215,7 +225,7 @@ def worker_pipeline(repo,own,binding,actual):
     require(digest(provider)=='c37e2f48ee21ef1f02e4afb2bb1cd0af397781e487265c31e43fe06ea182befd','SHARED_SOURCE')
     spec=importlib.util.spec_from_file_location('producer04_bound_transport',provider)
     adapter=importlib.util.module_from_spec(spec);sys.modules[spec.name]=adapter;spec.loader.exec_module(adapter)
-    sdk,receipt=adapter.transport(actual['rid'],Path(os.environ['RUNNER_TEMP'])/('sdk11-normal-03-'+secrets.token_hex(12)),context)
+    sdk,receipt=adapter.transport(actual['rid'],Path(actual['normalDirectory']),context)
     (own/'shared-input-receipt.json').write_text(json.dumps(receipt),encoding='utf-8')
     adapter.inspect_sdk(actual['rid'],sdk,context)
     from curate_inputs_03 import curate
@@ -227,6 +237,28 @@ def worker_pipeline(repo,own,binding,actual):
         result=run_fixed_plan(repo,own,binding,selected,actual)
     result['inputRecheck']=adapter.inspect_sdk(actual['rid'],sdk,context)
     (own/'worker-result.json').write_text(json.dumps(result),encoding='utf-8')
+
+
+
+def size_budget(repo,own,actual):
+    total=0;count=0
+    roots=[own,Path(actual['normalDirectory']),repo/'artifacts']
+    for root in roots:
+        if not root.exists():continue
+        for parent,dirs,files in os.walk(root,followlinks=False):
+            require(not Path(parent).is_symlink(),'OWN_SCRATCH_LINK')
+            for name in dirs:require(not (Path(parent)/name).is_symlink(),'OWN_SCRATCH_LINK')
+            for name in files:
+                path=Path(parent)/name
+                try:info=path.lstat()
+                except FileNotFoundError:continue
+                require(stat.S_ISREG(info.st_mode),'OWN_SCRATCH_SPECIAL_FILE');total+=info.st_size;count+=1
+                require(total<=8589934592 and count<=100000,'OWN_SCRATCH_CAP')
+    logs=sum(p.stat().st_size for p in own.iterdir() if p.is_file() and p.suffix in ('.stdout','.stderr','.log'))
+    require(logs<=268435456,'OWN_AGGREGATE_LOG_CAP')
+    record=own/'budget-ledger.json';previous=json.loads(record.read_bytes()) if record.exists() else {}
+    value={'scope':'Own worker allocation, own qualified SDK allocation and own repository artifacts; logical regular-file sizes, hard links counted separately','maxObservedBytes':max(total,previous.get('maxObservedBytes',0)),'scratchLimitBytes':8589934592,'maxObservedLogBytes':max(logs,previous.get('maxObservedLogBytes',0)),'logLimitBytes':268435456,'samples':previous.get('samples',0)+1,'lastObservationMonotonicNs':time.monotonic_ns(),'deadlineMonotonicNs':actual['deadlineMonotonicNs']}
+    record.write_text(json.dumps(value),encoding='utf-8')
 
 
 def retain(repo,own):
@@ -261,12 +293,13 @@ def route_main(WindowsJob,row_started):
     require(digest(git_exe,32*1024*1024)=='20d0dde30a65afb6e5810a883700a94dcd77fbf3b44b32868d45bf7c9b30137c','OWN_WINDOWS_GIT_IDENTITY')
     actual['sourceTree']=subprocess.check_output([str(git_exe),'-C',str(repo),'rev-parse','HEAD^{tree}'],text=True,timeout=remaining(actual,5)).strip()
     require(subprocess.check_output([str(git_exe),'-C',str(repo),'rev-parse','HEAD'],text=True,timeout=remaining(actual,5)).strip()==actual['commit'],'OWN_WINDOWS_EVENT_SOURCE')
+    actual['normalDirectory']=str(temp/('sdk11-normal-03-'+secrets.token_hex(12)))
     context={'temp':str(own),'repo':str(repo),'actual':actual,'binding':binding}
     payload=own/'windows-context.json';payload.write_text(json.dumps(context),encoding='utf-8')
     allowed=('SystemRoot','WINDIR','COMSPEC','PATHEXT','NUMBER_OF_PROCESSORS','PROCESSOR_ARCHITECTURE','RUNNER_ARCH','GITHUB_ACTIONS','RUNNER_ENVIRONMENT','ImageOS','ImageVersion','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','RUNNER_NAME','GITHUB_REPOSITORY','GITHUB_SHA','GITHUB_WORKSPACE','GITHUB_JOB','RUNNER_OS','RUNNER_TEMP')
     env={k:os.environ[k] for k in allowed if k in os.environ};env.update(PATH='C:/Windows/System32;C:/Windows;C:/Program Files/Git/cmd',PYTHONDONTWRITEBYTECODE='1')
     argv=[str(Path(sys.executable).resolve()),'-E',str(repo/'.github/ci/host_controller03.py'),'--windows-worker',str(payload)]
-    child=job.spawn(argv,env);started=time.monotonic()
+    child=job.spawn(argv,env);started=time.monotonic();last_budget=0
     require(job.lastHeld['pid']==child.pid and job.lastHeld['resumePreviousCount']==1,'WINDOWS_HELD_CHILD_IDENTITY')
     effective=job.lastHeld['effectiveBeforeResume']['aggregateAndWorkerJobs'][1]
     worker={'pid':child.pid,'processStartIdentity':'FILETIME:'+job.lastHeld['creationFileTime'],'jobName':job.name,'memoryMaxBytes':effective['memoryBytes'],'tasksMax':effective['pids'],'cpuRate':effective['cpuRate'],'logicalHostCpu':os.cpu_count()}
@@ -276,7 +309,8 @@ def route_main(WindowsJob,row_started):
     try:
         while child.poll() is None:
             require(time.monotonic_ns()<actual['deadlineMonotonicNs'],'OWN_WINDOWS_ORIGINAL_DEADLINE')
-            require(sum(p.stat().st_size for p in own.iterdir() if p.is_file() and p.suffix in ('.stdout','.stderr','.log'))<=268435456,'OWN_WINDOWS_LOG_CAP')
+            if time.monotonic_ns()-last_budget>=10**9:
+                size_budget(repo,own,actual);last_budget=time.monotonic_ns()
             time.sleep(remaining(actual,.05))
     finally:
         if job.active():job.stop()
