@@ -2,7 +2,7 @@
 
 Current CLI preview: **[0.6.2-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1)**, built
 with SDK **11.0.100**, **net11.0**, stable **C#15** and bundled runtime **11.0.0**.
-[Exact runtime source](https://github.com/pouriajamali/market-data-integrity-lab/tree/cli-v0.6.2-preview.1) Â·
+[Exact runtime source](https://github.com/pouriajamali/market-data-integrity-lab/tree/cli-v0.6.2-preview.1) |
 [Release verification and limitations](docs/RELEASE-v0.6.2-preview.1.md).
 
 **165 tests and60 extracted-apphost invocations passed on each OS.** Linux uses
@@ -18,8 +18,8 @@ study separate synthetic validation/process-crash recovery examples. This offlin
 C#/.NET lab uses an explicit CSV profile; it does not connect to a market or
 account and does not trade. User-file provenance is UNVERIFIED.
 
-[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) ·
-[Download 0.6.2-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1) ·
+[Windows/Linux CI](https://github.com/pouriajamali/market-data-integrity-lab/actions/workflows/verify.yml) |
+[Download 0.6.2-preview.1](https://github.com/pouriajamali/market-data-integrity-lab/releases/tag/cli-v0.6.2-preview.1) |
 [Source and developer commands](docs/DEVELOPMENT.md)
 
 ## Try the CSV preview
@@ -27,7 +27,7 @@ account and does not trade. User-file provenance is UNVERIFIED.
 [Watch the original 0.6.0 60-second demo](https://github.com/pouriajamali/market-data-integrity-lab/releases/download/v0.6.0-preview.1/market-data-integrity-lab-60s.webm), or use the Windows/Linux download links below.
 The CSV demo generates six rows: two accepted and four quarantined. Then use
 `validate-csv` with your own local file and explicit price/volume scales.
-[CSV format and command](#check-your-own-csv) ·
+[CSV format and command](#check-your-own-csv) |
 
 For a repeatable check on your own runner, use the
 [CSV CI action](docs/CSV-CI.md). It verifies its pinned signed v0.6.0-preview.1
@@ -151,7 +151,7 @@ Paths, supplied argument values and CSV rows are never echoed by these messages.
 
 The parser, `ohlc-csv-v1`, report bytes, and file-fatal versus row-quarantine
 rules remain unchanged. Other command usage stays the same.
-[Release notes](docs/RELEASE-v0.6.1-preview.1.md) ·
+[Release notes](docs/RELEASE-v0.6.1-preview.1.md) |
 [Exact diagnostics and examples](docs/CSV.md#command-argument-refusal)
 
 ## Separate synthetic demo
@@ -197,10 +197,10 @@ partial decisions/checkpoints, fallback and repeated interruptions.
 - B2 adds offline CSV checks. Current binaries have not been performance-measured. Historical
   tags, archives and raw measurement bytes remain unchanged.
 
-[CSV contract](docs/CSV.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Synthetic input contract](docs/CONTRACT.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Sequence contract](docs/SEQUENCE.md) ·
-[Recovery contract](docs/RECOVERY.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Case study](docs/CASE-STUDY.md) ·
-[Claim-to-evidence map](docs/EVIDENCE.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Â· [Measurement definitions](docs/MEASUREMENTS.md) ·
-[Design](docs/DESIGN.md) ·
+[CSV contract](docs/CSV.md) | [Synthetic input contract](docs/CONTRACT.md) | [Sequence contract](docs/SEQUENCE.md) |
+[Recovery contract](docs/RECOVERY.md) | [Case study](docs/CASE-STUDY.md) |
+[Claim-to-evidence map](docs/EVIDENCE.md) | [Measurement definitions](docs/MEASUREMENTS.md) |
+[Design](docs/DESIGN.md) |
 
 ## Verify release provenance
 
